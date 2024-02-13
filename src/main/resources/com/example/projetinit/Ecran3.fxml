@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../css/Main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetinit.Ecran3Controller">
+   <children>
+      <Label layoutX="286.0" layoutY="52.0" text="Résultats" />
+      <Button layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#swicthToEcran2" text="Ecran précédent" />
+   </children>
+</AnchorPane>

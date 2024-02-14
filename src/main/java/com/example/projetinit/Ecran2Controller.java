@@ -57,13 +57,26 @@ public class Ecran2Controller implements Initializable {
         Achat achat = new Achat(textFieldCodeE.getText(), Double.parseDouble(textFieldqteAchat.getText()));
         tableview.getItems().add(achat);
     }
+    @FXML
+    void removeButton(ActionEvent e){
+        ObservableList<Achat> allAchat, singleAchat;
+        allAchat= tableview.getItems();
+        singleAchat= tableview.getSelectionModel().getSelectedItems();
+        singleAchat.forEach(allAchat::remove);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         colCodeE.setCellValueFactory(new PropertyValueFactory<>("codeE"));
         colQteAchat.setCellValueFactory(new PropertyValueFactory<>("qteAchat"));
         ObservableList<Achat> observableList = FXCollections.observableArrayList(
-                new Achat("toto", 2.3)
+                new Achat("E001", 10.0),
+                new Achat("E002", 400.0),
+                new Achat("E003", 5.0),
+                new Achat("E004", 60.0),
+                new Achat("E005", 25.0),
+                new Achat("E006", 12.5),
+                new Achat("E007", 50.0)
         );
         tableview.setItems(observableList);
     }

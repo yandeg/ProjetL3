@@ -5,149 +5,150 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Calcul {
-	
-	// INITIALISATION DES DONNEES
-	
-	// HashMap pour stocker le code des éléments et leur stock fictif
-	private HashMap<String,Double> mapStockFictif = new HashMap<>();
-	
-	// HashMap qui contiendra le code des éléments et leur quantité d'achat saisie
-	private HashMap<String, Double> mapAchats = new HashMap<>();
-		
-	// Crée une instance de GestionDonnées pour utiliser ses méthodes
-	// et des listes vide pour les infos d'éléments et prix
-	private GestionDonnées gd = new GestionDonnées();
-	private List<Element> listeE;
-	private List<Prix> listePrix;
-		
-	//Récupérer le niveau d'activité pour chaque chaine (saisi par l'utilisteur)
-	// -> A creer
-	
-	//Récupérer les achats : quantité et éléments concernés (saisi par l'utilisteur)
-	// Voir si la HashMap pose problème (va dépendre de si l'utilisateur peut saisir plusieurs
-	// 									 lignes d'achat pour un même produit)
-	// Méthode à remplacer par une lecture des achats saisis par l'utilisateur
-	// -> Données renseignées pour le test	
-	public HashMap<String, Double> recupererAchats() {
-		mapAchats.put("E005", 100.0);
-		mapAchats.put("E006", 10.0);
-		mapAchats.put("E007", 50.0);
-		mapAchats.put("E003", 250.0);
-		return mapAchats;
+
+	private static double indicateurValeur;
+	private static double indicateurCommande;
+
+	//private static List<Chaines> chaines;
+
+	// HashMaps pour faciliter les traitements (duplication eléments)
+	private static HashMap<String,Double> mapStockFictif = new HashMap<>();
+
+	private static String messageProdImpossible = "";
+
+	public static double getIndicateurValeur() {
+		return indicateurValeur;
 	}
-		
-	// Initialiser la Map mapStockFictif avec les éléments du fichier elements.csv
-	public HashMap<String, Double> initialiserMapStockFictif() {
-		gd.chargerElements();
-		listeE = gd.getElements();
-		for (Element element : listeE) {
-            mapStockFictif.put(element.getCodeE(), element.getQuantite());
-        }
-		return mapStockFictif;
+	public static double getIndicateurCommande() {
+		return indicateurCommande;
 	}
-	
-	// Modifie la valeur dans la Map si le codeE existe comme clé
-	public HashMap<String, Double> modifierStockFictif(String code, double stockFictif) {
-		if (mapStockFictif.containsKey(code)) {
-			mapStockFictif.put(code, stockFictif);
-		} else {
-			//Mettre une exception ici
-			System.out.println("Erreur : code inexistant");
+	public static String getMessageProdImpossible () {
+		return messageProdImpossible;
+	}
+
+	// Méthode utilisée quand l'utilisateur clique pour faire les calculs
+	//IL faut insérer une liste de code de chaine de production suvi à chauqe fois du niveau d'activation du type (C0001,2,C0002,3)
+	public static void faireLesCalculs(List<Prix> listePrix, List<Element> listeElements, List<Chaines> chaines, ArrayList<String> k) {
+		initialiserMapStockFictif(listeElements);
+		indicateurValeur = calculerIndicateurValeur(listePrix, k, chaines);
+		indicateurCommande = calculerIndicateurCommande(listePrix);
+		//chaines = chaines;
+	}
+
+
+	//Détail :
+
+	public static HashMap<String, Double> initialiserMapStockFictif(List<Element> listeElements) {
+		for (Element element : listeElements) {
+			mapStockFictif.put(element.getCodeE(), element.getQuantite());
 		}
 		return mapStockFictif;
 	}
-		
-	// getter
-	public HashMap<String, Double> getMapStockFictif() {
-		return mapStockFictif;
-	}
-		
-		
-	
-	//INDICATEUR DE VALEUR 
-	
-	public double calculerIndicateurValeur() {
+
+	public static double calculerIndicateurValeur(List<Prix> listePrix, ArrayList<String> k, List<Chaines> chaines) {
 		prendreEnCompteAchats();
-		prendreEnCompteProduction();
-		return mesurerEfficacite();
+		prendreEnCompteProduction(k, chaines); // A FAIRE
+		return mesurerEfficacite(listePrix);
 	}
-	
-	// Les éléments saisis dans les achats sont ajoutés au stock fictif
-	public HashMap<String, Double> prendreEnCompteAchats() {
-		mapAchats = recupererAchats();		
-		for (String element : mapAchats.keySet()) {
-			//Mettre une exception pour quand la clé n'est pas dans mapStockFictif
-			modifierStockFictif(element, mapStockFictif.get(element) + mapAchats.get(element));	
-		}
-		return mapStockFictif;
-	}
-		
-	// Prendre en compte la production : enlever les éléments en entrée et ajouter ceux en sortie
-	public HashMap<String, Double> prendreEnCompteProduction() {
-		// Utiliser la même logique que pour prendreEnCompteAchats()
-		// à partir de chaines de production.csv et du niveau d'activation saisi
-		// Multiplier la quantité par le niveau d'activation
-		return mapStockFictif;
-	}
-	
-	// Mesurer l'efficacité de la production : comparer les ventes possibles avec les achats
-	public double mesurerEfficacite() {
-		double sommeValeurVente = 0.0;
-		double sommeAchats = 0.0;
-		for (String element : mapStockFictif.keySet()) {
-			if (mapStockFictif.get(element) < 0.0) {
-				// Production impossible
-			} else {
-				// Ajout valeur vente (si a un prix de vente) -> sommeValeurVente += ...
+
+	public static double calculerIndicateurCommande(List<Prix> listePrix) {
+		ArrayList<Double> percentStockElt = new ArrayList<>(); //pr le pourcentage
+		for (Prix p : listePrix) {
+			if (p.getQteCommande() > 0.0) { // On prend que ceux commandés
+				double pourcentage = mapStockFictif.get(p.getCodeE()) / p.getQteCommande();
+				if (pourcentage > 1.0) { // S'il y en a + en stock que commandés -> 100%
+					percentStockElt.add(1.0);
+				} else {
+					percentStockElt.add(pourcentage);
+				}
 			}
 		}
-		// Récupérer les codes et quantités de mapAchats et récupérer les prix d'achat de prix.csv
-		return sommeValeurVente - sommeAchats;
+		double total = 0.0;
+		for(int i = 0; i < percentStockElt.size(); i++) {
+			total += percentStockElt.get(i);
+		}
+		return total / percentStockElt.size(); // A formater pour afficher en pourcentage
 	}
 
-	
 
-	
-	// INDICATEUR DE COMMANDE
-	
-	public double calculerIndicateurCommande() {
-		return calculerPourcentage(creerMapCommandes());
+
+	// Détail pour le calcul de l'indicateur de valeur :
+
+	public static HashMap<String, Double> prendreEnCompteAchats() {
+		System.out.println("mapAchat avant : " + Achat.getAchats()); //test
+		System.out.println("mapStock avant : " + mapStockFictif); //test
+		for (Achat ha : Achat.getAchats()) {
+			if (mapStockFictif.containsKey(ha.getCodeE())) {
+				mapStockFictif.put(ha.getCodeE(), mapStockFictif.get(ha.getCodeE()) + ha.getQteAchat());
+			} else {
+				//Mettre une exception ici
+				System.out.println("Erreur : code inexistant");
+			}
+		}
+		System.out.println("mapStock apres : " + mapStockFictif); //test
+		return mapStockFictif;
 	}
-	
-	// Créer une HashMap avec le code comme clé et la qté commandée comme valeur
-	// Peut-être pas le plus efficace (on met dans une liste puis dans la HashMap)
-	public HashMap<String, Double> creerMapCommandes() {
-		gd.chargerPrix();
-		listePrix = gd.getPricingData();
-		HashMap<String, Double> mapCommandes = new HashMap<>();
-		for (Prix element : listePrix) {
-            mapCommandes.put(element.getCodeE(), element.getQteCommande());
-        }
-		return mapCommandes;
+
+
+	// A FAIRE
+	public static HashMap<String, Double> prendreEnCompteProduction(ArrayList<String> k, List<Chaines> chaines) {
+		for (int i=0;i<k.size();i+=2) {
+			int activation = Integer.parseInt(k.get(i + 1));
+			for (Chaines chaine : chaines) {
+				if (chaine.getCodeC().equals(k.get(i))) {
+					for (String u : chaine.getHashElementEntre().keySet()) {
+						mapStockFictif.put(u, mapStockFictif.get(u) - Double.parseDouble(String.valueOf(activation)) * chaine.getQuantiteEntree(u));
+					}
+					for (String u : chaine.getHashElementSortie().keySet()) {
+						mapStockFictif.put(u, mapStockFictif.get(u) + Double.parseDouble(String.valueOf(activation)) * chaine.getQuantiteSortie(u));
+					}
+				}
+			}
+		}
+		System.out.println("mapStock apres prod : " + mapStockFictif); //test
+		return mapStockFictif;
 	}
-		
-	
-	// Renvoyer la moyenne des pourcentage de commandes satisfaites
-	public double calculerPourcentage(HashMap<String, Double> map) {
-		// Créer une ArrayList et y ajouter le pourcentage de satisfaction pour chaque élément
-	 	ArrayList<Double> percentStockElt = new ArrayList<>();
-	 	for (String element : map.keySet()) {
-	 		if (map.get(element) > 0.0) { // On prend que ceux commandés
-	 			double pourcentage = mapStockFictif.get(element) / map.get(element);
-	 			if (pourcentage > 1.0) { // S'il y en a + en stock que commandés -> 100%
-	 				percentStockElt.add(1.0);
-	 			} else {
-	 				percentStockElt.add(pourcentage);
-	 			}
-	 		}
-	 	}
-	 	// Faire la moyenne du pourcentage de satisfaction de chaque élément -> pourcentage global
-	 	double total = 0.0;
-	 	for(int i = 0; i < percentStockElt.size(); i++) {
-	 		total += percentStockElt.get(i);
-	 	}
-	     return total / percentStockElt.size(); // A formater pour afficher en pourcentage   
+
+
+	public static double mesurerEfficacite(List<Prix> listePrix) {
+		double sommeVentes = 0.0;
+		double sommeAchats = 0.0;
+		// Si stock (fictif) négatif apres la simulation : production impossible
+		boolean prodPossible = true;
+		List<String> codesPasPossible = new ArrayList<>();
+		for (String element : mapStockFictif.keySet()) {
+			if (mapStockFictif.get(element) < 0.0) {
+				prodPossible = false;
+				codesPasPossible.add(element);
+				//exception : production impossible
+			}
+		}
+		if (!prodPossible) {
+			messageProdImpossible = "\n\nATTENTION ! \nLa production n'est pas "
+					+ "possible dans ces conditions, le stock de "
+					+ codesPasPossible + " serait négatif.";
+			System.out.println(messageProdImpossible);
+		}
+		// Calcul des sommes
+		for (Prix p : listePrix) {
+			for (Achat ha : Achat.getAchats()) {
+				if (p.getCodeE().equals(ha.getCodeE())) {
+					sommeAchats += (p.getPrixAchat() * ha.getQteAchat());
+				}
+			}
+
+			if (p.getQteCommande() > 0.0) {
+				if (p.getQteCommande() <= mapStockFictif.get(p.getCodeE())) {
+					sommeVentes += (p.getPrixVente() * p.getQteCommande());
+				} else {
+					sommeVentes += (p.getPrixVente() * mapStockFictif.get(p.getCodeE()));
+				}
+			}
+		}
+		System.out.println("Somme Ventes : " + sommeVentes); //test
+		System.out.println("Somme Achats : " + sommeAchats); //test
+		return sommeVentes - sommeAchats;
 	}
-	
-	
+
+
 }

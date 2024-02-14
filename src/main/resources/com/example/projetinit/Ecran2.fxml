@@ -18,8 +18,9 @@
           <TableColumn fx:id="colQteAchat" prefWidth="75.0" text="qteAchat" />
         </columns>
       </TableView>
-      <Button layoutX="377.0" layoutY="222.0" mnemonicParsing="false" onAction="#addButton" text="Ajouter " />
+      <Button layoutX="377.0" layoutY="209.0" mnemonicParsing="false" onAction="#addButton" text="Ajouter " />
       <TextField fx:id="textFieldCodeE" layoutX="332.0" layoutY="103.0" promptText="codeE" />
       <TextField fx:id="textFieldqteAchat" layoutX="332.0" layoutY="164.0" promptText="qteAchat" />
+      <Button layoutX="370.0" layoutY="265.0" mnemonicParsing="false" onAction="#removeButton" text="Supprimer" />
    </children>
 </AnchorPane>

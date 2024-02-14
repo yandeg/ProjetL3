@@ -5,8 +5,8 @@ import java.util.HashMap;
 public class Chaines {
     private String codeC;
     private String nomC;
-    private HashMap<String,Double> hashElementEntree;
-    private HashMap<String, Double> hashElementSortie;
+    private final HashMap<String,Double> hashElementEntree;
+    private final HashMap<String, Double> hashElementSortie;
 
 
 
@@ -17,7 +17,7 @@ public class Chaines {
         this.hashElementSortie = hashElementSortie;
 
     }
-    
+
     public String getCodeC() {
         return codeC;
     }
@@ -42,7 +42,13 @@ public class Chaines {
         return hashElementSortie;
     }
 
+    public double getQuantiteEntree(String codeE) {
+        return hashElementEntree.get(codeE);
+    }
 
+    public double getQuantiteSortie(String codeE) {
+        return hashElementSortie.get(codeE);
+    }
 
 
 }

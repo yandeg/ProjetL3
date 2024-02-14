@@ -9,28 +9,32 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../css/Main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetinit.Ecran0Controller">
    <children>
-      <Label layoutX="180.0" layoutY="57.0" text="Données prises en compte pour la simulation" />
-      <Button layoutX="456.0" layoutY="360.0" mnemonicParsing="false" onAction="#swicthToEcran1" text="Passer à la simulation" />
-      <TableView layoutY="130.0" prefHeight="200.0" prefWidth="200.0">
+      <Label layoutX="29.0" layoutY="31.0" text="Données prises en compte pour la simulation :" />
+      <Button layoutX="221.0" layoutY="352.0" mnemonicParsing="false" onAction="#swicthToEcran1" text="Passer à la simulation" />
+      <TableView layoutX="286.0" layoutY="31.0" prefHeight="146.0" prefWidth="297.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn prefWidth="75.0" text="codeE" />
+          <TableColumn prefWidth="75.0" text="nomE" />
+            <TableColumn prefWidth="75.0" text="quantite" />
+            <TableColumn prefWidth="75.0" text="unite" />
         </columns>
       </TableView>
-      <TableView layoutX="200.0" layoutY="130.0" prefHeight="200.0" prefWidth="200.0">
+      <TableView layoutX="286.0" layoutY="197.0" prefHeight="146.0" prefWidth="297.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn prefWidth="75.0" text="codeE" />
+          <TableColumn prefWidth="75.0" text="prixAchat" />
+            <TableColumn prefWidth="75.0" text="prixVente" />
+            <TableColumn prefWidth="75.0" text="Commande" />
         </columns>
       </TableView>
-      <TableView layoutX="400.0" layoutY="130.0" prefHeight="200.0" prefWidth="200.0">
+      <TableView layoutX="22.0" layoutY="93.0" prefHeight="250.0" prefWidth="245.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn prefWidth="75.0" text="codeC" />
+          <TableColumn prefWidth="75.0" text="nomC" />
         </columns>
       </TableView>
-      <Label layoutX="76.0" layoutY="103.0" text="Eléments" />
-      <Label layoutX="286.0" layoutY="103.0" text="Prix" />
-      <Label layoutX="486.0" layoutY="103.0" text="Chaines" />
+      <Label layoutX="411.0" layoutY="14.0" text="Elements" />
+      <Label layoutX="425.0" layoutY="177.0" text="Prix" />
+      <Label layoutX="131.0" layoutY="76.0" text="Chaines" />
    </children>
 </AnchorPane>

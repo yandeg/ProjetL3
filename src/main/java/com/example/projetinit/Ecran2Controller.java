@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -26,6 +27,10 @@ public class Ecran2Controller implements Initializable {
     private TableColumn<Achat, String> colCodeE;
     @FXML
     private TableColumn<Achat, Double> colQteAchat;
+    @FXML
+    private TextField textFieldCodeE;
+    @FXML
+    private TextField textFieldqteAchat;
 
     private Stage stage;
     private Scene scene;
@@ -49,7 +54,8 @@ public class Ecran2Controller implements Initializable {
 
     @FXML
     void addButton(ActionEvent e) {
-
+        Achat achat = new Achat(textFieldCodeE.getText(), Double.parseDouble(textFieldqteAchat.getText()));
+        tableview.getItems().add(achat);
     }
 
     @Override

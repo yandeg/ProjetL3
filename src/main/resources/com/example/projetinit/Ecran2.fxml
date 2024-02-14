@@ -19,7 +19,7 @@
         </columns>
       </TableView>
       <Button layoutX="377.0" layoutY="222.0" mnemonicParsing="false" onAction="#addButton" text="Ajouter " />
-      <TextField layoutX="332.0" layoutY="103.0" promptText="codeE" />
-      <TextField layoutX="332.0" layoutY="164.0" promptText="qteAchat" />
+      <TextField fx:id="textFieldCodeE" layoutX="332.0" layoutY="103.0" promptText="codeE" />
+      <TextField fx:id="textFieldqteAchat" layoutX="332.0" layoutY="164.0" promptText="qteAchat" />
    </children>
 </AnchorPane>

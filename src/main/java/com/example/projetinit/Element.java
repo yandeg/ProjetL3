@@ -1,29 +1,31 @@
 package com.example.projetinit;
 
+import javafx.beans.property.SimpleStringProperty;
+
 public class Element extends ElementBase{
-    private String nomE;
-    private String unite;
+    private SimpleStringProperty nomE;
+    private SimpleStringProperty unite;
 
     public Element(String code, String name, double quantity, String unit){
     	super(code,quantity);
-        this.nomE = name;
-        this.unite = unit;
+        this.nomE = new SimpleStringProperty(name);
+        this.unite = new SimpleStringProperty(unit);
     }
 
 	public String getNomE() {
-		return nomE;
+		return nomE.get();
 	}
 
 	public void setNomE(String name) {
-		this.nomE = name;
+		this.nomE.set(name);
 	}
 
 	public String getUnite() {
-		return unite;
+		return unite.get();
 	}
 
 	public void setUnite(String unit) {
-		this.unite = unit;
+		this.unite.set(unit);
 	}
 
 }

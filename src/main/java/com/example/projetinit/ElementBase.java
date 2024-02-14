@@ -1,33 +1,36 @@
 package com.example.projetinit;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 public class ElementBase {
-	    private String codeE;
-	    private double quantite;
+	    private SimpleStringProperty codeE;
+	    private SimpleDoubleProperty quantite;
 
 	    public ElementBase(String code, double quantity) {
-	        this.codeE = code;
-	        this.quantite = quantity;
+	        this.codeE = new SimpleStringProperty(code);
+	        this.quantite = new SimpleDoubleProperty(quantity);
 	    }
 
 		public String getCodeE() {
-			return codeE;
+			return codeE.get();
 		}
 
-		public void setCodeE(String code) {this.codeE = code; }
+		public void setCodeE(String code) {this.codeE.set(code); }
 
 		public double getQuantite() {
-			return quantite;
+			return quantite.get();
 		}
 
 		public void setQuantite(double quantity) {
-			this.quantite = quantity;
+			this.quantite.set(quantity);
 		}
 
 	    public void ajouterStockE(double n){
-	    	this.quantite+=n;
+			quantite.set(quantite.get()+n);
 	    }
 	    public void reduireStockE(double n){
-	    	this.quantite-=n;
+			quantite.set(quantite.get()-n);
 	    }
 
 

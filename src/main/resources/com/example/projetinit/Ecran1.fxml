@@ -26,5 +26,6 @@
             <Font size="14.0" />
          </font>
       </Button>
+      <Button mnemonicParsing="false" onAction="#swicthToEcran0" text="Voir données" />
     </children>
 </VBox>

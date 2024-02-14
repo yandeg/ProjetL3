@@ -21,4 +21,5 @@ public class Ecran0Controller {
         stage.setScene(scene);
         stage.show();
     }
+
 }

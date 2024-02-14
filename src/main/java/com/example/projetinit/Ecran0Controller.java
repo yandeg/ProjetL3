@@ -18,6 +18,21 @@ import java.io.*;
 
 public class Ecran0Controller {
     @FXML
+    private TableColumn<Prix, Double> commande;
+
+    @FXML
+    private TableColumn<Prix, Double> prixVente;
+
+    @FXML
+    private TableColumn<Prix, Double> prixAchat;
+
+    @FXML
+    private TableView<Prix> tableView1;
+
+    @FXML
+    private TableColumn<Prix, String> codeE1;
+
+    @FXML
     private TableView<Element> tableView;
 
     @FXML
@@ -32,6 +47,8 @@ public class Ecran0Controller {
     @FXML
     private TableColumn<Element, String> unite;
     private ObservableList<Element> elements = FXCollections.observableArrayList();
+    private ObservableList<Prix> prix = FXCollections.observableArrayList();
+
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -49,6 +66,8 @@ public class Ecran0Controller {
         quantite.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getQuantite()).asObject());
         unite.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUnite()));
 
+        initialize1();
+
         // Charger les données CSV dans la TableView
         try {
             loadCSVData();
@@ -65,6 +84,32 @@ public class Ecran0Controller {
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(";");
                 elements.add(new Element(parts[0], parts[1], Double.parseDouble(parts[2]), parts[3]));
+            }
+        }
+    }
+
+    public void initialize1() {
+        codeE1.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodeE()));
+        prixAchat.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getPrixAchat()).asObject());
+        prixVente.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getPrixVente()).asObject());
+        commande.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getQteCommande()).asObject());
+
+        // Charger les données CSV dans la TableView
+        try {
+            loadCSVData1();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        tableView1.setItems(prix);
+    }
+    private void loadCSVData1() throws IOException {
+        try (InputStream is = getClass().getResourceAsStream("/files/Prix.csv");
+             BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(";");
+                prix.add(new Prix(parts[0], Double.parseDouble(parts[1]), Double.parseDouble(parts[2]), Double.parseDouble(parts[3])));
             }
         }
     }

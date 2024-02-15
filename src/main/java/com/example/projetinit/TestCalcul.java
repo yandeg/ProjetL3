@@ -6,55 +6,61 @@ import java.util.Random;
 
 public class TestCalcul {
 
-	public static void main(String[] args) {
-
+	public List<String> obtenirResultats() {
+		// charger les données
 		GestionDonnees gd = new GestionDonnees();
-
 		gd.chargerElements();
-		List<Element> listeElements = new ArrayList<>();
-		listeElements = gd.getElements();
+		List<Element> listeElements = gd.getElements();
 
 		gd.chargerChaineProd();
-		List<Chaines> listeChaines = new ArrayList<>();
-		listeChaines = gd.getChaineProd();
+		List<Chaines> listeChaines = gd.getChaineProd();
 
 		gd.chargerPrix();
-		List<Prix> listePrix = new ArrayList<>();
-		listePrix = gd.getPricingData();
+		List<Prix> listePrix = gd.getPricingData();
 
-		Achat.remplirAchatsFictifs(); // Pour avoir des données au moment du getAchats
+		Achat.remplirAchatsFictifs();
 
-		// Activation aléatoire POUR LE TEST
-		ArrayList<String> k = new ArrayList<>();
-		Random random = new Random();
-		for (Chaines c : listeChaines) {
-			k.add(c.getCodeC());
-			k.add(String.valueOf(random.nextInt(0, 6)));
-		}
+		// calculs
+		Calcul.faireLesCalculs(listePrix, listeElements, listeChaines, generateRandomInput(listeChaines));
 
-		Calcul.faireLesCalculs(listePrix, listeElements, listeChaines, k);
+		// Enregistrer les différents resultats
+		ArrayList<String> resultats = new ArrayList<>();
 
-		System.out.println("Ind. de valeur : " + Calcul.getIndicateurValeur());
-		System.out.println("Ind. de commande : " + Calcul.getIndicateurCommande());
+		resultats.add("Indicateur de valeur : " + Calcul.getIndicateurValeur());
+		resultats.add("\nIndicateur de commande : " + Calcul.getIndicateurCommande()+"\n");
 
-		System.out.println("\nprix :");
 		for (Prix p : listePrix) {
-			System.out.println("code : " + p.getCodeE() + " prix achat : " + p.getPrixAchat() + " prix vente : " + p.getPrixVente() + " qté commandée :" + p.getQteCommande());
+			resultats.add("code : " + p.getCodeE() + " prix achat : " + p.getPrixAchat() +
+					" prix vente : " + p.getPrixVente() + " qté commandée :" + p.getQteCommande());
 		}
 
-		System.out.println("\nelements");
 		for (Element e : listeElements) {
-			System.out.println("code : " + e.getCodeE() + " nom : " + e.getNomE() + " quantité : " + e.getQuantite() + " untité :" + e.getUnite());
+			resultats.add("code : " + e.getCodeE() + " nom : " + e.getNomE() + " quantité : " +
+					e.getQuantite() + " unité :" + e.getUnite());
 		}
 
-		System.out.println("\nchaines :");
 		for (Chaines c : listeChaines) {
-			System.out.println("code : " + c.getCodeC() + " nom : " + c.getNomC() + " entree : " + c.getHashElementEntre() + " sortie :" + c.getHashElementSortie());
+			resultats.add("code : " + c.getCodeC() + " nom : " + c.getNomC() + " entrée : " +
+					c.getHashElementEntre() + " sortie :" + c.getHashElementSortie());
 		}
 
-		ExportTexte.exporter(k);
-
-		//ExportSimulation.exporterSimulation(); // Export PDF
+		// retourner tout les resultats enregistrer au fur à mesure
+		return resultats;
 
 	}
+
+	// Generer un random pour le test
+	private ArrayList<String> generateRandomInput(List<Chaines> listeChaines) {
+		ArrayList<String> randomInput = new ArrayList<>();
+		Random random = new Random();
+
+		for (Chaines c : listeChaines) {
+			randomInput.add(c.getCodeC());
+			// Exemple: nombre Random entre 0 et 6
+			randomInput.add(String.valueOf(random.nextInt(0, 6)));
+		}
+
+		return randomInput;
+	}
+
 }

@@ -1,6 +1,5 @@
 package com.example.projetinit;
 
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,27 +9,20 @@ import java.util.Date;
 
 public class ExportTexte {
 
-    // Pour tester directement (a suppr)
-    public static void main(String[] args) {
-        //exporter();
-    }
-
-    public static void exporter(ArrayList<String> k) {
-        // CREATE
+    public static void exporter(ArrayList<String> k, String exportDirectory) {
         try {
-            File myObj = new File("Simulation.txt");
+            //choisir où exporter le fichier texte
+            File myObj = new File(exportDirectory + "/Simulation.txt");
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {
                 System.out.println("File already exists.");
             }
 
-            // WRITE
-            FileWriter myWriter = new FileWriter("Simulation.txt");
-            // titre
-            myWriter.write("Simulation faite le " +
-                    new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+            FileWriter myWriter = new FileWriter(myObj);
+            myWriter.write("Simulation faite le " + new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
             myWriter.write("\n\n\nDONNEES SAISIES : ");
+
             // achats
             //Achat.remplirAchatsFictifs(); //A suppr
             myWriter.write("\n\nCodeE | Quantité achat");
@@ -41,9 +33,10 @@ public class ExportTexte {
             // activation
             myWriter.write("\n\nCodeC | Niveau activation");
             myWriter.write("\n-------------------------");
-            for (int i=0;i<k.size();i+=2) {
-                myWriter.write("\n " + k.get(i) + " | " + k.get(i+1));
+            for (int i = 0; i + 1 < k.size(); i += 2) {
+                myWriter.write("\n " + k.get(i) + " | " + k.get(i + 1));
             }
+
             // resultats
             myWriter.write("\n\n\nRESULTATS : ");
             myWriter.write("\nIndicateur de valeur : " + Calcul.getIndicateurValeur() + " €");

@@ -10,6 +10,7 @@ module com.example.projetinit {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires itextpdf;
 
     opens com.example.projetinit to javafx.fxml;
     exports com.example.projetinit;

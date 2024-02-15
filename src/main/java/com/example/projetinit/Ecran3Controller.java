@@ -29,7 +29,7 @@ public class Ecran3Controller implements Initializable {
     private List<String> results;
 
 
-
+     //Ceci va nous permettre de déclancher un evenement, dans ce cas c'est quand on appuis sur le Bouton "Ecran précedent"
     public void swicthToEcran2(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/projetinit/Ecran2.fxml"));
         stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
@@ -50,11 +50,11 @@ public class Ecran3Controller implements Initializable {
     private void setDataFromTestCalcul() {
         List<String> results = calculateResults();
         if (!results.isEmpty()) {
-            // Crée une sublist avec les deux premiere String
-            //On veux recuperer que les 2 indicateurs
+            // Crée une sublist avec les deux "First Strings"
+            //On veux récuperer que les 2 indicateurs : indicateur de valeur et indicateur de commande
             List<String> firstTwoResults = results.subList(0, Math.min(results.size(), 2));
 
-            // Update des labels avec les indicateurs de valeurs
+            // M-à-j du labelRésultats avec les 2 indicateurs
             StringBuilder sb = new StringBuilder();
             for (String result : firstTwoResults) {
                 sb.append(result).append("\n");
@@ -63,14 +63,14 @@ public class Ecran3Controller implements Initializable {
         }
     }
 
-
-
-    // Pour afficher les 2 indicateurs
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Pour afficher les 2 indicateurs
         setDataFromTestCalcul();
     }
 
+
+    //Cette procédure va nous permettre de faire l'export (déclancher un evenement)
     public void exportData(ActionEvent event) {
         //choisir le dossier d'export
         DirectoryChooser directoryChooser = new DirectoryChooser();

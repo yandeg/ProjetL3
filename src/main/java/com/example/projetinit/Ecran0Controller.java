@@ -1,6 +1,7 @@
 package com.example.projetinit;
 
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,9 +15,29 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.HashMap;
 
 public class Ecran0Controller {
+
+    @FXML
+    private TableColumn<Chaines, HashMap<String, Double>> sortie;
+
+    @FXML
+    private TableColumn<Chaines, HashMap<String, Double>> entree;
+
+    @FXML
+    private TableView<Chaines> tableView2;
+
+    @FXML
+    private TableColumn<Chaines, String> nomC;
+
+    @FXML
+    private TableColumn<Chaines, String> codeC;
+
     @FXML
     private TableColumn<Prix, Double> commande;
 
@@ -48,6 +69,7 @@ public class Ecran0Controller {
     private TableColumn<Element, String> unite;
     private ObservableList<Element> elements = FXCollections.observableArrayList();
     private ObservableList<Prix> prix = FXCollections.observableArrayList();
+    private ObservableList<Chaines> chaines = FXCollections.observableArrayList();
 
     private Stage stage;
     private Scene scene;
@@ -60,6 +82,7 @@ public class Ecran0Controller {
         stage.setScene(scene);
         stage.show();
     }
+
     public void initialize() {
         codeE.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodeE()));
         nomE.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomE()));
@@ -67,8 +90,8 @@ public class Ecran0Controller {
         unite.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUnite()));
 
         initialize1();
+        initialize2();
 
-        // Charger les données CSV dans la TableView
         try {
             loadCSVData();
         } catch (IOException e) {
@@ -77,6 +100,7 @@ public class Ecran0Controller {
 
         tableView.setItems(elements);
     }
+
     private void loadCSVData() throws IOException {
         try (InputStream is = getClass().getResourceAsStream("/files/Elements.csv");
              BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
@@ -94,7 +118,6 @@ public class Ecran0Controller {
         prixVente.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getPrixVente()).asObject());
         commande.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getQteCommande()).asObject());
 
-        // Charger les données CSV dans la TableView
         try {
             loadCSVData1();
         } catch (IOException e) {
@@ -103,6 +126,7 @@ public class Ecran0Controller {
 
         tableView1.setItems(prix);
     }
+
     private void loadCSVData1() throws IOException {
         try (InputStream is = getClass().getResourceAsStream("/files/Prix.csv");
              BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
@@ -114,5 +138,42 @@ public class Ecran0Controller {
         }
     }
 
-}
+    public void initialize2() {
+        codeC.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodeC()));
+        nomC.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomC()));
+        entree.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getHashElementEntre()));
+        sortie.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getHashElementSortie()));
+        try {
+            loadCSVData2();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+        tableView2.setItems(chaines);
+    }
+
+    private void loadCSVData2() throws IOException {
+        try (InputStream is = getClass().getResourceAsStream("/files/Chaines.csv");
+             BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(";");
+                chaines.add(new Chaines(parts[0], parts[1], parseHashMap(parts[2]), parseHashMap(parts[3])));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private HashMap<String, Double> parseHashMap(String input) {
+        HashMap<String, Double> hashMap = new HashMap<>();
+        String[] pairs = input.split("/");
+        for (String pair : pairs) {
+            String[] keyValue = pair.split(",");
+            if (keyValue.length == 2) {
+                hashMap.put(keyValue[0], Double.parseDouble(keyValue[1]));
+            }
+        }
+        return hashMap;
+    }
+}

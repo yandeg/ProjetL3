@@ -24,10 +24,10 @@ import java.util.List;
 public class ExportSimulation {
     /**
      * Exporte les données de simulation vers un fichier PDF.
-     * @param k La liste des données de simulation.
+     * @param infosActivation La liste des chaines et leur niveau d'activation.
      * @param exportDirectory Le répertoire d'export.
      */
-    public static void exporterSimulation(List<String> k, String exportDirectory) {
+    public static void exporterSimulation(List<String> infosActivation, String exportDirectory) {
         Document document = new Document(PageSize.A4, 50, 50, 50, 50);
         try {
             // Choix de l'emplacement d'exportation du fichier
@@ -35,7 +35,7 @@ public class ExportSimulation {
             document.open();
             afficherTitreDocument(document);
             afficherAchats(document);
-            afficherActivationChaines(document, k);
+            afficherActivationChaines(document, infosActivation);
             afficherResultats(document);
         } catch(DocumentException de) {
             System.err.println(de.getMessage());
@@ -92,10 +92,10 @@ public class ExportSimulation {
     /**
      * Affiche le niveau d'activation des chaînes dans le document PDF.
      * @param document Le document PDF.
-     * @param k La liste des données de simulation.
+     * @param infosActivation La liste des chaines et leur niveau d'activation.
      * @throws DocumentException En cas d'erreur lors de l'ajout du niveau d'activation au document.
      */
-    public static void afficherActivationChaines(Document document, List<String> k) throws DocumentException {
+    public static void afficherActivationChaines(Document document, List<String> infosActivation) throws DocumentException {
         // Titre
         Paragraph pNivActivation = new Paragraph("Niveau d'activation des chaines : ",
                 FontFactory.getFont(FontFactory.HELVETICA, 12, Font.BOLD));
@@ -112,9 +112,9 @@ public class ExportSimulation {
         tabNivActivation.addCell(new Phrase("Niveau d'activation",
                 FontFactory.getFont(FontFactory.HELVETICA, 11, Font.BOLD)));
         // Contenu tabNivActivation
-        for (int i = 0; i + 1 < k.size(); i += 2) {
-            tabNivActivation.addCell(k.get(i));
-            tabNivActivation.addCell(String.valueOf(k.get(i + 1)));
+        for (int i = 0; i + 1 < infosActivation.size(); i += 2) {
+            tabNivActivation.addCell(infosActivation.get(i));
+            tabNivActivation.addCell(String.valueOf(infosActivation.get(i + 1)));
         }
         document.add(tabNivActivation);
     }

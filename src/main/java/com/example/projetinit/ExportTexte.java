@@ -8,17 +8,17 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class ExportTexte {
 
     /**
      * Exporte les données de simulation vers un fichier texte.
-     * @param k La liste des données de simulation.
+     * @param infosActivation La liste des chaines et leur niveau d'activation.
      * @param exportDirectory Le répertoire d'export.
      */
-    public static void exporter(ArrayList<String> k, String exportDirectory) {
+    public static void exporter(List<String> infosActivation, String exportDirectory) {
         try {
             // Choix de l'emplacement d'exportation du fichier texte
             File myObj = new File(exportDirectory + "/Simulation.txt");
@@ -42,8 +42,10 @@ public class ExportTexte {
             // Activation
             myWriter.write("\n\nCodeC | Niveau activation");
             myWriter.write("\n-------------------------");
-            for (int i = 0; i + 1 < k.size(); i += 2) {
-                myWriter.write("\n " + k.get(i) + " | " + k.get(i + 1));
+            for (int i = 0; i + 1 < infosActivation.size(); i += 2) {
+                myWriter.write("\n " + infosActivation.get(i) + " | " + infosActivation.get(i + 1));
+
+                System.out.println(infosActivation.get(i) + " | " + infosActivation.get(i + 1));
             }
 
             // Résultats

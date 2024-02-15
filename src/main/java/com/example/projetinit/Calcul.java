@@ -28,9 +28,9 @@ public class Calcul {
 
 	// Méthode utilisée quand l'utilisateur clique pour faire les calculs
 	//IL faut insérer une liste de code de chaine de production suvi à chauqe fois du niveau d'activation du type (C0001,2,C0002,3)
-	public static void faireLesCalculs(List<Prix> listePrix, List<Element> listeElements, List<Chaines> chaines, ArrayList<String> k) {
+	public static void faireLesCalculs(List<Prix> listePrix, List<Element> listeElements, List<Chaines> chaines, List<String> infosActivation) {
 		initialiserMapStockFictif(listeElements);
-		indicateurValeur = calculerIndicateurValeur(listePrix, k, chaines);
+		indicateurValeur = calculerIndicateurValeur(listePrix, infosActivation, chaines);
 		indicateurCommande = calculerIndicateurCommande(listePrix);
 		//chaines = chaines;
 	}
@@ -45,9 +45,9 @@ public class Calcul {
 		return mapStockFictif;
 	}
 
-	public static double calculerIndicateurValeur(List<Prix> listePrix, ArrayList<String> k, List<Chaines> chaines) {
+	public static double calculerIndicateurValeur(List<Prix> listePrix, List<String> infosActivation, List<Chaines> chaines) {
 		prendreEnCompteAchats();
-		prendreEnCompteProduction(k, chaines); // A FAIRE
+		prendreEnCompteProduction(infosActivation, chaines); // A FAIRE
 		return mesurerEfficacite(listePrix);
 	}
 
@@ -91,11 +91,11 @@ public class Calcul {
 
 
 	// A FAIRE
-	public static HashMap<String, Double> prendreEnCompteProduction(ArrayList<String> k, List<Chaines> chaines) {
-		for (int i=0;i<k.size();i+=2) {
-			int activation = Integer.parseInt(k.get(i + 1));
+	public static HashMap<String, Double> prendreEnCompteProduction(List<String> infosActivation, List<Chaines> chaines) {
+		for (int i=0;i<infosActivation.size();i+=2) {
+			int activation = Integer.parseInt(infosActivation.get(i + 1));
 			for (Chaines chaine : chaines) {
-				if (chaine.getCodeC().equals(k.get(i))) {
+				if (chaine.getCodeC().equals(infosActivation.get(i))) {
 					for (String u : chaine.getHashElementEntre().keySet()) {
 						mapStockFictif.put(u, mapStockFictif.get(u) - Double.parseDouble(String.valueOf(activation)) * chaine.getQuantiteEntree(u));
 					}

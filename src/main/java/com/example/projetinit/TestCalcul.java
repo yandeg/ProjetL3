@@ -11,6 +11,8 @@ import java.util.Random;
 
 public class TestCalcul {
 
+	public static List<String> infosActivation;
+
 	/**
 	 * Méthode permettant d'obtenir les résultats des calculs effectués sur les données.
 	 * @return Une liste contenant les résultats des calculs effectués.
@@ -29,8 +31,10 @@ public class TestCalcul {
 
 		Achat.remplirAchatsFictifs();
 
+		infosActivation = generateRandomInput(listeChaines);
+
 		// Effectuer les calculs
-		Calcul.faireLesCalculs(listePrix, listeElements, listeChaines, generateRandomInput(listeChaines));
+		Calcul.faireLesCalculs(listePrix, listeElements, listeChaines, infosActivation);
 
 		// Enregistrer les différents résultats
 		ArrayList<String> resultats = new ArrayList<>();
@@ -62,13 +66,13 @@ public class TestCalcul {
 	 * @param listeChaines La liste des chaînes de production pour lesquelles générer des données d'entrée aléatoires.
 	 * @return Une liste de données d'entrée aléatoires pour les chaînes de production.
 	 */
-	private ArrayList<String> generateRandomInput(List<Chaines> listeChaines) {
+	private List<String> generateRandomInput(List<Chaines> listeChaines) {
 		ArrayList<String> randomInput = new ArrayList<>();
 		Random random = new Random();
 
 		for (Chaines c : listeChaines) {
 			randomInput.add(c.getCodeC());
-			// Exemple: nombre aléatoire entre 0 et 6
+			// Exemple: nombre aléatoire entre 0 et 5
 			randomInput.add(String.valueOf(random.nextInt(0, 6)));
 		}
 

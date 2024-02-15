@@ -104,7 +104,7 @@ public class Ecran3Controller implements Initializable {
 
         if (selectedDirectory != null) {
             // Exportation en format texte
-            ExportTexte.exporter((ArrayList<String>) results, selectedDirectory.getAbsolutePath());
+            ExportTexte.exporter((ArrayList<String>) TestCalcul.infosActivation, selectedDirectory.getAbsolutePath());
 
             System.out.println("Data exported successfully to: " + selectedDirectory.getAbsolutePath());
         } else {
@@ -125,7 +125,7 @@ public class Ecran3Controller implements Initializable {
 
         if (selectedDirectory != null) {
             // Exportation en format PDF
-            ExportSimulation.exporterSimulation(results, selectedDirectory.getAbsolutePath());
+            ExportSimulation.exporterSimulation(TestCalcul.infosActivation, selectedDirectory.getAbsolutePath());
 
             System.out.println("Data exported successfully to: " + selectedDirectory.getAbsolutePath());
         } else {

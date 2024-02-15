@@ -18,12 +18,12 @@
             <TableColumn fx:id="unite" prefWidth="75.0" text="unite" />
         </columns>
       </TableView>
-      <TableView layoutX="286.0" layoutY="197.0" prefHeight="146.0" prefWidth="297.0">
+      <TableView fx:id="tableView1" layoutX="286.0" layoutY="197.0" prefHeight="146.0" prefWidth="297.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="codeE" />
-          <TableColumn prefWidth="75.0" text="prixAchat" />
-            <TableColumn prefWidth="75.0" text="prixVente" />
-            <TableColumn prefWidth="75.0" text="Commande" />
+          <TableColumn fx:id="codeE1" prefWidth="75.0" text="codeE" />
+          <TableColumn fx:id="prixAchat" prefWidth="75.0" text="prixAchat" />
+            <TableColumn fx:id="prixVente" prefWidth="75.0" text="prixVente" />
+            <TableColumn fx:id="commande" prefWidth="75.0" text="Commande" />
         </columns>
       </TableView>
       <TableView layoutX="22.0" layoutY="93.0" prefHeight="250.0" prefWidth="245.0">

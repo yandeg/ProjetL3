@@ -73,7 +73,6 @@ public class ExportSimulation {
         pAchats.setSpacingAfter(10.0f);
         document.add(pAchats);
         // Tableau
-        Achat.remplirAchatsFictifs(); // Liste des achats saisis (FICTIF)
         PdfPTable tabAchats = new PdfPTable(2); // 2 colonnes
         tabAchats.setHorizontalAlignment(Element.ALIGN_LEFT); // Alignement page
         tabAchats.setWidthPercentage(50); // Occupe 50% de la page
@@ -113,12 +112,10 @@ public class ExportSimulation {
         tabNivActivation.addCell(new Phrase("Niveau d'activation",
                 FontFactory.getFont(FontFactory.HELVETICA, 11, Font.BOLD)));
         // Contenu tabNivActivation
-        /*
-        for (Chaines c : //) {
-            tabNivActivation.addCell(c.getCodeC());
-            tabNivActivation.addCell(String.valueOf(c.getNiveauActivation()));
+        for (int i = 0; i + 1 < k.size(); i += 2) {
+            tabNivActivation.addCell(k.get(i));
+            tabNivActivation.addCell(String.valueOf(k.get(i + 1)));
         }
-        */
         document.add(tabNivActivation);
     }
 
@@ -136,17 +133,23 @@ public class ExportSimulation {
         document.add(pResultats);
         // Indicateur de valeur
         Paragraph pIndicateurValeur = new Paragraph("Indicateur de valeur : "
-                + Calcul.getIndicateurValeur()
+                + Calcul.getIndicateurValeur() + " €"
                 ,FontFactory.getFont(FontFactory.HELVETICA, 11, Font.BOLD));
         pIndicateurValeur.setSpacingBefore(5.0f);
         pIndicateurValeur.setSpacingAfter(5.0f);
         document.add(pIndicateurValeur);
         // Indicateur de commande
         Paragraph pIndicateurCommande = new Paragraph("Indicateur de commande : "
-                + Calcul.getIndicateurCommande()
+                + Calcul.getIndicateurCommande()*100 + " %"
                 ,FontFactory.getFont(FontFactory.HELVETICA, 11, Font.BOLD));
         pIndicateurCommande.setSpacingBefore(5.0f);
         pIndicateurCommande.setSpacingAfter(5.0f);
         document.add(pIndicateurCommande);
+        // Message production impossible
+        Paragraph pMessageProdImpossible = new Paragraph(Calcul.getMessageProdImpossible()
+                ,FontFactory.getFont(FontFactory.HELVETICA, 11, Font.BOLD));
+        pMessageProdImpossible.setSpacingBefore(15.0f);
+        pMessageProdImpossible.setSpacingAfter(5.0f);
+        document.add(pMessageProdImpossible);
     }
 }

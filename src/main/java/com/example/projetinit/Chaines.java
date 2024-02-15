@@ -1,37 +1,39 @@
 package com.example.projetinit;
 
+import javafx.beans.property.SimpleStringProperty;
+
 import java.util.HashMap;
 
 public class Chaines {
-    private String codeC;
-    private String nomC;
+    private SimpleStringProperty codeC;
+    private SimpleStringProperty nomC;
     private final HashMap<String,Double> hashElementEntree;
     private final HashMap<String, Double> hashElementSortie;
 
 
 
     public Chaines(String code, String nom, HashMap<String, Double> hashElementEntree , HashMap<String,Double> hashElementSortie) {
-        this.codeC = code;
-        this.nomC = nom;
+        this.codeC = new SimpleStringProperty(code);
+        this.nomC = new SimpleStringProperty(nom);
         this.hashElementEntree = hashElementEntree;
         this.hashElementSortie = hashElementSortie;
 
     }
 
     public String getCodeC() {
-        return codeC;
+        return codeC.get();
     }
 
     public void setCodeC(String codeC) {
-        this.codeC = codeC;
+        this.codeC.set(codeC);
     }
 
     public String getNomC() {
-        return nomC;
+        return nomC.get();
     }
 
     public void setNomC(String nomC) {
-        this.nomC = nomC;
+        this.nomC.set(nomC);
     }
 
     public HashMap<String, Double> getHashElementEntre() {
@@ -49,6 +51,5 @@ public class Chaines {
     public double getQuantiteSortie(String codeE) {
         return hashElementSortie.get(codeE);
     }
-
 
 }

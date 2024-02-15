@@ -16,11 +16,12 @@
          <font>
             <Font size="15.0" />
          </font></Label>
-      <Button layoutX="492.0" layoutY="345.0" mnemonicParsing="false" onAction="#exportData" prefHeight="33.0" prefWidth="82.0" text=".txt et .pdf" />
-      <Label layoutX="429.0" layoutY="352.0" text="Export to" textAlignment="CENTER">
+      <Button layoutX="471.0" layoutY="278.0" mnemonicParsing="false" onAction="#exportToPDF" prefHeight="33.0" prefWidth="40.0" text=".pdf" />
+      <Label layoutX="286.0" layoutY="307.0" prefHeight="19.0" prefWidth="181.0" text="Exporter le fichier Simulation. : " textAlignment="CENTER">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
+    <Button layoutX="471.0" layoutY="325.0" minWidth="6.0" mnemonicParsing="false" onAction="#exportToText" prefHeight="33.0" prefWidth="40.0" text=".txt" />
    </children>
 </AnchorPane>

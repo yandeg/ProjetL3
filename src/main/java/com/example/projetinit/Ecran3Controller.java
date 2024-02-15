@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -90,25 +91,41 @@ public class Ecran3Controller implements Initializable {
         // Pour afficher les 2 indicateurs
         setDataFromTestCalcul();
     }
-
-
     /**
-     * Méthode appelée lorsqu'on souhaite exporter les données vers un emplacement spécifié.
+     * Méthode appelée lorsqu'on souhaite exporter les données vers un fichier texte.
      * Elle permet à l'utilisateur de choisir le dossier de destination pour l'exportation.
      * @param event L'événement déclenché lors du clic sur le bouton d'exportation.
      */
-    public void exportData(ActionEvent event) {
-        //choisir le dossier d'export
+    public void exportToText(ActionEvent event) {
+        // Choix du dossier d'exportation
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Choose Export Location");
         File selectedDirectory = directoryChooser.showDialog(stage);
 
         if (selectedDirectory != null) {
-            // Exporter en PDF
-            ExportSimulation.exporterSimulation(results, selectedDirectory.getAbsolutePath());
-
-            // Exporter en Text
+            // Exportation en format texte
             ExportTexte.exporter((ArrayList<String>) results, selectedDirectory.getAbsolutePath());
+
+            System.out.println("Data exported successfully to: " + selectedDirectory.getAbsolutePath());
+        } else {
+            System.out.println("No directory selected.");
+        }
+    }
+
+    /**
+     * Méthode appelée lorsqu'on souhaite exporter les données vers un fichier PDF.
+     * Elle permet à l'utilisateur de choisir le dossier de destination pour l'exportation.
+     * @param event L'événement déclenché lors du clic sur le bouton d'exportation.
+     */
+    public void exportToPDF(ActionEvent event) {
+        // Choix du dossier d'exportation
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Choose Export Location");
+        File selectedDirectory = directoryChooser.showDialog(stage);
+
+        if (selectedDirectory != null) {
+            // Exportation en format PDF
+            ExportSimulation.exporterSimulation(results, selectedDirectory.getAbsolutePath());
 
             System.out.println("Data exported successfully to: " + selectedDirectory.getAbsolutePath());
         } else {

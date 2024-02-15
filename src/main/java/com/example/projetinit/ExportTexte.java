@@ -1,5 +1,8 @@
+/**
+ * Cette classe fournit une méthode statique pour exporter les données de simulation vers un fichier texte.
+ * Les données comprennent les achats saisis, l'activation des chaînes et les résultats de la simulation.
+ */
 package com.example.projetinit;
-
 
 import java.io.File;
 import java.io.FileWriter;
@@ -10,41 +13,40 @@ import java.util.Date;
 
 public class ExportTexte {
 
-    // Pour tester directement (a suppr)
-    public static void main(String[] args) {
-        //exporter();
-    }
-
-    public static void exporter(ArrayList<String> k) {
-        // CREATE
+    /**
+     * Exporte les données de simulation vers un fichier texte.
+     * @param k La liste des données de simulation.
+     * @param exportDirectory Le répertoire d'export.
+     */
+    public static void exporter(ArrayList<String> k, String exportDirectory) {
         try {
-            File myObj = new File("Simulation.txt");
+            // Choix de l'emplacement d'exportation du fichier texte
+            File myObj = new File(exportDirectory + "/Simulation.txt");
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {
                 System.out.println("File already exists.");
             }
 
-            // WRITE
-            FileWriter myWriter = new FileWriter("Simulation.txt");
-            // titre
-            myWriter.write("Simulation faite le " +
-                    new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+            FileWriter myWriter = new FileWriter(myObj);
+            myWriter.write("Simulation faite le " + new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
             myWriter.write("\n\n\nDONNEES SAISIES : ");
-            // achats
-            //Achat.remplirAchatsFictifs(); //A suppr
+
+            // Achats
+            // Achat.remplirAchatsFictifs(); // A suppr
             myWriter.write("\n\nCodeE | Quantité achat");
             myWriter.write("\n----------------------");
             for (Achat a : Achat.getAchats()) {
                 myWriter.write("\n " + a.getCodeE() + " | " + a.getQteAchat());
             }
-            // activation
+            // Activation
             myWriter.write("\n\nCodeC | Niveau activation");
             myWriter.write("\n-------------------------");
-            for (int i=0;i<k.size();i+=2) {
-                myWriter.write("\n " + k.get(i) + " | " + k.get(i+1));
+            for (int i = 0; i + 1 < k.size(); i += 2) {
+                myWriter.write("\n " + k.get(i) + " | " + k.get(i + 1));
             }
-            // resultats
+
+            // Résultats
             myWriter.write("\n\n\nRESULTATS : ");
             myWriter.write("\nIndicateur de valeur : " + Calcul.getIndicateurValeur() + " €");
             myWriter.write("\nIndicateur de commande : " + Calcul.getIndicateurCommande()*100 + " %");
@@ -58,5 +60,4 @@ public class ExportTexte {
             e.printStackTrace();
         }
     }
-
 }

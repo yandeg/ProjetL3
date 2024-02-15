@@ -1,3 +1,7 @@
+/**
+ * Cette classe fournit des méthodes statiques pour exporter des données de simulation vers un fichier PDF.
+ * Elle utilise la bibliothèque iText pour générer le document PDF.
+ */
 package com.example.projetinit;
 
 import com.itextpdf.text.Document;
@@ -18,10 +22,15 @@ import java.util.Date;
 import java.util.List;
 
 public class ExportSimulation {
+    /**
+     * Exporte les données de simulation vers un fichier PDF.
+     * @param k La liste des données de simulation.
+     * @param exportDirectory Le répertoire d'export.
+     */
     public static void exporterSimulation(List<String> k, String exportDirectory) {
         Document document = new Document(PageSize.A4, 50, 50, 50, 50);
         try {
-            //Choisir où exporter le fichier
+            // Choix de l'emplacement d'exportation du fichier
             PdfWriter.getInstance(document , new FileOutputStream(exportDirectory + "/Simulation.pdf"));
             document.open();
             afficherTitreDocument(document);
@@ -37,6 +46,11 @@ public class ExportSimulation {
         }
     }
 
+    /**
+     * Affiche le titre du document PDF avec la date de la simulation.
+     * @param document Le document PDF.
+     * @throws DocumentException En cas d'erreur lors de l'ajout du titre au document.
+     */
     public static void afficherTitreDocument(Document document) throws DocumentException {
         Paragraph titreAvecDate = new Paragraph("Simulation faite le " +
                 new SimpleDateFormat("dd/MM/yyyy").format(new Date()),
@@ -46,18 +60,23 @@ public class ExportSimulation {
         document.add(titreAvecDate);
     }
 
+    /**
+     * Affiche les achats à effectuer dans le document PDF.
+     * @param document Le document PDF.
+     * @throws DocumentException En cas d'erreur lors de l'ajout des achats au document.
+     */
     public static void afficherAchats(Document document) throws DocumentException {
-        // TITRE
+        // Titre
         Paragraph pAchats = new Paragraph("Achats à effectuer : ",
                 FontFactory.getFont(FontFactory.HELVETICA, 12, Font.BOLD));
         pAchats.setSpacingBefore(15.0f);
         pAchats.setSpacingAfter(10.0f);
         document.add(pAchats);
-        // TABLEAU
+        // Tableau
         Achat.remplirAchatsFictifs(); // Liste des achats saisis (FICTIF)
         PdfPTable tabAchats = new PdfPTable(2); // 2 colonnes
-        tabAchats.setHorizontalAlignment(Element.ALIGN_LEFT); //Alignement page
-        tabAchats.setWidthPercentage(50); //Occupe 50% de la page
+        tabAchats.setHorizontalAlignment(Element.ALIGN_LEFT); // Alignement page
+        tabAchats.setWidthPercentage(50); // Occupe 50% de la page
         // Header tabAchats
         tabAchats.addCell(new Phrase("CodeE",
                 FontFactory.getFont(FontFactory.HELVETICA, 11, Font.BOLD)));
@@ -71,18 +90,23 @@ public class ExportSimulation {
         document.add(tabAchats);
     }
 
-
+    /**
+     * Affiche le niveau d'activation des chaînes dans le document PDF.
+     * @param document Le document PDF.
+     * @param k La liste des données de simulation.
+     * @throws DocumentException En cas d'erreur lors de l'ajout du niveau d'activation au document.
+     */
     public static void afficherActivationChaines(Document document, List<String> k) throws DocumentException {
-        // TITRE
+        // Titre
         Paragraph pNivActivation = new Paragraph("Niveau d'activation des chaines : ",
                 FontFactory.getFont(FontFactory.HELVETICA, 12, Font.BOLD));
         pNivActivation.setSpacingBefore(15.0f);
         pNivActivation.setSpacingAfter(10.0f);
         document.add(pNivActivation);
-        // TABLEAU
+        // Tableau
         PdfPTable tabNivActivation = new PdfPTable(2); // 2 colonnes
-        tabNivActivation.setHorizontalAlignment(Element.ALIGN_LEFT); //Alignement page
-        tabNivActivation.setWidthPercentage(50); //Occupe 50% de la page
+        tabNivActivation.setHorizontalAlignment(Element.ALIGN_LEFT); // Alignement page
+        tabNivActivation.setWidthPercentage(50); // Occupe 50% de la page
         // Header tabNivActivation
         tabNivActivation.addCell(new Phrase("CodeC",
                 FontFactory.getFont(FontFactory.HELVETICA, 11, Font.BOLD)));
@@ -91,28 +115,33 @@ public class ExportSimulation {
         // Contenu tabNivActivation
         /*
         for (Chaines c : //) {
-        	tabNivActivation.addCell(c.getCodeC());
-        	tabNivActivation.addCell(String.valueOf(c.getNiveauActivation()));
+            tabNivActivation.addCell(c.getCodeC());
+            tabNivActivation.addCell(String.valueOf(c.getNiveauActivation()));
         }
         */
         document.add(tabNivActivation);
     }
 
+    /**
+     * Affiche les résultats de la simulation dans le document PDF.
+     * @param document Le document PDF.
+     * @throws DocumentException En cas d'erreur lors de l'ajout des résultats au document.
+     */
     public static void afficherResultats(Document document) throws DocumentException {
-        // TITRE
+        // Titre
         Paragraph pResultats = new Paragraph("Résultats : ",
                 FontFactory.getFont(FontFactory.HELVETICA, 12, Font.BOLD));
         pResultats.setSpacingBefore(20.0f);
         pResultats.setSpacingAfter(10.0f);
         document.add(pResultats);
-        // INDICATEUR DE VALEUR
+        // Indicateur de valeur
         Paragraph pIndicateurValeur = new Paragraph("Indicateur de valeur : "
                 + Calcul.getIndicateurValeur()
                 ,FontFactory.getFont(FontFactory.HELVETICA, 11, Font.BOLD));
         pIndicateurValeur.setSpacingBefore(5.0f);
         pIndicateurValeur.setSpacingAfter(5.0f);
         document.add(pIndicateurValeur);
-        // INDICATEUR DE COMMANDE
+        // Indicateur de commande
         Paragraph pIndicateurCommande = new Paragraph("Indicateur de commande : "
                 + Calcul.getIndicateurCommande()
                 ,FontFactory.getFont(FontFactory.HELVETICA, 11, Font.BOLD));
@@ -120,5 +149,4 @@ public class ExportSimulation {
         pIndicateurCommande.setSpacingAfter(5.0f);
         document.add(pIndicateurCommande);
     }
-
 }

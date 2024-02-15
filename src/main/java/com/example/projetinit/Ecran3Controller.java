@@ -1,3 +1,8 @@
+/**
+ * Cette classe contrôle les fonctionnalités de la troisième fenêtre (Ecran3) de l'application.
+ * Elle gère les actions d'événements, telles que le passage à l'écran précédent et l'exportation des données.
+ */
+
 package com.example.projetinit;
 
 import javafx.event.ActionEvent;
@@ -29,7 +34,12 @@ public class Ecran3Controller implements Initializable {
     private List<String> results;
 
 
-     //Ceci va nous permettre de déclancher un evenement, dans ce cas c'est quand on appuis sur le Bouton "Ecran précedent"
+    /**
+     * Méthode appelée lorsqu'on souhaite passer à l'écran précédent (Ecran2).
+     * Elle charge la vue de l'écran précédent et la présente à l'utilisateur.
+     * @param e L'événement de clic sur le bouton pour passer à l'écran précédent.
+     * @throws IOException Si une erreur survient lors du chargement de la vue de l'écran précédent.
+     */
     public void swicthToEcran2(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/projetinit/Ecran2.fxml"));
         stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
@@ -39,7 +49,10 @@ public class Ecran3Controller implements Initializable {
     }
 
 
-    //récuperer les results des calculs fait dans la classe "TestCalcul"
+    /**
+     * Récupère les résultats des calculs effectués dans la classe "TestCalcul".
+     * @return Une liste contenant les résultats des calculs, ou une liste vide si aucun résultat n'est disponible.
+     */
     private List<String> calculateResults() {
         TestCalcul testCalcul = new TestCalcul();
         results = testCalcul.obtenirResultats();
@@ -47,6 +60,9 @@ public class Ecran3Controller implements Initializable {
     }
 
 
+    /**
+     * Met à jour les données à afficher à partir des résultats des calculs.
+     */
     private void setDataFromTestCalcul() {
         List<String> results = calculateResults();
         if (!results.isEmpty()) {
@@ -63,6 +79,12 @@ public class Ecran3Controller implements Initializable {
         }
     }
 
+    /**
+     * Méthode appelée lors de l'initialisation de la fenêtre.
+     * Charge les données à afficher à partir des résultats des calculs.
+     * @param url L'URL de la ressource racine à charger.
+     * @param resourceBundle Le ResourceBundle contenant les ressources spécifiques à la locale.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Pour afficher les 2 indicateurs
@@ -70,7 +92,11 @@ public class Ecran3Controller implements Initializable {
     }
 
 
-    //Cette procédure va nous permettre de faire l'export (déclancher un evenement)
+    /**
+     * Méthode appelée lorsqu'on souhaite exporter les données vers un emplacement spécifié.
+     * Elle permet à l'utilisateur de choisir le dossier de destination pour l'exportation.
+     * @param event L'événement déclenché lors du clic sur le bouton d'exportation.
+     */
     public void exportData(ActionEvent event) {
         //choisir le dossier d'export
         DirectoryChooser directoryChooser = new DirectoryChooser();

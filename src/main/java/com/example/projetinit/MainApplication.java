@@ -5,10 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.image.Image;
-
-import java.io.InputStream;
-import java.util.Objects;
 
 
 public class MainApplication extends Application {
@@ -22,7 +18,7 @@ public class MainApplication extends Application {
         Scene scene = new Scene(root, 600, 400);
 
         primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
+        primaryStage.setResizable(true);
         primaryStage.show();
     }
 

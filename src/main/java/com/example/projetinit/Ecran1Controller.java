@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -58,4 +59,16 @@ public class Ecran1Controller implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    public void swicthToEcranpop(ActionEvent e) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/projetinit/Ecranpop.fxml"));
+        Parent root = loader.load();
+
+        Stage popupStage = new Stage();
+        popupStage.initModality(Modality.APPLICATION_MODAL);
+        popupStage.setTitle("Données actualisées");
+        popupStage.setScene(new Scene(root));
+
+        popupStage.showAndWait();
+    }
 }
+

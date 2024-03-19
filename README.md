@@ -57,7 +57,7 @@ Il comporte :<br />
 Lorsque l’opérateur a entré les niveaux d’activité de chaque chaîne de production, l’application doit fournir un
 résultat permettant d’évaluer la production envisagée. Il faudra pour cela donner deux indicateurs : une indicateur
 de valeur et un indicateur de commande<br />
-Indicateur de valeur Cet indicateur donne une estimation financière de la rentabilité de la production envisagée.Il est calculé comme suit :<br />
+Indicateur de valeur Cet indicateur com.example.projetinit.donne une estimation financière de la rentabilité de la production envisagée.Il est calculé comme suit :<br />
 — Les achats sont ajoutés au stock.<br />
 — Chaque chaîne de production soustrait du stocks les éléments en entrée correspondant à son niveau d’activation choisi.<br />
 — Chaque chaîne ajoute aux stocks les élément produits correspondant à son niveau d’activation.<br />
@@ -77,7 +77,7 @@ Nous présentons ici une exemple d’utilisation typique de l’application dans
 — saisie des niveaux d’activité des chaînes de production<br />
 — saisie des achats<br />
 — visualisation du résultat<br />
-— Lorsque l’opérateur est satisfait de son résultat, export du résultat (sous la forme de votre choix).<br />
+— Lorsque l’opérateur est satisfait de son résultat, com.example.projetinit.export du résultat (sous la forme de votre choix).<br />
 3.2 Ergonomie<br />
 Il est nécessaire de faciliter la tâche de l’utilisateur.En particulier les opérations de modification des niveaux
 d’activation et des achats doivent pouvoir être réalisée en un minimum d’actions.<br />

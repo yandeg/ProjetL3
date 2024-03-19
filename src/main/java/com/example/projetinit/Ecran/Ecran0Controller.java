@@ -1,5 +1,8 @@
-package com.example.projetinit;
+package com.example.projetinit.Ecran;
 
+import com.example.projetinit.attributs.Chaines;
+import com.example.projetinit.attributs.Element;
+import com.example.projetinit.attributs.Prix;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;

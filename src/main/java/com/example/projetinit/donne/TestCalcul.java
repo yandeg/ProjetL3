@@ -3,7 +3,11 @@
  * Elle charge les données à partir de la classe GestionDonnees, effectue les calculs à l'aide de la classe Calcul,
  * puis enregistre les résultats dans une liste pour les retourner.
  */
-package com.example.projetinit;
+package com.example.projetinit.donne;
+
+import com.example.projetinit.attributs.Chaines;
+import com.example.projetinit.attributs.Element;
+import com.example.projetinit.attributs.Prix;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -2,7 +2,10 @@
  * Cette classe fournit une méthode statique pour exporter les données de simulation vers un fichier texte.
  * Les données comprennent les achats saisis, l'activation des chaînes et les résultats de la simulation.
  */
-package com.example.projetinit;
+package com.example.projetinit.export;
+
+import com.example.projetinit.donne.Achat;
+import com.example.projetinit.donne.Calcul;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -16,7 +19,7 @@ public class ExportTexte {
     /**
      * Exporte les données de simulation vers un fichier texte.
      * @param infosActivation La liste des chaines et leur niveau d'activation.
-     * @param exportDirectory Le répertoire d'export.
+     * @param exportDirectory Le répertoire d'com.example.projetinit.export.
      */
     public static void exporter(List<String> infosActivation, String exportDirectory) {
         try {

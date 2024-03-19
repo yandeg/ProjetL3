@@ -1,4 +1,4 @@
-package com.example.projetinit;
+package com.example.projetinit.donne;
 
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;

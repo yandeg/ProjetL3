@@ -1,4 +1,4 @@
-package com.example.projetinit;
+package com.example.projetinit.Ecran;
 
 import com.example.projetinit.utils.ApplicationUtils;
 import javafx.event.ActionEvent;

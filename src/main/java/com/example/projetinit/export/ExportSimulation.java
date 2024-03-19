@@ -2,8 +2,10 @@
  * Cette classe fournit des méthodes statiques pour exporter des données de simulation vers un fichier PDF.
  * Elle utilise la bibliothèque iText pour générer le document PDF.
  */
-package com.example.projetinit;
+package com.example.projetinit.export;
 
+import com.example.projetinit.donne.Achat;
+import com.example.projetinit.donne.Calcul;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -25,7 +27,7 @@ public class ExportSimulation {
     /**
      * Exporte les données de simulation vers un fichier PDF.
      * @param infosActivation La liste des chaines et leur niveau d'activation.
-     * @param exportDirectory Le répertoire d'export.
+     * @param exportDirectory Le répertoire d'com.example.projetinit.export.
      */
     public static void exporterSimulation(List<String> infosActivation, String exportDirectory) {
         Document document = new Document(PageSize.A4, 50, 50, 50, 50);

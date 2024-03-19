@@ -3,8 +3,11 @@
  * Elle gère les actions d'événements, telles que le passage à l'écran précédent et l'exportation des données.
  */
 
-package com.example.projetinit;
+package com.example.projetinit.Ecran;
 
+import com.example.projetinit.export.ExportSimulation;
+import com.example.projetinit.export.ExportTexte;
+import com.example.projetinit.donne.TestCalcul;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +15,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;

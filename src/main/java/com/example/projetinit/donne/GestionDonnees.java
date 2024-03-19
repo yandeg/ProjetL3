@@ -1,4 +1,9 @@
-package com.example.projetinit;
+package com.example.projetinit.donne;
+
+import com.example.projetinit.Affichage;
+import com.example.projetinit.attributs.Chaines;
+import com.example.projetinit.attributs.Element;
+import com.example.projetinit.attributs.Prix;
 
 import java.io.*;
 import java.util.HashMap;

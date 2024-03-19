@@ -1,5 +1,6 @@
-package com.example.projetinit;
+package com.example.projetinit.Ecran;
 
+import com.example.projetinit.donne.Achat;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

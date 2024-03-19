@@ -3,11 +3,11 @@
  * Elle étend la classe ElementBase.
  */
 
-package com.example.projetinit;
+package com.example.projetinit.attributs;
 
 import javafx.beans.property.SimpleStringProperty;
 
-public class Element extends ElementBase{
+public class Element extends ElementBase {
     private SimpleStringProperty nomE;
     private SimpleStringProperty unite;
 

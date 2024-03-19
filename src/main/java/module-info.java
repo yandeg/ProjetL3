@@ -14,4 +14,12 @@ module com.example.projetinit {
 
     opens com.example.projetinit to javafx.fxml;
     exports com.example.projetinit;
+    exports com.example.projetinit.Ecran;
+    opens com.example.projetinit.Ecran to javafx.fxml;
+    exports com.example.projetinit.attributs;
+    opens com.example.projetinit.attributs to javafx.fxml;
+    exports com.example.projetinit.export;
+    opens com.example.projetinit.export to javafx.fxml;
+    exports com.example.projetinit.donne;
+    opens com.example.projetinit.donne to javafx.fxml;
 }

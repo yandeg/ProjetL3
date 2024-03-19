@@ -2,7 +2,7 @@
  * Cette classe représente les prix associés à un élément.
  * Chaque prix est caractérisé par un code d'élément, un prix d'achat, un prix de vente et une quantité commandée.
  */
-package com.example.projetinit;
+package com.example.projetinit.attributs;
 
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;

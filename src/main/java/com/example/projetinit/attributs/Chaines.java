@@ -1,4 +1,4 @@
-package com.example.projetinit;
+package com.example.projetinit.attributs;
 
 import javafx.beans.property.SimpleStringProperty;
 

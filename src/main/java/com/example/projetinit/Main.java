@@ -1,5 +1,10 @@
 package com.example.projetinit;
 
+import com.example.projetinit.attributs.Chaines;
+import com.example.projetinit.attributs.Element;
+import com.example.projetinit.attributs.Prix;
+import com.example.projetinit.donne.GestionDonnees;
+
 import java.util.List;
 
 

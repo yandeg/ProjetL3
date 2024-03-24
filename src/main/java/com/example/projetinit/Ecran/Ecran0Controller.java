@@ -23,7 +23,8 @@ import java.io.File;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -229,13 +230,33 @@ public class Ecran0Controller {
                     }
 
                 }
-
+                // Affichage d'un pop-up pour indiquer que l'importation a réussi
+                showSuccessAlert();
             }
         } catch (IOException e) {
             e.printStackTrace();
+            // Affichage d'un pop-up en cas d'erreur
+            showErrorAlert();
         }
     }
 
+    //pop-up pour le succés d'importation
+    private void showSuccessAlert() {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Succès");
+        alert.setHeaderText(null);
+        alert.setContentText("L'importation a été effectuée avec succès !");
+        alert.showAndWait();
+    }
+
+    //pop-up pour la gestion d'erreur lors de l'importation
+    private void showErrorAlert() {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText(null);
+        alert.setContentText("Une erreur s'est produite lors de l'importation du fichier CSV.");
+        alert.showAndWait();
+    }
 }
 
 

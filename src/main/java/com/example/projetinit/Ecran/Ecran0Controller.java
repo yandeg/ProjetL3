@@ -18,8 +18,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
+import javafx.stage.FileChooser;
+import java.io.File;
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
@@ -115,6 +120,8 @@ public class Ecran0Controller {
         }
     }
 
+
+
     public void initialize1() {
         codeE1.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodeE()));
         prixAchat.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getPrixAchat()).asObject());
@@ -179,4 +186,56 @@ public class Ecran0Controller {
         }
         return hashMap;
     }
+
+
+    //importer les données .CSV
+    public void importCSVElements(ActionEvent event) {
+        importCSVAndLoadData(elements);
+    }
+
+    public void importCSVPrix(ActionEvent event) {
+        importCSVAndLoadData(prix);
+    }
+
+    public void importCSVChaines(ActionEvent event) {
+        importCSVAndLoadData(chaines);
+    }
+
+    private void importCSVAndLoadData(ObservableList<?> list) {
+        try {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Choisir un fichier CSV");
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Fichiers CSV (*.csv)", "*.csv");
+            fileChooser.getExtensionFilters().add(extFilter);
+            File file = fileChooser.showOpenDialog(new Stage());
+
+            if (file != null) {
+                list.clear(); // Efface la liste actuelle avant d'ajouter les nouveaux éléments
+
+                try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        String[] parts = line.split(";");
+                        // Ajoutez les éléments dans la liste appropriée
+                        if (list==elements){
+                            elements.add(new Element(parts[0], parts[1], Double.parseDouble(parts[2]), parts[3]));
+                        }
+                        if (list==prix){
+                            prix.add(new Prix(parts[0], Double.parseDouble(parts[1]), Double.parseDouble(parts[2]), Double.parseDouble(parts[3])));
+                        }
+                        if (list==chaines){
+                            chaines.add(new Chaines(parts[0], parts[1], parseHashMap(parts[2]), parseHashMap(parts[3])));
+                        }
+                    }
+
+                }
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
+
+

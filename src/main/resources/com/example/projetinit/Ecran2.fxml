@@ -18,5 +18,6 @@
       <TextField fx:id="textFieldCodeE" layoutX="332.0" layoutY="103.0" prefHeight="25.0" prefWidth="149.0" promptText="codeE" />
       <TextField fx:id="textFieldqteAchat" layoutX="332.0" layoutY="164.0" promptText="qteAchat" />
       <Button layoutX="371.0" layoutY="248.0" mnemonicParsing="false" onAction="#removeButton" text="Supprimer" />
+       <Button layoutX="371.0" layoutY="288.0" mnemonicParsing="false" onAction="#modifyButton" text="Modifier" />
    </children>
 </AnchorPane>

@@ -92,6 +92,7 @@ public class Ecran3Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Pour afficher les 2 indicateurs
         setDataFromTestCalcul();
+
     }
     /**
      * Méthode appelée lorsqu'on souhaite exporter les données vers un fichier texte.

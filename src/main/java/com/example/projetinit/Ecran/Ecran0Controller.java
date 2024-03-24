@@ -14,20 +14,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.stage.Stage;
-
-import javafx.stage.FileChooser;
-import java.io.File;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.HashMap;
 
 public class Ecran0Controller {
@@ -84,7 +78,7 @@ public class Ecran0Controller {
     private Scene scene;
     private Parent root;
 
-    public void swicthToEcran1(ActionEvent e) throws IOException {
+    public void switchToEcran1(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/projetinit/Ecran1.fxml"));
         stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         scene = new Scene(root);

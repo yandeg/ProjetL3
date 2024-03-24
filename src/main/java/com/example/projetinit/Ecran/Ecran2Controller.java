@@ -16,13 +16,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import static com.example.projetinit.donne.Achat.*;
-import static com.example.projetinit.donne.GestionDonnees.*;
 
 public class Ecran2Controller implements Initializable {
 
@@ -41,7 +39,7 @@ public class Ecran2Controller implements Initializable {
     private Scene scene;
     private Parent root;
     private static ObservableList<Achat> observableListAchat;
-    public void swicthToEcran1(ActionEvent e) throws IOException {
+    public void switchToEcran1(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/projetinit/Ecran1.fxml"));
         stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -49,7 +47,7 @@ public class Ecran2Controller implements Initializable {
         stage.show();
     }
 
-    public void swicthToEcran3(ActionEvent e) throws IOException {
+    public void switchToEcran3(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/projetinit/Ecran3.fxml"));
         stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         scene = new Scene(root);

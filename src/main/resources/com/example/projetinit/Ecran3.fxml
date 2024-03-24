@@ -11,7 +11,7 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <Button layoutX="29.0" layoutY="360.0" mnemonicParsing="false" onAction="#swicthToEcran2" text="Ecran précédent" />
+      <Button layoutX="29.0" layoutY="360.0" mnemonicParsing="false" onAction="#switchToEcran2" text="Ecran précédent" />
       <Label fx:id="labelResultats" layoutX="39.0" layoutY="126.0">
          <font>
             <Font size="15.0" />

@@ -11,7 +11,7 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/example/projetinit/Ecran0.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/projetinit/EcranSession.fxml"));
 
         primaryStage.setTitle("Application de gestion");
 

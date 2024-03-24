@@ -21,12 +21,12 @@
             <Insets bottom="50.0" />
          </padding>
         </HBox>
-      <Button mnemonicParsing="false" onAction="#swicthToEcran2" text="Valider">
+      <Button mnemonicParsing="false" onAction="#switchToEcran2" text="Valider">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button mnemonicParsing="false" onAction="#swicthToEcranpop" text="Voir données" />
-      <Button layoutX="267.0" layoutY="311.0" mnemonicParsing="false" onAction="#swicthToEcranpop" text="Retour" />
+      <Button mnemonicParsing="false" onAction="#switchToEcranpop" text="Voir données" />
+      <Button layoutX="267.0" layoutY="311.0" mnemonicParsing="false" onAction="#switchToEcran0" text="Retour" />
     </children>
 </VBox>

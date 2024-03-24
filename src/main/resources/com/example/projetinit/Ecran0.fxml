@@ -6,7 +6,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="457.0" prefWidth="650.0" stylesheets="@../../../css/Main.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetinit.Ecran.Ecran0Controller">
    <children>
       <Label layoutX="29.0" layoutY="22.0" text="Données prises en compte pour la simulation :" />
-      <Button layoutX="245.0" layoutY="411.0" mnemonicParsing="false" onAction="#swicthToEcran1" text="Passer à la simulation" />
+      <Button layoutX="245.0" layoutY="411.0" mnemonicParsing="false" onAction="#switchToEcran1" text="Passer à la simulation" />
       <TableView fx:id="tableView" layoutX="307.0" layoutY="50.0" prefHeight="146.0" prefWidth="334.0">
         <columns>
           <TableColumn fx:id="codeE" prefWidth="75.0" text="codeE" />

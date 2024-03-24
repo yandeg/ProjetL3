@@ -15,7 +15,7 @@ public class MainApplication extends Application {
 
         primaryStage.setTitle("Application de gestion");
 
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 700, 500);
 
         primaryStage.setScene(scene);
         primaryStage.setResizable(true);

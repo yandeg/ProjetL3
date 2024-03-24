@@ -3,31 +3,45 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="\src\main\java\AffichageTab\resources\Chaines.csv">
+        <entry key="\src\main\resources\files\Chaines.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="\src\main\java\AffichageTab\resources\Prix.csv">
+        <entry key="\src\main\resources\files\Chaines2.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\src\main\resources\files\Prix.csv">
           <value>
             <Attribute>
               <option name="separator" value=";" />
             </Attribute>
           </value>
         </entry>
-        <entry key="\src\main\java\AffichageTab\resources\elements.csv">
+        <entry key="\src\main\resources\files\Prix2.csv">
           <value>
             <Attribute>
               <option name="separator" value=";" />
             </Attribute>
           </value>
         </entry>
-        <entry key="\src\main\resources\elements.csv">
+        <entry key="\src\main\resources\files\elements.csv">
           <value>
             <Attribute>
               <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\src\main\resources\files\elements2.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>

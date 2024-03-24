@@ -16,9 +16,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static com.example.projetinit.donne.Achat.*;
+import static com.example.projetinit.donne.GestionDonnees.*;
 
 public class Ecran2Controller implements Initializable {
 
@@ -36,7 +40,7 @@ public class Ecran2Controller implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
-
+    private static ObservableList<Achat> observableListAchat;
     public void swicthToEcran1(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/projetinit/Ecran1.fxml"));
         stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
@@ -57,6 +61,20 @@ public class Ecran2Controller implements Initializable {
     void addButton(ActionEvent e) {
         Achat achat = new Achat(textFieldCodeE.getText(), Double.parseDouble(textFieldqteAchat.getText()));
         tableview.getItems().add(achat);
+
+    }
+    @FXML
+    void modifyButton(ActionEvent e) {
+        ObservableList<Achat> singleAchat;
+        Achat achat = new Achat(textFieldCodeE.getText(), Double.parseDouble(textFieldqteAchat.getText()));
+        singleAchat= tableview.getSelectionModel().getSelectedItems();
+        if (compareCodeA(achat.getCodeE(), singleAchat.getFirst().getCodeE())){
+            modifieEnAchat(singleAchat.getFirst(),achat);
+        }
+
+        tableview.refresh();
+
+
     }
     @FXML
     void removeButton(ActionEvent e){
@@ -70,15 +88,21 @@ public class Ecran2Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         colCodeE.setCellValueFactory(new PropertyValueFactory<>("codeE"));
         colQteAchat.setCellValueFactory(new PropertyValueFactory<>("qteAchat"));
-        ObservableList<Achat> observableList = FXCollections.observableArrayList(
-                new Achat("E001", 10.0),
-                new Achat("E002", 400.0),
-                new Achat("E003", 5.0),
-                new Achat("E004", 60.0),
-                new Achat("E005", 25.0),
-                new Achat("E006", 12.5),
-                new Achat("E007", 50.0)
+        observableListAchat= FXCollections.observableArrayList(
+            initialisationAchats()
         );
-        tableview.setItems(observableList);
+        tableview.setItems(getAchats());
+        tableview.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                textFieldCodeE.setText(newSelection.getCodeE());
+                textFieldqteAchat.setText(String.valueOf(newSelection.getQteAchat()));
+
+        };
+    });
+    }
+
+
+    public Achat selecteditemToAchat(){
+        return tableview.getSelectionModel().getSelectedItem();
     }
 }

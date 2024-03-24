@@ -3,24 +3,23 @@ package com.example.projetinit;
 import com.example.projetinit.attributs.Chaines;
 import com.example.projetinit.attributs.Element;
 import com.example.projetinit.attributs.Prix;
-import com.example.projetinit.donne.GestionDonnees;
+import static com.example.projetinit.donne.GestionDonnees.*;
 
 import java.util.List;
-
 
 public class Main {
 
     public static void main(String[] args) {
 
-        GestionDonnees dataManager = new GestionDonnees();
-        Affichage afficher = new Affichage();
-        dataManager.chargerElements();
-        dataManager.chargerChaineProd();
-        dataManager.chargerPrix();
 
-        List<Element> elements = dataManager.getElements();
-        List<Chaines> productionChaine = dataManager.getChaineProd();
-        List<Prix> pricingData = dataManager.getPricingData();
+        Affichage afficher = new Affichage();
+        chargerElements();
+        chargerChaineProd();
+        chargerPrix();
+
+        List<Element> elements = getElements();
+        List<Chaines> productionChaine = getChaineProd();
+        List<Prix> pricingData = getPricingData();
 
         // Affichage des éléments
         System.out.println("Liste des éléments :");
@@ -28,7 +27,7 @@ public class Main {
             afficher.affichage(element.getCodeE() + ", " + element.getNomE() + ", " + element.getQuantite() + " " + element.getUnite());
 
         }
-        afficher.affichage(dataManager.ajouterStock("E008", 15));
+        afficher.affichage(ajouterStock("E008", 15));
 
         System.out.println("Liste des éléments :");
         for (Element element : elements) {

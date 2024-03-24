@@ -4,27 +4,29 @@ import com.example.projetinit.Affichage;
 import com.example.projetinit.attributs.Chaines;
 import com.example.projetinit.attributs.Element;
 import com.example.projetinit.attributs.Prix;
+import com.example.projetinit.donne.Achat;
 
 import java.io.*;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class GestionDonnees {
-    private List<Element> elements;
-    private List<Chaines> chaines;
-    private List<Prix> prix;
+    private static List<Element> elements = new ArrayList<>();
+    private static List<Chaines> chaines = new ArrayList<>();
+    private static List<Prix> prix = new ArrayList<>();
     Affichage afficher = new Affichage();
 
     public GestionDonnees() {
-        this.elements = new ArrayList<>();
-        this.chaines = new ArrayList<>();
-        this.prix = new ArrayList<>();
+        elements = new ArrayList<>();
+        chaines = new ArrayList<>();
+        prix = new ArrayList<>();
 
     }
 
-    public void chargerElements() {
-        try (InputStream is = getClass().getResourceAsStream("/files/Elements.csv");
+    public static void chargerElements() {
+        try (InputStream is = GestionDonnees.class.getResourceAsStream("/files/Elements.csv");
              BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -37,8 +39,8 @@ public class GestionDonnees {
         }
     }
 
-    public void chargerChaineProd() {
-        try (InputStream is = getClass().getResourceAsStream("/files/Chaines.csv");
+    public static void chargerChaineProd() {
+        try (InputStream is = GestionDonnees.class.getResourceAsStream("/files/Chaines.csv");
              BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -52,9 +54,9 @@ public class GestionDonnees {
         String[] data = ligne.split(";");
         HashMap<String,Double> listeElementEntre = convertListeElement(data[2]);
         HashMap<String,Double> listeElementSortie = convertListeElement(data[3]);
-        Chaines chaines= new Chaines(data[0],data[1], listeElementEntre, listeElementSortie);
+        Chaines chaines1= new Chaines(data[0],data[1], listeElementEntre, listeElementSortie);
 
-        return chaines;
+        return chaines1;
     }
 
     public static HashMap<String,Double> convertListeElement(String data){
@@ -69,9 +71,9 @@ public class GestionDonnees {
 
     }
 
-    public void chargerPrix() {
-        try ( InputStream is = getClass().getResourceAsStream("/files/Prix.csv");
-              BufferedReader reader = new BufferedReader(new InputStreamReader(is))){
+    public static void chargerPrix() {
+        try (InputStream is = GestionDonnees.class.getResourceAsStream("/files/Prix.csv");
+             BufferedReader reader = new BufferedReader(new InputStreamReader(is))){
             String ligne;
             while ((ligne = reader.readLine()) != null) {
                 String[] data = ligne.split(";");
@@ -84,19 +86,19 @@ public class GestionDonnees {
         }
     }
 
-    public List<Element> getElements() {
+    public static List<Element> getElements() {
         return elements;
     }
 
-    public List<Chaines> getChaineProd() {
+    public static List<Chaines> getChaineProd() {
         return chaines;
     }
 
-    public List<Prix> getPricingData() {
+    public static List<Prix> getPricingData() {
         return prix;
     }
 
-    public String ajouterStock(String codeE, double n){
+    public static String ajouterStock(String codeE, double n){
         String msg="";
         for (Element element : elements) {
             if (element.getCodeE().equals(codeE)) {
@@ -120,5 +122,16 @@ public class GestionDonnees {
         msg = "le code suivant n'a pas d'élément associé "+codeE;
         return msg;
     }
+    public static boolean verifierCodeE(String codeE){
+        for (Element element : elements) {
+            if (element.getCodeE().equals(codeE)) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+
 
 }

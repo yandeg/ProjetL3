@@ -13,7 +13,7 @@ public class MainApplication extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/projetinit/EcranSession.fxml"));
 
-        primaryStage.setTitle("Application de gestion");
+        primaryStage.setTitle("Squirrel");
 
         Scene scene = new Scene(root, 700, 500);
 

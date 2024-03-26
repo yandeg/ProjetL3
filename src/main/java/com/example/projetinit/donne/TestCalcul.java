@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Random;
 
 import static com.example.projetinit.donne.Achat.*;
+import static com.example.projetinit.donne.Calcul.*;
 import static com.example.projetinit.donne.GestionDonnees.*;
 
 public class TestCalcul {
@@ -26,7 +27,6 @@ public class TestCalcul {
 	 */
 	public List<String> obtenirResultats() {
 		// Charger les données
-		GestionDonnees gd = new GestionDonnees();
 		chargerElements();
 		List<Element> listeElements = getElements();
 
@@ -38,15 +38,14 @@ public class TestCalcul {
 
 		getAchats();
 
-		infosActivation = generateRandomInput(listeChaines);
 
 		// Effectuer les calculs
-		Calcul.faireLesCalculs(listePrix, listeElements, listeChaines, infosActivation);
+		faireLesCalculs();
 
 		// Enregistrer les différents résultats
 		ArrayList<String> resultats = new ArrayList<>();
-		resultats.add("Indicateur de valeur : " + Calcul.getIndicateurValeur());
-		resultats.add("\nIndicateur de commande : " + Calcul.getIndicateurCommande() + "\n");
+		resultats.add("Indicateur de valeur : " + getIndicateurValeur());
+		resultats.add("\nIndicateur de commande : " + getIndicateurCommande() + "\n");
 
 		for (Prix p : listePrix) {
 			resultats.add("code : " + p.getCodeE() + " prix achat : " + p.getPrixAchat() +
@@ -67,22 +66,4 @@ public class TestCalcul {
 		return resultats;
 	}
 
-	/**
-	 * Méthode privée pour générer des données d'entrée aléatoires pour les tests.
-	 *
-	 * @param listeChaines La liste des chaînes de production pour lesquelles générer des données d'entrée aléatoires.
-	 * @return Une liste de données d'entrée aléatoires pour les chaînes de production.
-	 */
-	private List<String> generateRandomInput(List<Chaines> listeChaines) {
-		ArrayList<String> randomInput = new ArrayList<>();
-		Random random = new Random();
-
-		for (Chaines c : listeChaines) {
-			randomInput.add(c.getCodeC());
-			// Exemple: nombre aléatoire entre 0 et 5
-			randomInput.add(String.valueOf(random.nextInt(0, 6)));
-		}
-
-		return randomInput;
-	}
 }

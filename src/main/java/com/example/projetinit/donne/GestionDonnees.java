@@ -153,7 +153,7 @@ public class GestionDonnees {
     public static int getNiveauActivation(String codeC) {
         for (Chaines chaine : chaines) {
             if (chaine.getCodeC().equals(codeC)) {
-                return chaine.getNiveauActivation();
+                return chaine.getNiveauActivationC();
             }
         }
         return 0;

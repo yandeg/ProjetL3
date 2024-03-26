@@ -4,16 +4,10 @@
  */
 package com.example.projetinit.export;
 
+import com.example.projetinit.attributs.Chaines;
 import com.example.projetinit.donne.Achat;
 import com.example.projetinit.donne.Calcul;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
+import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
@@ -24,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 
 import static com.example.projetinit.donne.Achat.getAchats;
+import static com.example.projetinit.donne.GestionDonnees.*;
 
 public class ExportSimulation {
     /**
@@ -116,9 +111,9 @@ public class ExportSimulation {
         tabNivActivation.addCell(new Phrase("Niveau d'activation",
                 FontFactory.getFont(FontFactory.HELVETICA, 11, Font.BOLD)));
         // Contenu tabNivActivation
-        for (int i = 0; i + 1 < infosActivation.size(); i += 2) {
-            tabNivActivation.addCell(infosActivation.get(i));
-            tabNivActivation.addCell(String.valueOf(infosActivation.get(i + 1)));
+        for (Chaines chaine: getChaineProd()) {
+            tabNivActivation.addCell(chaine.getCodeC());
+            tabNivActivation.addCell(String.valueOf(chaine.getNiveauActivationC()));
         }
         document.add(tabNivActivation);
     }

@@ -35,12 +35,6 @@ public class Ecran1Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         updateStatusLabel();
     }
-    @FXML
-    protected void handleAddLvlAction(ActionEvent e, Chaines chaine) {
-
-        ajouterNiveauActivation("C001");
-        updateStatusLabel();
-    }
 
     @FXML
     protected void handleRemoveLvlAction(ActionEvent e) {
@@ -77,6 +71,12 @@ public class Ecran1Controller implements Initializable {
         popupStage.setScene(new Scene(root));
 
         popupStage.showAndWait();
+    }
+
+    @FXML
+    protected void handleAddLvlAction(ActionEvent actionEvent) {
+        ajouterNiveauActivation("C001");
+        updateStatusLabel();
     }
 }
 

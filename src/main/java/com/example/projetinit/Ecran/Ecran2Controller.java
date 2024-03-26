@@ -38,7 +38,8 @@ public class Ecran2Controller implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    private static ObservableList<Achat> observableListAchat;
+
+    private ObservableList<Achat> observableListAchat;
     public void switchToEcran1(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/projetinit/Ecran1.fxml"));
         stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
@@ -87,7 +88,7 @@ public class Ecran2Controller implements Initializable {
         colCodeE.setCellValueFactory(new PropertyValueFactory<>("codeE"));
         colQteAchat.setCellValueFactory(new PropertyValueFactory<>("qteAchat"));
         observableListAchat= FXCollections.observableArrayList(
-            initialisationAchats()
+                getAchats()
         );
         tableview.setItems(getAchats());
         tableview.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {

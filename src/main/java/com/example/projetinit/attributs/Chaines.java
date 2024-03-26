@@ -63,7 +63,7 @@ public class Chaines {
             this.niveauActivation.set(this.niveauActivation.get() - 1);
         }
     }
-    public  int getNiveauActivation() {
+    public  int getNiveauActivationC() {
         return this.niveauActivation.get();
     }
 }

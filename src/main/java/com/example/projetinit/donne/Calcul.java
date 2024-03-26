@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.example.projetinit.donne.Achat.getAchats;
+import static com.example.projetinit.donne.GestionDonnees.*;
+
 public class Calcul {
 
 	private static double indicateurValeur;
@@ -32,32 +35,32 @@ public class Calcul {
 
 	// Méthode utilisée quand l'utilisateur clique pour faire les calculs
 	//IL faut insérer une liste de code de chaine de production suvi à chauqe fois du niveau d'activation du type (C0001,2,C0002,3)
-	public static void faireLesCalculs(List<Prix> listePrix, List<Element> listeElements, List<Chaines> chaines, List<String> infosActivation) {
-		initialiserMapStockFictif(listeElements);
-		indicateurValeur = calculerIndicateurValeur(listePrix, infosActivation, chaines);
-		indicateurCommande = calculerIndicateurCommande(listePrix);
+	public static void faireLesCalculs() {
+		initialiserMapStockFictif();
+		indicateurValeur = calculerIndicateurValeur();
+		indicateurCommande = calculerIndicateurCommande();
 		//chaines = chaines;
 	}
 
 
 	//Détail :
 
-	public static HashMap<String, Double> initialiserMapStockFictif(List<Element> listeElements) {
-		for (Element element : listeElements) {
+	public static HashMap<String, Double> initialiserMapStockFictif() {
+		for (Element element : getElements()) {
 			mapStockFictif.put(element.getCodeE(), element.getQuantite());
 		}
 		return mapStockFictif;
 	}
 
-	public static double calculerIndicateurValeur(List<Prix> listePrix, List<String> infosActivation, List<Chaines> chaines) {
+	public static double calculerIndicateurValeur() {
 		prendreEnCompteAchats();
-		prendreEnCompteProduction(infosActivation, chaines); // A FAIRE
-		return mesurerEfficacite(listePrix);
+		prendreEnCompteProduction( ); // A FAIRE
+		return mesurerEfficacite(getPricingData());
 	}
 
-	public static double calculerIndicateurCommande(List<Prix> listePrix) {
+	public static double calculerIndicateurCommande() {
 		ArrayList<Double> percentStockElt = new ArrayList<>(); //pr le pourcentage
-		for (Prix p : listePrix) {
+		for (Prix p : getPricingData()) {
 			if (p.getQteCommande() > 0.0) { // On prend que ceux commandés
 				double pourcentage = mapStockFictif.get(p.getCodeE()) / p.getQteCommande();
 				if (pourcentage > 1.0) { // S'il y en a + en stock que commandés -> 100%
@@ -79,9 +82,11 @@ public class Calcul {
 	// Détail pour le calcul de l'indicateur de valeur :
 
 	public static HashMap<String, Double> prendreEnCompteAchats() {
-		System.out.println("mapAchat avant : " + Achat.getAchats()); //test
+
+		System.out.println();
+		System.out.println("mapAchat avant : " + getAchats()); //test
 		System.out.println("mapStock avant : " + mapStockFictif); //test
-		for (Achat ha : Achat.getAchats()) {
+		for (Achat ha : getAchats()) {
 			if (mapStockFictif.containsKey(ha.getCodeE())) {
 				mapStockFictif.put(ha.getCodeE(), mapStockFictif.get(ha.getCodeE()) + ha.getQteAchat());
 			} else {
@@ -89,26 +94,23 @@ public class Calcul {
 				System.out.println("Erreur : code inexistant");
 			}
 		}
+
 		System.out.println("mapStock apres : " + mapStockFictif); //test
 		return mapStockFictif;
 	}
 
 
 	// A FAIRE
-	public static HashMap<String, Double> prendreEnCompteProduction(List<String> infosActivation, List<Chaines> chaines) {
-		for (int i=0;i<infosActivation.size();i+=2) {
-			int activation = Integer.parseInt(infosActivation.get(i + 1));
-			for (Chaines chaine : chaines) {
-				if (chaine.getCodeC().equals(infosActivation.get(i))) {
+	public static HashMap<String, Double> prendreEnCompteProduction( ) {
+			for (Chaines chaine : getChaineProd()) {
+					System.out.println("Niveau d'activation : " + chaine.getCodeC()+ chaine.getNiveauActivationC());
 					for (String u : chaine.getHashElementEntre().keySet()) {
-						mapStockFictif.put(u, mapStockFictif.get(u) - Double.parseDouble(String.valueOf(activation)) * chaine.getQuantiteEntree(u));
+						mapStockFictif.put(u, mapStockFictif.get(u) - Double.parseDouble(String.valueOf(chaine.getNiveauActivationC())) * chaine.getQuantiteEntree(u));
 					}
 					for (String u : chaine.getHashElementSortie().keySet()) {
-						mapStockFictif.put(u, mapStockFictif.get(u) + Double.parseDouble(String.valueOf(activation)) * chaine.getQuantiteSortie(u));
+						mapStockFictif.put(u, mapStockFictif.get(u) + Double.parseDouble(String.valueOf(chaine.getNiveauActivationC())) * chaine.getQuantiteSortie(u));
 					}
-				}
 			}
-		}
 		System.out.println("mapStock apres prod : " + mapStockFictif); //test
 		return mapStockFictif;
 	}
@@ -135,7 +137,7 @@ public class Calcul {
 		}
 		// Calcul des sommes
 		for (Prix p : listePrix) {
-			for (Achat ha : Achat.getAchats()) {
+			for (Achat ha : getAchats()) {
 				if (p.getCodeE().equals(ha.getCodeE())) {
 					sommeAchats += (p.getPrixAchat() * ha.getQteAchat());
 				}

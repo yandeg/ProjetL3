@@ -43,7 +43,7 @@ public class Ecran3Controller implements Initializable {
      * @param e L'événement de clic sur le bouton pour passer à l'écran précédent.
      * @throws IOException Si une erreur survient lors du chargement de la vue de l'écran précédent.
      */
-    public void swicthToEcran2(ActionEvent e) throws IOException {
+    public void switchToEcran2(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/projetinit/Ecran2.fxml"));
         stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         scene = new Scene(root);

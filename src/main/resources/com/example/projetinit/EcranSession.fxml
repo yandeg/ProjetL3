@@ -8,7 +8,7 @@
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../css/Main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetinit.Ecran.EcranSessionController">
    <children>
       <Label text="Entrer un identifiant" />
-      <TextField prefHeight="25.0" prefWidth="436.0" />
-      <Button mnemonicParsing="false" onAction="#switchToEcran0" text="S'identifier" />
+      <TextField fx:id="identificateur" prefHeight="25.0" prefWidth="436.0" />
+      <Button mnemonicParsing="false" onAction="#connexion" text="S'identifier" />
    </children>
 </VBox>

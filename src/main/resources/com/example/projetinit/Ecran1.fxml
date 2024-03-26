@@ -27,6 +27,6 @@
          </font>
       </Button>
       <Button mnemonicParsing="false" onAction="#swicthToEcranpop" text="Voir données" />
-      <Button layoutX="267.0" layoutY="311.0" mnemonicParsing="false" onAction="#swicthToEcranpop" text="Retour" />
+      <Button layoutX="267.0" layoutY="311.0" mnemonicParsing="false" onAction="#swicthToEcran0" text="Retour" />
     </children>
 </VBox>

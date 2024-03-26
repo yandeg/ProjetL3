@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import static com.example.projetinit.donne.GestionDonnees.*;
 
 public class Ecran0Controller {
 
@@ -92,6 +93,9 @@ public class Ecran0Controller {
     }
 
     public void initialize() {
+        chargerElements();
+        chargerChaineProd();
+        chargerPrix();
         codeE.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodeE()));
         nomE.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomE()));
         quantite.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getQuantite()).asObject());

@@ -23,6 +23,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import static com.example.projetinit.donne.Achat.getAchats;
+
 public class ExportSimulation {
     /**
      * Exporte les données de simulation vers un fichier PDF.
@@ -84,7 +86,7 @@ public class ExportSimulation {
         tabAchats.addCell(new Phrase("Quantité d'achats",
                 FontFactory.getFont(FontFactory.HELVETICA, 11, Font.BOLD)));
         // Contenu tabAchats
-        for (Achat a : Achat.getAchats()) {
+        for (Achat a : getAchats()) {
             tabAchats.addCell(a.getCodeE());
             tabAchats.addCell(String.valueOf(a.getQteAchat()));
         }

@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static com.example.projetinit.donne.Achat.*;
+import static com.example.projetinit.donne.GestionDonnees.*;
+
 public class TestCalcul {
 
 	public static List<String> infosActivation;
@@ -24,16 +27,16 @@ public class TestCalcul {
 	public List<String> obtenirResultats() {
 		// Charger les données
 		GestionDonnees gd = new GestionDonnees();
-		gd.chargerElements();
-		List<Element> listeElements = gd.getElements();
+		chargerElements();
+		List<Element> listeElements = getElements();
 
-		gd.chargerChaineProd();
-		List<Chaines> listeChaines = gd.getChaineProd();
+		chargerChaineProd();
+		List<Chaines> listeChaines = getChaineProd();
 
-		gd.chargerPrix();
-		List<Prix> listePrix = gd.getPricingData();
+		chargerPrix();
+		List<Prix> listePrix = getPricingData();
 
-		Achat.remplirAchatsFictifs();
+		getAchats();
 
 		infosActivation = generateRandomInput(listeChaines);
 

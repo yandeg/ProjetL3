@@ -1,5 +1,6 @@
 package com.example.projetinit.attributs;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.util.HashMap;
@@ -9,6 +10,8 @@ public class Chaines {
     private SimpleStringProperty nomC;
     private final HashMap<String,Double> hashElementEntree;
     private final HashMap<String, Double> hashElementSortie;
+
+    private SimpleIntegerProperty niveauActivation = new SimpleIntegerProperty(0);
 
 
 
@@ -52,4 +55,15 @@ public class Chaines {
         return hashElementSortie.get(codeE);
     }
 
+    public  void ajouterNiveauActivation(){
+        this.niveauActivation.set(this.niveauActivation.get()+1);
+    }
+    public  void enleverNiveauActivation() {
+        if (this.niveauActivation.get() > 0) {
+            this.niveauActivation.set(this.niveauActivation.get() - 1);
+        }
+    }
+    public  int getNiveauActivation() {
+        return this.niveauActivation.get();
+    }
 }

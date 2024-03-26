@@ -1,6 +1,9 @@
 package com.example.projetinit.Ecran;
 
+import com.example.projetinit.attributs.Chaines;
 import com.example.projetinit.utils.ApplicationUtils;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,33 +19,38 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static com.example.projetinit.donne.GestionDonnees.*;
+
 public class Ecran1Controller implements Initializable {
 
-    private int niveauChaine=0;
     @FXML
     private Label statusLabel;
     private Stage stage;
     private Scene scene;
     private Parent root;
 
+    private ObservableList<Chaines> chaines = FXCollections.observableArrayList();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        updateStatusLabel(niveauChaine);
+        updateStatusLabel();
     }
     @FXML
-    protected void handleAddLvlAction(ActionEvent e) {
-        updateStatusLabel(++niveauChaine);
+    protected void handleAddLvlAction(ActionEvent e, Chaines chaine) {
+
+        ajouterNiveauActivation("C001");
+        updateStatusLabel();
     }
 
     @FXML
     protected void handleRemoveLvlAction(ActionEvent e) {
-        if (niveauChaine>0){
-            updateStatusLabel(--niveauChaine);
-        }
+
+        enleverNiveauActivation("C001");
+        updateStatusLabel();
     }
 
-    private void updateStatusLabel(int niveauChaine) {
-        statusLabel.setText("Le niveau d'activation : " + ApplicationUtils.pluralize(niveauChaine,"chaine ", "chaines ") + "de production");
+    private void updateStatusLabel() {
+        statusLabel.setText("Le niveau d'activation : " + ApplicationUtils.pluralize( getNiveauActivation("C001"),"chaine ", "chaines ") + "de production");
     }
 
     public void swicthToEcran0(ActionEvent e) throws IOException {

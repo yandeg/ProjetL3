@@ -5,6 +5,8 @@ import com.example.projetinit.attributs.Chaines;
 import com.example.projetinit.attributs.Element;
 import com.example.projetinit.attributs.Prix;
 import com.example.projetinit.donne.Achat;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 import java.io.*;
 import java.util.HashMap;
@@ -17,6 +19,8 @@ public class GestionDonnees {
     private static List<Chaines> chaines = new ArrayList<>();
     private static List<Prix> prix = new ArrayList<>();
     Affichage afficher = new Affichage();
+
+    private static SimpleIntegerProperty niveauActivation = new SimpleIntegerProperty(0);
 
     public GestionDonnees() {
         elements = new ArrayList<>();
@@ -132,6 +136,28 @@ public class GestionDonnees {
 
     }
 
+    public static void ajouterNiveauActivation(String codeC){
+        chaines.forEach(chaine -> {
+            if (chaine.getCodeC().equals(codeC)) {
+                chaine.ajouterNiveauActivation();
+            }
+        });
+    }
+    public static void enleverNiveauActivation(String codeC) {
+        chaines.forEach(chaine -> {
+            if (chaine.getCodeC().equals(codeC)) {
+                chaine.enleverNiveauActivation();
+            }
+        });
+    }
+    public static int getNiveauActivation(String codeC) {
+        for (Chaines chaine : chaines) {
+            if (chaine.getCodeC().equals(codeC)) {
+                return chaine.getNiveauActivation();
+            }
+        }
+        return 0;
+    }
 
 
 }

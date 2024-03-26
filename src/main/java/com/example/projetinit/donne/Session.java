@@ -1,46 +1,39 @@
 package com.example.projetinit.donne;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Session {
+    private String username;
+    private Map<String, String> csvFiles;
 
-    private String identifiant;
-
-    public Session() {
-        this.identifiant = identifiant;
+    public Session(String username) {
+        this.username = username;
+        this.csvFiles = new HashMap<>();
     }
 
-    public String getIdentifiant() {
-        return identifiant;
+    // Méthode pour associer un fichier CSV à la session
+    public void addCSVFile(String fileName, String filePath) {
+        csvFiles.put(fileName, filePath);
     }
 
-    public void setIdentifiant(String identifiant) {
-        this.identifiant = identifiant;
+    // Méthode pour obtenir le chemin d'accès du fichier CSV associé à un nom de fichier donné
+    public String getCSVFilePath(String fileName) {
+        return csvFiles.get(fileName);
     }
 
-    public class CSVReader {
-        public static List<Session> readSessionsFromCSV(String filename) throws IOException {
-            List<Session> sessions = new ArrayList<>();
-            try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    String[] data = line.split(",");
-                    if (data.length >= 1) {
-                        Session session = new Session();
-                        session.setIdentifiant(data[0]);
-                        sessions.add(session);
-                    }
-                }
-            }
-            return sessions;
-        }
+    // Méthode pour supprimer un fichier CSV de la session
+    public void removeCSVFile(String fileName) {
+        csvFiles.remove(fileName);
     }
 
+    // Méthode pour vérifier si un fichier CSV est associé à la session
+    public boolean containsCSVFile(String fileName) {
+        return csvFiles.containsKey(fileName);
+    }
 
-
-
+    // Méthode pour obtenir tous les noms de fichiers CSV associés à la session
+    public String[] getAllCSVFileNames() {
+        return csvFiles.keySet().toArray(new String[0]);
+    }
 }

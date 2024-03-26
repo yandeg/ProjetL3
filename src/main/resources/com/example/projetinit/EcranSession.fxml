@@ -9,6 +9,6 @@
    <children>
       <Label text="Entrer un identifiant" />
       <TextField fx:id="identificateur" prefHeight="25.0" prefWidth="436.0" />
-      <Button mnemonicParsing="false" onAction="#connexion" text="S'identifier" />
+      <Button mnemonicParsing="false" onAction="#switchToEcran0" text="S'identifier" />
    </children>
 </VBox>

@@ -10,21 +10,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\src\main\resources\files\Chaines2.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\src\main\resources\files\Prix.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value=";" />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\src\main\resources\files\Prix2.csv">
           <value>
             <Attribute>
               <option name="separator" value=";" />
@@ -35,13 +21,6 @@
           <value>
             <Attribute>
               <option name="separator" value=";" />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\src\main\resources\files\elements2.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>

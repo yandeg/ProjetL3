@@ -26,6 +26,12 @@ import java.util.HashMap;
 import static com.example.projetinit.donne.GestionDonnees.*;
 
 public class Ecran0Controller {
+    // Référence statique à l'instance du contrôleur
+    private static Ecran0Controller instance;
+    // Méthode statique pour obtenir l'instance du contrôleur
+    public static Ecran0Controller getInstance() {
+        return instance;
+    }
 
     @FXML
     private TableColumn<Chaines, HashMap<String, Double>> sortie;
@@ -88,6 +94,9 @@ public class Ecran0Controller {
     }
 
     public void initialize() {
+        //Attribuer l'instance actuelle à la référence statique
+        instance = this;
+
         chargerElements();
         chargerChaineProd();
         chargerPrix();
@@ -187,7 +196,7 @@ public class Ecran0Controller {
     }
 
 
-    //importer les données .CSV
+    //Importer les données .CSV
     public void importCSVElements(ActionEvent event) {
         importCSVAndLoadData(elements);
     }
@@ -238,7 +247,7 @@ public class Ecran0Controller {
         }
     }
 
-    //pop-up pour le succés d'importation
+    //Pop-up pour le success d'importation
     private void showSuccessAlert() {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Succès");
@@ -247,13 +256,19 @@ public class Ecran0Controller {
         alert.showAndWait();
     }
 
-    //pop-up pour la gestion d'erreur lors de l'importation
+    //Pop-up pour la gestion d'erreur lors de l'importation
     private void showErrorAlert() {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Erreur");
         alert.setHeaderText(null);
         alert.setContentText("Une erreur s'est produite lors de l'importation du fichier CSV.");
         alert.showAndWait();
+    }
+
+
+    //Récupérer la chaine pour pouvoir l'utiliser ailleurs
+    public ObservableList<Chaines> getChainesData() {
+        return chaines;
     }
 }
 

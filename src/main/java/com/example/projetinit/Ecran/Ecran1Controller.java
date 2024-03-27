@@ -1,7 +1,10 @@
 package com.example.projetinit.Ecran;
 
 import com.example.projetinit.attributs.Chaines;
+import com.example.projetinit.attributs.Prix;
 import com.example.projetinit.utils.ApplicationUtils;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,29 +15,73 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
+
 
 import static com.example.projetinit.donne.GestionDonnees.*;
 
 public class Ecran1Controller implements Initializable {
 
+
+    @FXML
+    private TableView<Chaines> tableViewC;
+    @FXML
+    private TableColumn<Chaines, HashMap<String, Double>> sortie;
+
+    @FXML
+    private TableColumn<Chaines, HashMap<String, Double>> entree;
+
+    @FXML
+    private TableColumn<Chaines, String> nomC;
+
+    @FXML
+    private TableColumn<Chaines, String> codeC;
     @FXML
     private Label statusLabel;
+
+    //cellule du + et - du niveau de l'activation
+    @FXML
+    private TableColumn<Chaines, Void> sortie1;
     private Stage stage;
     private Scene scene;
     private Parent root;
 
-    private ObservableList<Chaines> chaines = FXCollections.observableArrayList();
+    private ObservableList<Chaines> chaines;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        initTableView(); //Reprendre les updates de la table de l'ecran 0
         updateStatusLabel();
+        sortie1.setCellFactory(param -> new ModifCell());
     }
+
+    private void initTableView() {
+        Ecran0Controller ecran0Controller = Ecran0Controller.getInstance(); // Assuming you have a method to access Ecran0Controller instance
+        chaines = ecran0Controller.getChainesData();
+
+        codeC.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodeC()));
+        nomC.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomC()));
+        entree.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getHashElementEntre()));
+        sortie.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getHashElementSortie()));
+
+       // niveauActivation.setCellFactory(column -> new ModifCell());
+
+        tableViewC.setItems(chaines);
+
+    }
+
 
     @FXML
     protected void handleRemoveLvlAction(ActionEvent e) {
@@ -78,5 +125,8 @@ public class Ecran1Controller implements Initializable {
         ajouterNiveauActivation("C001");
         updateStatusLabel();
     }
+
+
 }
+
 

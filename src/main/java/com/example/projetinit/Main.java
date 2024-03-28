@@ -1,13 +1,5 @@
 package com.example.projetinit;
 
-import com.example.projetinit.attributs.Chaines;
-import com.example.projetinit.attributs.Element;
-import com.example.projetinit.attributs.Prix;
-
-import java.util.List;
-
-import static com.example.projetinit.donne.GestionDonnees.*;
-
 public class Main {
 
     /**

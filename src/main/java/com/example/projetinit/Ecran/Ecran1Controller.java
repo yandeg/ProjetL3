@@ -1,11 +1,9 @@
 package com.example.projetinit.Ecran;
 
 import com.example.projetinit.attributs.Chaines;
-import com.example.projetinit.attributs.Prix;
 import com.example.projetinit.utils.ApplicationUtils;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,11 +21,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-
 
 import static com.example.projetinit.donne.GestionDonnees.*;
 
@@ -61,6 +56,7 @@ public class Ecran1Controller implements Initializable {
     private Parent root;
 
     private ObservableList<Chaines> chaines;
+    Map<String, Integer> comptesChaine = new HashMap<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -128,6 +124,8 @@ public class Ecran1Controller implements Initializable {
     @FXML
     protected void handleAddLvlAction(ActionEvent actionEvent) {
         ajouterNiveauActivation("C001");
+        int nouveauCompte = comptesChaine.getOrDefault(codeC, 0) + 1;
+        comptesChaine.put(String.valueOf(codeC), nouveauCompte);
         updateStatusLabel();
     }
 

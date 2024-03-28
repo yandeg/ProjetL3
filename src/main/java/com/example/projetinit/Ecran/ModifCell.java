@@ -1,15 +1,14 @@
 package com.example.projetinit.Ecran;
 
 import com.example.projetinit.attributs.Chaines;
-
-import com.example.projetinit.utils.ApplicationUtils;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.layout.HBox;
 
-import static com.example.projetinit.donne.GestionDonnees.*;
+import static com.example.projetinit.donne.GestionDonnees.ajouterNiveauActivation;
+import static com.example.projetinit.donne.GestionDonnees.getChaineProd;
 
 public class ModifCell extends TableCell<Chaines, Void> {
     private final HBox container = new HBox();
@@ -19,7 +18,6 @@ public class ModifCell extends TableCell<Chaines, Void> {
 
 
     public ModifCell() {
-
 
         addButton.setOnAction(event -> {
             //int count = Integer.parseInt(counterLabel.getText());

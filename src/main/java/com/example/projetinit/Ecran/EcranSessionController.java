@@ -1,6 +1,5 @@
 package com.example.projetinit.Ecran;
 
-import com.example.projetinit.donne.GestionSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,34 +11,38 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class EcranSessionController {
 
-    private GestionSession sessionManager; // Assurez-vous d'avoir une instance de SessionManager dans votre contrôleur
-
     @FXML
-    private TextField identificateur;
+    private TextField nomDossierTextField;
+    private boolean exists;
 
-    // Méthode d'injection de dépendance pour injecter la dépendance SessionManager
-    public void setSessionManager(GestionSession sessionManager) {
-        this.sessionManager = sessionManager;
+    private void checkExists() {
+        if (nomDossierTextField != null) {
+            String nomDossier = nomDossierTextField.getText();
+            Path cheminDossier = Paths.get("C:\\Users\\YanisDegheb\\IdeaProjects\\projetInit\\src\\main\\resources\\files\\", nomDossier);
+            exists = Files.exists(cheminDossier) && Files.isDirectory(cheminDossier);
+        }
+
     }
 
     @FXML
     public void switchToEcran0(ActionEvent e) throws IOException {
-        String username = identificateur.getText(); // Récupère le nom d'utilisateur saisi
-
-        if (sessionManager.getSession(username) != null) {
-            // L'utilisateur est déjà enregistré, permettez-lui d'accéder à l'écran 0
+        // Vérifier si le TextField est initialisé
+        checkExists();
+        if (exists) {
             Parent root = FXMLLoader.load(getClass().getResource("/com/example/projetinit/Ecran0.fxml"));
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
         } else {
-            // L'utilisateur n'est pas enregistré, afficher un message d'erreur ou effectuer une action appropriée
-            System.out.println("Utilisateur non enregistré : " + username);
-            afficherMessageErreur("Utilisateur non enregistré", "Veuillez vous inscrire d'abord.");
+            System.out.println("Le répertoire n'existe pas ou n'est pas un répertoire valide");
+            afficherMessageErreur("Erreur", "Le répertoire n'existe pas ou n'est pas un répertoire valide.");
         }
     }
 
@@ -52,4 +55,3 @@ public class EcranSessionController {
         alert.showAndWait();
     }
 }
-

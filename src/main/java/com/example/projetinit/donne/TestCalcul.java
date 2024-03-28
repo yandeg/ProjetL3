@@ -19,7 +19,6 @@ import static com.example.projetinit.donne.GestionDonnees.*;
 
 public class TestCalcul {
 
-	public static List<String> infosActivation;
 
 	/**
 	 * Méthode permettant d'obtenir les résultats des calculs effectués sur les données.
@@ -35,8 +34,7 @@ public class TestCalcul {
 
 		List<Prix> listePrix = getPricingData();
 
-		getAchats();
-
+		List <Achat> listeAchats = getAchats();
 
 		// Effectuer les calculs
 		faireLesCalculs();

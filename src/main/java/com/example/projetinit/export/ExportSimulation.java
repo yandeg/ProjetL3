@@ -23,17 +23,16 @@ import static com.example.projetinit.donne.GestionDonnees.*;
 public class ExportSimulation {
     /**
      * Exporte les données de simulation vers un fichier PDF.
-     * @param infosActivation La liste des chaines et leur niveau d'activation.
      * @param exportDirectory Le répertoire d'com.example.projetinit.export.
      */
-    public static void exporterSimulation(List<String> infosActivation, String exportDirectory) {
+    public static void exporterSimulation( String exportDirectory) {
         Document document = new Document(PageSize.A4, 50, 50, 50, 50);
         try {
             PdfWriter.getInstance(document , new FileOutputStream(exportDirectory));
             document.open();
             afficherTitreDocument(document);
             afficherAchats(document);
-            afficherActivationChaines(document, infosActivation);
+            afficherActivationChaines(document);
             afficherResultats(document);
         } catch(DocumentException de) {
             System.err.println(de.getMessage());
@@ -90,10 +89,9 @@ public class ExportSimulation {
     /**
      * Affiche le niveau d'activation des chaînes dans le document PDF.
      * @param document Le document PDF.
-     * @param infosActivation La liste des chaines et leur niveau d'activation.
      * @throws DocumentException En cas d'erreur lors de l'ajout du niveau d'activation au document.
      */
-    public static void afficherActivationChaines(Document document, List<String> infosActivation) throws DocumentException {
+    public static void afficherActivationChaines(Document document) throws DocumentException {
         // Titre
         Paragraph pNivActivation = new Paragraph("Niveau d'activation des chaines : ",
                 FontFactory.getFont(FontFactory.HELVETICA, 12, Font.BOLD));

@@ -50,8 +50,7 @@ public class Achat {
     //Voir si utile
     //Crée une liste qui contient tous les éléments avec 0 comme quantité d'achats
     public static ObservableList<Achat> initialisationAchats() {
-        GestionDonnees gd = new GestionDonnees();
-        chargerElements(); // Pour le test. Normalement ça sera déja chargé
+
         for (Element elt : getElements()) {
             achats.add(new Achat(elt.getCodeE(), 0.0));
         }

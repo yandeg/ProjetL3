@@ -111,7 +111,7 @@ public class Ecran3Controller implements Initializable {
             File file = fileChooser.showSaveDialog(stage);
             if (file != null) {
                 // Exporter les données au fichier TXT sélectionné
-                ExportTexte.exporter((ArrayList<String>) TestCalcul.infosActivation, file.getAbsolutePath());
+                ExportTexte.exporter(file.getAbsolutePath());
                 System.out.println("Fichier exporté avec succès : " + file.getAbsolutePath());
             } else {
                 System.out.println("Aucun fichier sélectionné.");
@@ -139,7 +139,7 @@ public class Ecran3Controller implements Initializable {
 
             if (file != null) {
                 // Exporter les données au fichier PDF sélectionné
-                ExportSimulation.exporterSimulation(TestCalcul.infosActivation, file.getAbsolutePath());
+                ExportSimulation.exporterSimulation( file.getAbsolutePath());
                 System.out.println("Fichier exporté avec succès : " + file.getAbsolutePath());
             } else {
                 System.out.println("Aucun fichier sélectionné.");

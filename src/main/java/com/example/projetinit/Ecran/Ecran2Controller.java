@@ -1,5 +1,6 @@
 package com.example.projetinit.Ecran;
 
+import com.example.projetinit.attributs.Prix;
 import com.example.projetinit.donne.Achat;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -21,6 +23,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static com.example.projetinit.donne.Achat.*;
+import static com.example.projetinit.donne.GestionDonnees.getElements;
+import static com.example.projetinit.donne.GestionDonnees.getPricingData;
 
 public class Ecran2Controller implements Initializable {
 
@@ -58,8 +62,21 @@ public class Ecran2Controller implements Initializable {
 
     @FXML
     void addButton(ActionEvent e) {
-        Achat achat = new Achat(textFieldCodeE.getText(), Double.parseDouble(textFieldqteAchat.getText()));
-        tableview.getItems().add(achat);
+        for (Achat ha : getAchats()) {
+            if (compareCodeA(ha.getCodeE(), textFieldCodeE.getText())) {
+                showErrorAlert("Le code existe déjà");
+                return;
+            }
+        }
+        for (Prix prix : getPricingData()) {
+            if (compareCodeA(prix.getCodeE(), textFieldCodeE.getText()) && prix.getPrixAchat() != 0.0){
+                Achat achat = new Achat(textFieldCodeE.getText(), Double.parseDouble(textFieldqteAchat.getText()));
+                tableview.getItems().add(achat);
+
+                return;
+            }
+        }
+        showErrorAlert("L'element n'existe pas ou n'a pas de prix d'achat renseigné");
 
     }
     @FXML
@@ -100,7 +117,13 @@ public class Ecran2Controller implements Initializable {
     });
     }
 
-
+    private void showErrorAlert(String text) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText(null);
+        alert.setContentText(text);
+        alert.showAndWait();
+    }
     public Achat selecteditemToAchat(){
         return tableview.getSelectionModel().getSelectedItem();
     }

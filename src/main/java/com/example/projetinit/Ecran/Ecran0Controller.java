@@ -234,12 +234,15 @@ public class Ecran0Controller {
                         // Ajoutez les éléments dans la liste appropriée
                         if (list==elements){
                             elements.add(new Element(parts[0], parts[1], Double.parseDouble(parts[2]), parts[3]));
+                            setElements(elements);
                         }
                         if (list==prix){
                             prix.add(new Prix(parts[0], Double.parseDouble(parts[1]), Double.parseDouble(parts[2]), Double.parseDouble(parts[3])));
+                            setPrix(prix);
                         }
                         if (list==chaines){
                             chaines.add(new Chaines(parts[0], parts[1], parseHashMap(parts[2]), parseHashMap(parts[3])));
+                            setChaines(chaines);
                         }
                     }
 

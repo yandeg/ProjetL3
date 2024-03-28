@@ -4,6 +4,7 @@
  */
 package com.example.projetinit.export;
 
+import com.example.projetinit.attributs.Chaines;
 import com.example.projetinit.donne.Achat;
 import com.example.projetinit.donne.Calcul;
 
@@ -13,15 +14,15 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import static com.example.projetinit.donne.GestionDonnees.*;
 
 public class ExportTexte {
 
     /**
      * Exporte les données de simulation vers un fichier texte.
-     * @param infosActivation La liste des chaines et leur niveau d'activation.
      * @param exportDirectory Le répertoire d'com.example.projetinit.export.
      */
-    public static void exporter(List<String> infosActivation, String exportDirectory) {
+    public static void exporter( String exportDirectory) {
         try {
             File myObj = new File(exportDirectory);
             FileWriter myWriter = new FileWriter(myObj);
@@ -37,10 +38,10 @@ public class ExportTexte {
             // Activation
             myWriter.write("\n\nCodeC | Niveau activation");
             myWriter.write("\n-------------------------");
-            if (infosActivation != null) {
-                for (int i = 0; i + 1 < infosActivation.size(); i += 2) {
-                    myWriter.write("\n " + infosActivation.get(i) + " | " + infosActivation.get(i + 1));
-                    System.out.println(infosActivation.get(i) + " | " + infosActivation.get(i + 1));
+            if (!getChaineProd().isEmpty() ){
+                for (Chaines c : getChaineProd()) {
+                    myWriter.write("\n " + c.getCodeC() + " | " + c.getNiveauActivationC());
+                    System.out.println(c.getCodeC() + " | " + c.getNiveauActivationC());
                 }
             } else {
                 myWriter.write("\n Erreur : Pas d'information sur les chaines");

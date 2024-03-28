@@ -13,9 +13,7 @@ public class Main {
 
 
         Affichage afficher = new Affichage();
-        chargerElements();
-        chargerChaineProd();
-        chargerPrix();
+
 
         List<Element> elements = getElements();
         List<Chaines> productionChaine = getChaineProd();

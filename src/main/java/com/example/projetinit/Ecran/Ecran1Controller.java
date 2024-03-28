@@ -66,19 +66,18 @@ public class Ecran1Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         initTableView(); //Reprendre les updates de la table de l'ecran 0
-        updateStatusLabel();
+
         sortie1.setCellFactory(param -> new ModifCell());
     }
 
     private void initTableView() {
         Ecran0Controller ecran0Controller = Ecran0Controller.getInstance(); // Assuming you have a method to access Ecran0Controller instance
-        chaines = ecran0Controller.getChainesData();
+        chaines = (ObservableList<Chaines>) getChaineProd();
 
         codeC.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodeC()));
         nomC.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomC()));
         entree.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getHashElementEntre()));
         sortie.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getHashElementSortie()));
-        niveauActivation.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getNiveauActivation()));
          //niveauActivation.setCellFactory(column -> new ModifCell());
        // enleverNiveauActivation("C001");
 

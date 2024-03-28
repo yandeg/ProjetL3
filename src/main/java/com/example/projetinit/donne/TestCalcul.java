@@ -27,13 +27,12 @@ public class TestCalcul {
 	 */
 	public List<String> obtenirResultats() {
 		// Charger les données
-		chargerElements();
+
 		List<Element> listeElements = getElements();
 
-		chargerChaineProd();
 		List<Chaines> listeChaines = getChaineProd();
 
-		chargerPrix();
+
 		List<Prix> listePrix = getPricingData();
 
 		getAchats();

@@ -4,26 +4,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="400.0" prefWidth="600.0" spacing="20.0" stylesheets="@../../../css/Main.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetinit.Ecran.Ecran1Controller">
+<VBox prefHeight="400.0" prefWidth="600.0" spacing="20.0" stylesheets="@../../../css/Main.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetinit.Ecran.Ecran1Controller">
     <children>
-      <Label fx:id="statusLabel" layoutX="29.0" layoutY="22.0" text="Niveau d'activation chaine de production" />
-            <Button contentDisplay="CENTER" onAction="#handleAddLvlAction" text="+" textAlignment="JUSTIFY" textOverrun="WORD_ELLIPSIS">
-               <font>
-                  <Font size="13.0" />
-               </font>
-      </Button>
-                <Button onAction="#handleRemoveLvlAction" text="-" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
-               <font>
-                  <Font size="14.0" />
-               </font>
-      </Button>
         <TableView fx:id="tableViewC" layoutX="6.0" layoutY="109.0" prefHeight="172.0" prefWidth="439.0">
             <columns>
                 <TableColumn fx:id="codeC" prefWidth="78.3333352804184" text="codeC" />
                 <TableColumn fx:id="nomC" minWidth="0.0" prefWidth="89.33335876464844" text="nomC" />
                 <TableColumn fx:id="entree" minWidth="0.0" prefWidth="97.99996948242188" text="entree" />
                 <TableColumn fx:id="sortie" prefWidth="102.33331298828125" text="sortie" />
-                <TableColumn fx:id="niveauActivation" prefWidth="141.666748046875" text="Niveau d'activation" />
                 <TableColumn fx:id="sortie1" prefWidth="181.666748046875" text="Niveau d'activation" />
             </columns>
         </TableView>

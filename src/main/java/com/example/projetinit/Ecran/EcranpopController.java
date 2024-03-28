@@ -113,7 +113,7 @@ public class EcranpopController {
     }
 
     private void loadCSVData1() throws IOException {
-        try (InputStream is = getClass().getResourceAsStream("/files/Prix.csv");
+        try (InputStream is = getClass().getResourceAsStream("/files/user/Prix.csv");
              BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -138,7 +138,7 @@ public class EcranpopController {
     }
 
     private void loadCSVData2() throws IOException {
-        try (InputStream is = getClass().getResourceAsStream("/files/Chaines.csv");
+        try (InputStream is = getClass().getResourceAsStream("/files/user/Chaines.csv");
              BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
             String line;
             while ((line = reader.readLine()) != null) {

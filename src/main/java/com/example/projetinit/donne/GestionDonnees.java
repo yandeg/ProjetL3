@@ -4,30 +4,26 @@ import com.example.projetinit.Affichage;
 import com.example.projetinit.attributs.Chaines;
 import com.example.projetinit.attributs.Element;
 import com.example.projetinit.attributs.Prix;
-import com.example.projetinit.donne.Achat;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.*;
 import java.util.HashMap;
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class GestionDonnees {
-    private static List<Element> elements = new ArrayList<>();
 
-    private static List<Chaines> chaines = new ArrayList<>();
-    private static List<Prix> prix = new ArrayList<>();
+    private static ObservableList<Element> elements = FXCollections.observableArrayList();
+    private static ObservableList<Chaines> chaines = FXCollections.observableArrayList();
+    private static ObservableList<Prix> prix = FXCollections.observableArrayList();
     Affichage afficher = new Affichage();
 
     private static SimpleIntegerProperty niveauActivation = new SimpleIntegerProperty(0);
 
     public GestionDonnees() {
-        elements = new ArrayList<>();
-        chaines = new ArrayList<>();
-        prix = new ArrayList<>();
+
 
     }
 
@@ -46,7 +42,7 @@ public class GestionDonnees {
     }
 
     public static void chargerChaineProd() {
-        try (InputStream is = GestionDonnees.class.getResourceAsStream("/files/Chaines.csv");
+        try (InputStream is = GestionDonnees.class.getResourceAsStream("/files/user/Chaines.csv");
              BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -78,7 +74,7 @@ public class GestionDonnees {
     }
 
     public static void chargerPrix() {
-        try (InputStream is = GestionDonnees.class.getResourceAsStream("/files/Prix.csv");
+        try (InputStream is = GestionDonnees.class.getResourceAsStream("/files/user/Prix.csv");
              BufferedReader reader = new BufferedReader(new InputStreamReader(is))){
             String ligne;
             while ((ligne = reader.readLine()) != null) {
@@ -103,6 +99,8 @@ public class GestionDonnees {
     public static List<Prix> getPricingData() {
         return prix;
     }
+
+
 
     public static String ajouterStock(String codeE, double n){
         String msg="";
@@ -160,6 +158,17 @@ public class GestionDonnees {
         }
         return 0;
     }
+ public static void setElements (ObservableList<Element> element){
+        elements = element;
 
+ }
+    public static void setChaines (ObservableList<Chaines> chaine){
+            chaines = chaine;
+
+    }
+    public static void setPrix (ObservableList<Prix> pri){
+        prix = pri;
+
+    }
 
 }

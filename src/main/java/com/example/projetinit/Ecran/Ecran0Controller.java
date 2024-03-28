@@ -97,9 +97,6 @@ public class Ecran0Controller {
         //Attribuer l'instance actuelle à la référence statique
         instance = this;
 
-        chargerElements();
-        chargerChaineProd();
-        chargerPrix();
         codeE.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodeE()));
         nomE.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomE()));
         quantite.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getQuantite()).asObject());
@@ -118,13 +115,15 @@ public class Ecran0Controller {
     }
 
     private void loadCSVData() throws IOException {
-        try (InputStream is = getClass().getResourceAsStream("/files/Elements.csv");
+        String user="user";
+        try (InputStream is = getClass().getResourceAsStream("/files/"+user+"/Elements.csv");
              BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(";");
                 elements.add(new Element(parts[0], parts[1], Double.parseDouble(parts[2]), parts[3]));
             }
+            setElements(elements);
         }
     }
 
@@ -146,13 +145,16 @@ public class Ecran0Controller {
     }
 
     private void loadCSVData1() throws IOException {
-        try (InputStream is = getClass().getResourceAsStream("/files/Prix.csv");
+        String user="user";
+        try (InputStream is = getClass().getResourceAsStream("/files/"+user+"/Prix.csv");
              BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(";");
                 prix.add(new Prix(parts[0], Double.parseDouble(parts[1]), Double.parseDouble(parts[2]), Double.parseDouble(parts[3])));
             }
+            setPrix(prix);
+
         }
     }
 
@@ -171,7 +173,8 @@ public class Ecran0Controller {
     }
 
     private void loadCSVData2() throws IOException {
-        try (InputStream is = getClass().getResourceAsStream("/files/Chaines.csv");
+        String user="user";
+        try (InputStream is = getClass().getResourceAsStream("/files/"+user+"/Chaines.csv");
              BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -181,6 +184,7 @@ public class Ecran0Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        setChaines(chaines);
     }
 
     private HashMap<String, Double> parseHashMap(String input) {
@@ -266,10 +270,7 @@ public class Ecran0Controller {
     }
 
 
-    //Récupérer la chaine pour pouvoir l'utiliser ailleurs
-    public ObservableList<Chaines> getChainesData() {
-        return chaines;
-    }
+
 }
 
 

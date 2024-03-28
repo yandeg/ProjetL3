@@ -14,7 +14,7 @@ import static com.example.projetinit.donne.GestionDonnees.*;
 public class ModifCell extends TableCell<Chaines, Void> {
     private final HBox container = new HBox();
     private final Button addButton = new Button("+");
-    private final Label counterLabel = new Label("");
+    private final Label counterLabel = new Label("0");
     private final Button minusButton = new Button("-");
 
 

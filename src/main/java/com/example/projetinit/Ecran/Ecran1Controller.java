@@ -58,6 +58,12 @@ public class Ecran1Controller implements Initializable {
     private ObservableList<Chaines> chaines;
     Map<String, Integer> comptesChaine = new HashMap<>();
 
+    /**
+     * Méthode appelée lors de l'initialisation du contrôleur.
+     *
+     * @param url Le chemin d'accès au fichier FXML.
+     * @param resourceBundle Les ressources utilisées par le contrôleur.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -65,7 +71,9 @@ public class Ecran1Controller implements Initializable {
 
         sortie1.setCellFactory(param -> new ModifCell());
     }
-
+    /**
+     * Initialise la TableView avec les données.
+     */
     private void initTableView() {
         Ecran0Controller ecran0Controller = Ecran0Controller.getInstance(); // Assuming you have a method to access Ecran0Controller instance
         chaines = (ObservableList<Chaines>) getChaineProd();
@@ -82,7 +90,11 @@ public class Ecran1Controller implements Initializable {
 
     }
 
-
+    /**
+     * Gère l'action de suppression du niveau d'activation.
+     *
+     * @param e L'événement associé à l'action.
+     */
     @FXML
     protected void handleRemoveLvlAction(ActionEvent e) {
 
@@ -91,10 +103,19 @@ public class Ecran1Controller implements Initializable {
     }
 
     //ça sert à mettre la phrase au plural dans une version ancienne (by Yanis...il insiste meme si c'est pas nécessaire)
+    /**
+     * Met à jour le label de statut.
+     */
     private void updateStatusLabel() {
         statusLabel.setText("Le niveau d'activation : " + ApplicationUtils.pluralize( getNiveauActivation("C001"),"chaine ", "chaines ") + "de production");
     }
 
+    /**
+     * Gère l'action de commutation vers l'écran 0.
+     *
+     * @param e L'événement associé à l'action.
+     * @throws IOException Si une erreur d'entrée/sortie se produit lors du chargement de l'écran 0.
+     */
     public void switchToEcran0(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/projetinit/Ecran0.fxml"));
         stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
@@ -102,6 +123,13 @@ public class Ecran1Controller implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * Gère l'action de commutation vers l'écran 2.
+     *
+     * @param e L'événement associé à l'action.
+     * @throws IOException Si une erreur d'entrée/sortie se produit lors du chargement de l'écran 2.
+     */
     public void switchToEcran2 (ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/projetinit/Ecran2.fxml"));
         stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
@@ -109,6 +137,13 @@ public class Ecran1Controller implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * Gère l'action de commutation vers l'écran pop-up.
+     *
+     * @param e L'événement associé à l'action.
+     * @throws IOException Si une erreur d'entrée/sortie se produit lors du chargement de l'écran pop-up.
+     */
     public void switchToEcranpop(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/projetinit/Ecranpop.fxml"));
         Parent root = loader.load();
@@ -121,6 +156,11 @@ public class Ecran1Controller implements Initializable {
         popupStage.showAndWait();
     }
 
+    /**
+     * Gère l'action d'ajout du niveau d'activation.
+     *
+     * @param actionEvent L'événement associé à l'action.
+     */
     @FXML
     protected void handleAddLvlAction(ActionEvent actionEvent) {
         ajouterNiveauActivation("C001");

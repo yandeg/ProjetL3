@@ -11,9 +11,8 @@ import com.example.projetinit.attributs.Prix;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-import static com.example.projetinit.donne.Achat.*;
+import static com.example.projetinit.donne.Achat.getAchats;
 import static com.example.projetinit.donne.Calcul.*;
 import static com.example.projetinit.donne.GestionDonnees.*;
 
@@ -21,7 +20,8 @@ public class TestCalcul {
 
 
 	/**
-	 * Méthode permettant d'obtenir les résultats des calculs effectués sur les données.
+	 * Obtient les résultats des calculs effectués sur les données.
+	 *
 	 * @return Une liste contenant les résultats des calculs effectués.
 	 */
 	public List<String> obtenirResultats() {

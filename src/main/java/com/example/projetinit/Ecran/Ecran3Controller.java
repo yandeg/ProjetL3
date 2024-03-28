@@ -5,9 +5,9 @@
 
 package com.example.projetinit.Ecran;
 
+import com.example.projetinit.donne.TestCalcul;
 import com.example.projetinit.export.ExportSimulation;
 import com.example.projetinit.export.ExportTexte;
-import com.example.projetinit.donne.TestCalcul;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.stage.DirectoryChooser;
+import javafx.scene.control.ScrollPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -27,8 +27,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ScrollPane;
 
 public class Ecran3Controller implements Initializable {
     private Stage stage;
@@ -159,6 +157,12 @@ public class Ecran3Controller implements Initializable {
     }
 
 
+    /**
+     * Ajoute les résultats actuels à l'historique si les résultats ne sont pas null.
+     * Affiche une boîte de dialogue d'information pour indiquer que les résultats ont été ajoutés à l'historique.
+     *
+     * @param event L'événement déclenché lors de l'appel de la méthode.
+     */
     public void addToHistorique(ActionEvent event) {
         if (results != null) {
             historiques.add(new ArrayList<>(results));
@@ -166,6 +170,12 @@ public class Ecran3Controller implements Initializable {
         }
     }
 
+    /**
+     * Affiche l'historique des résultats dans une boîte de dialogue.
+     * Si aucun historique n'est disponible, affiche un message indiquant qu'aucun historique n'est disponible.
+     *
+     * @param event L'événement déclenché lors de l'appel de la méthode.
+     */
     public void voirHistorique(ActionEvent event) {
         if (!historiques.isEmpty()) {
             StringBuilder historiqueContent = new StringBuilder();
@@ -184,7 +194,13 @@ public class Ecran3Controller implements Initializable {
     }
 
 
-
+    /**
+     * Affiche une boîte de dialogue avec le type, le titre et le contenu spécifiés.
+     *
+     * @param type    Le type de la boîte de dialogue.
+     * @param title   Le titre de la boîte de dialogue.
+     * @param content Le contenu de la boîte de dialogue.
+     */
     private void showAlert(Alert.AlertType type, String title, String content) {
         Alert alert = new Alert(type);
         alert.setTitle(title);

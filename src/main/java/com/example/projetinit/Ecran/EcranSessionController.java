@@ -21,6 +21,10 @@ public class EcranSessionController {
     private TextField nomDossierTextField;
     private boolean exists;
 
+    /**
+     * Vérifie si le dossier spécifié existe.
+     * Si le TextField nomDossierTextField est initialisé, cette méthode vérifie si le dossier correspondant existe dans le chemin spécifié.
+     */
     private void checkExists() {
         if (nomDossierTextField != null) {
             String nomDossier = nomDossierTextField.getText();
@@ -30,6 +34,14 @@ public class EcranSessionController {
 
     }
 
+    /**
+     * Méthode pour basculer vers l'écran principal (Ecran0) de l'application.
+     * Cette méthode vérifie d'abord si le dossier spécifié existe. Si c'est le cas, elle charge l'écran principal.
+     * Sinon, elle affiche un message d'erreur.
+     *
+     * @param e L'événement déclencheur.
+     * @throws IOException En cas d'erreur lors du chargement de l'écran.
+     */
     @FXML
     public void switchToEcran0(ActionEvent e) throws IOException {
         // Vérifier si le TextField est initialisé
@@ -47,6 +59,12 @@ public class EcranSessionController {
     }
 
     // Méthode pour afficher un message d'erreur
+    /**
+     * Affiche un message d'erreur avec le titre et le message spécifiés.
+     *
+     * @param titre   Le titre de la fenêtre d'alerte.
+     * @param message Le message à afficher dans la fenêtre d'alerte.
+     */
     private void afficherMessageErreur(String titre, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(titre);

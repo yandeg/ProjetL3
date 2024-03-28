@@ -27,8 +27,16 @@ import static com.example.projetinit.donne.GestionDonnees.*;
 
 public class Ecran0Controller {
     // Référence statique à l'instance du contrôleur
+    /**
+     * Obtient l'instance du contrôleur.
+     *
+     * @return L'instance du contrôleur.
+     */
     private static Ecran0Controller instance;
     // Méthode statique pour obtenir l'instance du contrôleur
+    /**
+     * Définit l'instance du contrôleur.
+     */
     public static Ecran0Controller getInstance() {
         return instance;
     }
@@ -77,13 +85,37 @@ public class Ecran0Controller {
 
     @FXML
     private TableColumn<Element, String> unite;
+
+    // Données observables pour les éléments, les prix et les chaînes de production
+    /**
+     * Obtient la liste des éléments.
+     *
+     * @return La liste des éléments.
+     */
     private ObservableList<Element> elements = FXCollections.observableArrayList();
+    /**
+     * Obtient la liste des prix.
+     *
+     * @return La liste des prix.
+     */
     private ObservableList<Prix> prix = FXCollections.observableArrayList();
+    /**
+     * Obtient la liste des chaînes de production.
+     *
+     * @return La liste des chaînes de production.
+     */
     private ObservableList<Chaines> chaines = FXCollections.observableArrayList();
 
     private Stage stage;
     private Scene scene;
     private Parent root;
+
+    /**
+     * Méthode de commutation vers l'écran 1.
+     *
+     * @param e Événement associé à l'action de commutation.
+     * @throws IOException Si une erreur d'entrée/sortie se produit lors du chargement de l'écran 1.
+     */
 
     public void switchToEcran1(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/projetinit/Ecran1.fxml"));
@@ -92,9 +124,17 @@ public class Ecran0Controller {
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * Méthode d'initialisation appelée après le chargement de la vue.
+     */
     public void initializet() {
     }
 
+    /**
+     * Méthode d'initialisation appelée après le chargement de la vue.
+     * Initialise les TableView et charge les données CSV.
+     */
     public void initialize() {
             instance = this;
 
@@ -116,6 +156,11 @@ public class Ecran0Controller {
             initialize2();
         }
 
+    /**
+     * Charge les données des éléments à partir d'un fichier CSV.
+     *
+     * @throws IOException Si une erreur d'entrée/sortie se produit lors de la lecture du fichier CSV.
+     */
 
     private void loadCSVData() throws IOException {
         String user="user";
@@ -130,8 +175,11 @@ public class Ecran0Controller {
         }
     }
 
-
-
+    /**
+     * Charge les données des prix à partir d'un fichier CSV.
+     *
+     * @throws IOException Si une erreur d'entrée/sortie se produit lors de la lecture du fichier CSV.
+     */
     public void initialize1() {
         codeE1.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodeE()));
         prixAchat.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getPrixAchat()).asObject());
@@ -147,6 +195,11 @@ public class Ecran0Controller {
         tableView1.setItems(prix);
     }
 
+    /**
+     * Charge les données des chaînes de production à partir d'un fichier CSV.
+     *
+     * @throws IOException Si une erreur d'entrée/sortie se produit lors de la lecture du fichier CSV.
+     */
     private void loadCSVData1() throws IOException {
         String user="user";
         try (InputStream is = getClass().getResourceAsStream("/files/"+user+"/Prix.csv");
@@ -161,6 +214,11 @@ public class Ecran0Controller {
         }
     }
 
+    /**
+     * Charge les données des prix à partir d'un fichier CSV.
+     *
+     * @throws IOException Si une erreur d'entrée/sortie se produit lors de la lecture du fichier CSV.
+     */
     public void initialize2() {
         codeC.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodeC()));
         nomC.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomC()));
@@ -175,6 +233,11 @@ public class Ecran0Controller {
         tableView2.setItems(chaines);
     }
 
+    /**
+     * Charge les données des chaînes de production à partir d'un fichier CSV.
+     *
+     * @throws IOException Si une erreur d'entrée/sortie se produit lors de la lecture du fichier CSV.
+     */
     private void loadCSVData2() throws IOException {
         String user="user";
         try (InputStream is = getClass().getResourceAsStream("/files/"+user+"/Chaines.csv");
@@ -190,6 +253,12 @@ public class Ecran0Controller {
         setChaines(chaines);
     }
 
+    /**
+     * Convertit une chaîne de caractères en une map de type HashMap.
+     *
+     * @param input La chaîne de caractères à convertir.
+     * @return La map résultante.
+     */
     private HashMap<String, Double> parseHashMap(String input) {
         HashMap<String, Double> hashMap = new HashMap<>();
         String[] pairs = input.split("/");
@@ -204,18 +273,36 @@ public class Ecran0Controller {
 
 
     //Importer les données .CSV
+    /**
+     * Importe des données à partir d'un fichier CSV pour les éléments.
+     *
+     * @param event L'événement déclenché par l'action d'importation.
+     */
     public void importCSVElements(ActionEvent event) {
         importCSVAndLoadData(elements);
     }
 
+    /**
+     * Importe des données à partir d'un fichier CSV pour les prix.
+     *
+     * @param event L'événement déclenché par l'action d'importation.
+     */
     public void importCSVPrix(ActionEvent event) {
         importCSVAndLoadData(prix);
     }
-
+    /**
+     * Importe des données à partir d'un fichier CSV pour les chaînes de production.
+     *
+     * @param event L'événement déclenché par l'action d'importation.
+     */
     public void importCSVChaines(ActionEvent event) {
         importCSVAndLoadData(chaines);
     }
-
+    /**
+     * Importe des données à partir d'un fichier CSV pour la liste spécifiée.
+     *
+     * @param list La liste dans laquelle importer les données.
+     */
     private void importCSVAndLoadData(ObservableList<?> list) {
         try {
             FileChooser fileChooser = new FileChooser();
@@ -258,6 +345,9 @@ public class Ecran0Controller {
     }
 
     //Pop-up pour le success d'importation
+    /**
+     * Affiche un pop-up pour indiquer le succès de l'importation.
+     */
     private void showSuccessAlert() {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Succès");
@@ -267,6 +357,9 @@ public class Ecran0Controller {
     }
 
     //Pop-up pour la gestion d'erreur lors de l'importation
+    /**
+     * Affiche un pop-up pour gérer les erreurs lors de l'importation.
+     */
     private void showErrorAlert() {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Erreur");

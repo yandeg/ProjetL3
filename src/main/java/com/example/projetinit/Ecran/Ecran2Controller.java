@@ -23,7 +23,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static com.example.projetinit.donne.Achat.*;
-import static com.example.projetinit.donne.GestionDonnees.getElements;
 import static com.example.projetinit.donne.GestionDonnees.getPricingData;
 
 public class Ecran2Controller implements Initializable {
@@ -44,6 +43,13 @@ public class Ecran2Controller implements Initializable {
     private Parent root;
 
     private ObservableList<Achat> observableListAchat;
+
+    /**
+     * Gère l'action de commutation vers l'écran 1.
+     *
+     * @param e L'événement associé à l'action.
+     * @throws IOException Si une erreur d'entrée/sortie se produit lors du chargement de l'écran 1.
+     */
     public void switchToEcran1(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/projetinit/Ecran1.fxml"));
         stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
@@ -52,6 +58,12 @@ public class Ecran2Controller implements Initializable {
         stage.show();
     }
 
+    /**
+     * Gère l'action de commutation vers l'écran 3.
+     *
+     * @param e L'événement associé à l'action.
+     * @throws IOException Si une erreur d'entrée/sortie se produit lors du chargement de l'écran 3.
+     */
     public void switchToEcran3(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/projetinit/Ecran3.fxml"));
         stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
@@ -60,6 +72,11 @@ public class Ecran2Controller implements Initializable {
         stage.show();
     }
 
+    /**
+     * Gère l'action d'ajout d'un élément.
+     *
+     * @param e L'événement associé à l'action.
+     */
     @FXML
     void addButton(ActionEvent e) {
         for (Achat ha : getAchats()) {
@@ -79,6 +96,12 @@ public class Ecran2Controller implements Initializable {
         showErrorAlert("L'element n'existe pas ou n'a pas de prix d'achat renseigné");
 
     }
+
+    /**
+     * Gère l'action de modification d'un élément.
+     *
+     * @param e L'événement associé à l'action.
+     */
     @FXML
     void modifyButton(ActionEvent e) {
         ObservableList<Achat> singleAchat;
@@ -92,6 +115,12 @@ public class Ecran2Controller implements Initializable {
 
 
     }
+
+    /**
+     * Gère l'action de suppression d'un élément.
+     *
+     * @param e L'événement associé à l'action.
+     */
     @FXML
     void removeButton(ActionEvent e){
         ObservableList<Achat> allAchat, singleAchat;
@@ -100,6 +129,12 @@ public class Ecran2Controller implements Initializable {
         singleAchat.forEach(allAchat::remove);
     }
 
+    /**
+     * Initialise la TableView avec les données lors de l'initialisation du contrôleur.
+     *
+     * @param url L'emplacement utilisé pour résoudre les chemins relatifs aux ressources.
+     * @param resourceBundle Les ressources utilisées par le contrôleur.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         colCodeE.setCellValueFactory(new PropertyValueFactory<>("codeE"));
@@ -117,6 +152,11 @@ public class Ecran2Controller implements Initializable {
     });
     }
 
+    /**
+     * Affiche une alerte d'erreur avec le message spécifié.
+     *
+     * @param text Le message d'erreur à afficher dans l'alerte.
+     */
     private void showErrorAlert(String text) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Erreur");
@@ -124,6 +164,12 @@ public class Ecran2Controller implements Initializable {
         alert.setContentText(text);
         alert.showAndWait();
     }
+
+    /**
+     * Renvoie l'élément sélectionné dans la TableView.
+     *
+     * @return L'élément sélectionné dans la TableView.
+     */
     public Achat selecteditemToAchat(){
         return tableview.getSelectionModel().getSelectedItem();
     }

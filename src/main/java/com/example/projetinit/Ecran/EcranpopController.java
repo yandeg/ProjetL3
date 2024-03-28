@@ -12,14 +12,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.HashMap;
 
 import static com.example.projetinit.donne.GestionDonnees.*;
-import static com.example.projetinit.donne.GestionDonnees.getPricingData;
 
 public class EcranpopController {
 
@@ -74,6 +69,9 @@ public class EcranpopController {
     private ObservableList<Prix> prix = FXCollections.observableArrayList();
     private ObservableList<Chaines> chaines = FXCollections.observableArrayList();
 
+    /**
+     * Initialise le contrôleur.
+     */
     public void initialize() {
         codeE.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodeE()));
         nomE.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomE()));
@@ -86,7 +84,9 @@ public class EcranpopController {
     }
 
 
-
+    /**
+     * Initialise la première TableView.
+     */
     public void initialize1() {
         codeE1.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodeE()));
         prixAchat.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getPrixAchat()).asObject());
@@ -96,7 +96,9 @@ public class EcranpopController {
         tableView1.setItems(prix);
     }
 
-
+    /**
+     * Initialise la deuxième TableView.
+     */
     public void initialize2() {
         codeC.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodeC()));
         nomC.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomC()));
@@ -107,6 +109,12 @@ public class EcranpopController {
         tableView2.setItems(chaines);
     }
 
+    /**
+     * Analyse la chaîne de caractères donnée pour créer une HashMap.
+     *
+     * @param input La chaîne de caractères à analyser.
+     * @return Une HashMap créée à partir de la chaîne de caractères.
+     */
     private HashMap<String, Double> parseHashMap(String input) {
         HashMap<String, Double> hashMap = new HashMap<>();
         String[] pairs = input.split("/");

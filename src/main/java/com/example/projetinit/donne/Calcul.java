@@ -12,30 +12,52 @@ import static com.example.projetinit.donne.Achat.getAchats;
 import static com.example.projetinit.donne.GestionDonnees.*;
 
 public class Calcul {
-
+	/** Indicateur de valeur calculé. */
 	private static double indicateurValeur;
+	/** Indicateur de commande calculé. */
 	private static double indicateurCommande;
+	/** Carte stock fictif contenant les quantités des éléments. */
 
 	//private static List<Chaines> chaines;
 
 	// HashMaps pour faciliter les traitements (duplication eléments)
+	/** Carte stock fictif contenant les quantités des éléments. */
 	private static HashMap<String,Double> mapStockFictif = new HashMap<>();
-
+	/** Message indiquant si la production est impossible. */
 	private static String messageProdImpossible = "";
 
+	/**
+	 * Retourne l'indicateur de valeur calculé.
+	 *
+	 * @return L'indicateur de valeur calculé.
+	 */
 	public static double getIndicateurValeur() {
 		return indicateurValeur;
 	}
+	/**
+	 * Retourne l'indicateur de commande calculé.
+	 *
+	 * @return L'indicateur de commande calculé.
+	 */
 	public static double getIndicateurCommande() {
 		return indicateurCommande;
 	}
+	/**
+	 * Retourne le message indiquant si la production est impossible.
+	 *
+	 * @return Le message indiquant si la production est impossible.
+	 */
 	public static String getMessageProdImpossible () {
 		return messageProdImpossible;
 	}
 
 	// Méthode utilisée quand l'utilisateur clique pour faire les calculs
 	//IL faut insérer une liste de code de chaine de production suvi à chauqe fois du niveau d'activation du type (C0001,2,C0002,3)
-
+	/**
+	 * Effectue les calculs pour les indicateurs de valeur et de commande.
+	 * Cette méthode doit être appelée lorsque l'utilisateur déclenche les calculs.
+	 * Elle initialise la carte de stock fictif, calcule l'indicateur de valeur et l'indicateur de commande.
+	 */
 	public static void faireLesCalculs() {
 		initialiserMapStockFictif();
 		indicateurValeur = calculerIndicateurValeur();
@@ -45,21 +67,33 @@ public class Calcul {
 
 
 	//Détail :
-
+	/**
+	 * Initialise la carte de stock fictif avec les quantités initiales des éléments.
+	 *
+	 * @return La carte de stock fictif initialisée.
+	 */
 	public static HashMap<String, Double> initialiserMapStockFictif() {
 		for (Element element : getElements()) {
 			mapStockFictif.put(element.getCodeE(), element.getQuantite());
 		}
 		return mapStockFictif;
 	}
-
+	/**
+	 * Calcule l'indicateur de valeur.
+	 *
+	 * @return L'indicateur de valeur calculé.
+	 */
 	public static double calculerIndicateurValeur() {
 		prendreEnCompteAchats();
 		prendreEnCompteProduction( ); // A FAIRE
 		return mesurerEfficacite(getPricingData());
 	}
 
-
+	/**
+	 * Calcule l'indicateur de commande.
+	 *
+	 * @return L'indicateur de commande calculé.
+	 */
 	public static double calculerIndicateurCommande() {
 		ArrayList<Double> percentStockElt = new ArrayList<>(); //pr le pourcentage
 		for (Prix p : getPricingData()) {
@@ -82,6 +116,11 @@ public class Calcul {
 
 
 	// Méthodes privées pour les détails de calcul
+	/**
+	 * Met à jour la carte de stock fictif en prenant en compte les achats.
+	 *
+	 * @return La carte de stock fictif mise à jour.
+	 */
 
 	public static HashMap<String, Double> prendreEnCompteAchats() {
 
@@ -103,6 +142,11 @@ public class Calcul {
 
 
 	// A FAIRE
+	/**
+	 * Met à jour la carte de stock fictif en prenant en compte la production.
+	 *
+	 * @return La carte de stock fictif mise à jour.
+	 */
 	public static HashMap<String, Double> prendreEnCompteProduction( ) {
 			for (Chaines chaine : getChaineProd()) {
 					System.out.println("Niveau d'activation : " + chaine.getCodeC()+ chaine.getNiveauActivationC());
@@ -117,7 +161,12 @@ public class Calcul {
 		return mapStockFictif;
 	}
 
-
+	/**
+	 * Mesure l'efficacité en calculant la différence entre les ventes et les achats.
+	 *
+	 * @param listePrix La liste des prix utilisée pour les calculs.
+	 * @return La différence entre les ventes et les achats.
+	 */
 	public static double mesurerEfficacite(List<Prix> listePrix) {
 		double sommeVentes = 0.0;
 		double sommeAchats = 0.0;

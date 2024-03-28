@@ -4,7 +4,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="417.0" prefWidth="589.0" stylesheets="@../../../css/Main.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetinit.Ecran.Ecran3Controller">
    <children>
       <Label layoutX="233.0" layoutY="38.0" text="Résultats" textAlignment="CENTER">
@@ -21,14 +20,14 @@
          <font>
             <Font size="11.0" />
          </font></Label>
-      <Button layoutX="471.0" layoutY="278.0" mnemonicParsing="false" onAction="#exportToPDF" prefHeight="33.0" prefWidth="40.0" text=".pdf" />
-      <Label layoutX="286.0" layoutY="307.0" prefHeight="19.0" prefWidth="181.0" text="Exporter le fichier Simulation. : " textAlignment="CENTER">
+      <Button layoutX="494.0" layoutY="307.0" mnemonicParsing="false" onAction="#exportToPDF" prefHeight="33.0" prefWidth="40.0" text=".pdf" />
+      <Label layoutX="309.0" layoutY="336.0" prefHeight="19.0" prefWidth="181.0" text="Exporter le fichier Simulation. : " textAlignment="CENTER">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
-    <Button layoutX="471.0" layoutY="325.0" minWidth="6.0" mnemonicParsing="false" onAction="#exportToText" prefHeight="33.0" prefWidth="40.0" text=".txt" />
-      <Button layoutX="44.0" layoutY="308.0" mnemonicParsing="false" onAction="#voirHistorique" text="Voir Historique" />
-      <Button layoutX="29.0" layoutY="261.0" mnemonicParsing="false" onAction="#addToHistorique" text="Ajouter à l'historique" />
+    <Button layoutX="494.0" layoutY="354.0" minWidth="6.0" mnemonicParsing="false" onAction="#exportToText" prefHeight="33.0" prefWidth="40.0" text=".txt" />
+      <Button layoutX="441.0" layoutY="156.0" mnemonicParsing="false" onAction="#voirHistorique" text="Voir Historique" />
+      <Button layoutX="410.0" layoutY="114.0" mnemonicParsing="false" onAction="#addToHistorique" text="Ajouter à l'historique" />
    </children>
 </AnchorPane>

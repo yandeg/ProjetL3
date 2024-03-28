@@ -35,6 +35,7 @@ public class Calcul {
 
 	// Méthode utilisée quand l'utilisateur clique pour faire les calculs
 	//IL faut insérer une liste de code de chaine de production suvi à chauqe fois du niveau d'activation du type (C0001,2,C0002,3)
+
 	public static void faireLesCalculs() {
 		initialiserMapStockFictif();
 		indicateurValeur = calculerIndicateurValeur();
@@ -58,6 +59,7 @@ public class Calcul {
 		return mesurerEfficacite(getPricingData());
 	}
 
+
 	public static double calculerIndicateurCommande() {
 		ArrayList<Double> percentStockElt = new ArrayList<>(); //pr le pourcentage
 		for (Prix p : getPricingData()) {
@@ -79,7 +81,7 @@ public class Calcul {
 
 
 
-	// Détail pour le calcul de l'indicateur de valeur :
+	// Méthodes privées pour les détails de calcul
 
 	public static HashMap<String, Double> prendreEnCompteAchats() {
 

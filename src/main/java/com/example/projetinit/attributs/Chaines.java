@@ -1,5 +1,6 @@
 package com.example.projetinit.attributs;
 
+import com.dlsc.formsfx.model.validators.StringLengthValidator;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -11,7 +12,7 @@ public class Chaines {
     private final HashMap<String,Double> hashElementEntree;
     private final HashMap<String, Double> hashElementSortie;
 
-    private SimpleIntegerProperty niveauActivation = new SimpleIntegerProperty(0);
+    private final SimpleIntegerProperty niveauActivation = new SimpleIntegerProperty(0);
 
 
 
@@ -63,10 +64,16 @@ public class Chaines {
             this.niveauActivation.set(this.niveauActivation.get() - 1);
         }
     }
-    public  int getNiveauActivationC() {
+    public int getNiveauActivationC() {
         return this.niveauActivation.get();
     }
     public String getNiveauActivation() {
         return String.valueOf(niveauActivation.get());
+    }
+
+
+
+    public void setNiveauActivation(int niveauActivation) {
+        this.niveauActivation.set(niveauActivation);
     }
 }

@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
@@ -26,6 +27,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ScrollPane;
 
 public class Ecran3Controller implements Initializable {
     private Stage stage;
@@ -36,6 +39,8 @@ public class Ecran3Controller implements Initializable {
     private Label labelResultats;
 
     private List<String> results;
+
+    private static List<List<String>> historiques = new ArrayList<>();
 
 
     /**
@@ -62,6 +67,7 @@ public class Ecran3Controller implements Initializable {
         results = testCalcul.obtenirResultats();
         return results != null ? results : List.of(); // Ensure the method doesn't return null
     }
+
 
 
     /**
@@ -93,6 +99,9 @@ public class Ecran3Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Pour afficher les 2 indicateurs
         setDataFromTestCalcul();
+        //list des historiques
+
+
 
     }
     /**
@@ -148,5 +157,48 @@ public class Ecran3Controller implements Initializable {
             e.printStackTrace();
         }
     }
+
+
+    public void addToHistorique(ActionEvent event) {
+        if (results != null) {
+            historiques.add(new ArrayList<>(results));
+            showAlert(Alert.AlertType.INFORMATION, "Ajout à l'historique", "Résultats ajoutés à l'historique.");
+        }
+    }
+
+    public void voirHistorique(ActionEvent event) {
+        if (!historiques.isEmpty()) {
+            StringBuilder historiqueContent = new StringBuilder();
+            for (int i = 0; i < historiques.size(); i++) {
+                historiqueContent.append("Historique ").append(i + 1).append(":\n");
+                List<String> historique = historiques.get(i);
+                for (String result : historique) {
+                    historiqueContent.append(result).append("\n");
+                }
+                historiqueContent.append("\n");
+            }
+            showAlert(Alert.AlertType.INFORMATION, "Historique des résultats", historiqueContent.toString());
+        } else {
+            showAlert(Alert.AlertType.INFORMATION, "Historique des résultats", "Aucun historique disponible.");
+        }
+    }
+
+
+
+    private void showAlert(Alert.AlertType type, String title, String content) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(new Label(content));
+
+        alert.getDialogPane().setContent(scrollPane);
+
+        alert.showAndWait();
+    }
+
+
+
 }
 

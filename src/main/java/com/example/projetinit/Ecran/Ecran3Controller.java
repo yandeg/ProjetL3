@@ -5,6 +5,7 @@
 
 package com.example.projetinit.Ecran;
 
+import com.example.projetinit.donne.Calcul;
 import com.example.projetinit.export.ExportSimulation;
 import com.example.projetinit.export.ExportTexte;
 import com.example.projetinit.donne.TestCalcul;
@@ -34,6 +35,9 @@ public class Ecran3Controller implements Initializable {
 
     @FXML
     private Label labelResultats;
+
+    @FXML
+    private Label messageProdImpossible;
 
     private List<String> results;
 
@@ -80,6 +84,7 @@ public class Ecran3Controller implements Initializable {
                 sb.append(result).append("\n");
             }
             labelResultats.setText(sb.toString());
+            messageProdImpossible.setText(Calcul.getMessageProdImpossible());
         }
     }
 

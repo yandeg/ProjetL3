@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="417.0" prefWidth="589.0" stylesheets="@../../../css/Main.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetinit.Ecran.Ecran3Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="417.0" prefWidth="589.0" stylesheets="@../../../css/Main.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetinit.Ecran.Ecran3Controller">
    <children>
       <Label layoutX="233.0" layoutY="38.0" text="Résultats" textAlignment="CENTER">
          <font>
@@ -15,6 +15,10 @@
       <Label fx:id="labelResultats" layoutX="39.0" layoutY="126.0">
          <font>
             <Font size="15.0" />
+         </font></Label>
+      <Label fx:id="messageProdImpossible" layoutX="39.0" layoutY="200.0" prefHeight="74.0" prefWidth="476.0">
+         <font>
+            <Font size="11.0" />
          </font></Label>
       <Button layoutX="471.0" layoutY="278.0" mnemonicParsing="false" onAction="#exportToPDF" prefHeight="33.0" prefWidth="40.0" text=".pdf" />
       <Label layoutX="286.0" layoutY="307.0" prefHeight="19.0" prefWidth="181.0" text="Exporter le fichier Simulation. : " textAlignment="CENTER">

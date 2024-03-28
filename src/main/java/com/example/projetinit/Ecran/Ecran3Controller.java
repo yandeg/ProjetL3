@@ -101,18 +101,23 @@ public class Ecran3Controller implements Initializable {
      * @param event L'événement déclenché lors du clic sur le bouton d'exportation.
      */
     public void exportToText(ActionEvent event) {
-        // Choix du dossier d'exportation
-        DirectoryChooser directoryChooser = new DirectoryChooser();
-        directoryChooser.setTitle("Choose Export Location");
-        File selectedDirectory = directoryChooser.showDialog(stage);
-
-        if (selectedDirectory != null) {
-            // Exportation en format texte
-            ExportTexte.exporter((ArrayList<String>) TestCalcul.infosActivation, selectedDirectory.getAbsolutePath());
-
-            System.out.println("Data exported successfully to: " + selectedDirectory.getAbsolutePath());
-        } else {
-            System.out.println("No directory selected.");
+        try {
+            // Créer un FileChooser
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Enregistrer le fichier");
+            fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Fichier TXT", "*.txt"));
+            // Afficher la boîte de dialogue de sélection de fichier pour enregistrer le fichier TXT
+            File file = fileChooser.showSaveDialog(stage);
+            if (file != null) {
+                // Exporter les données au fichier TXT sélectionné
+                ExportTexte.exporter((ArrayList<String>) TestCalcul.infosActivation, file.getAbsolutePath());
+                System.out.println("Fichier exporté avec succès : " + file.getAbsolutePath());
+            } else {
+                System.out.println("Aucun fichier sélectionné.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -121,30 +126,13 @@ public class Ecran3Controller implements Initializable {
      * Elle permet à l'utilisateur de choisir le dossier de destination pour l'exportation.
      * @param event L'événement déclenché lors du clic sur le bouton d'exportation.
      */
-  /*  public void exportToPDF(ActionEvent event) {
-        // Choix du dossier d'exportation
-        DirectoryChooser directoryChooser = new DirectoryChooser();
-        directoryChooser.setTitle("Choisir le Lieu de l'Export");
-        File selectedDirectory = directoryChooser.showDialog(stage);
-
-        if (selectedDirectory != null) {
-            // Exportation en format PDF
-            ExportSimulation.exporterSimulation(TestCalcul.infosActivation, selectedDirectory.getAbsolutePath());
-
-            System.out.println("Donneés exporté avec succés : " + selectedDirectory.getAbsolutePath());
-        } else {
-            System.out.println("Lieu d'export n'est pas selectionner.");
-        }
-    }
-*/
-
     public void exportToPDF(ActionEvent event) {
         try {
             // Créer un FileChooser
             FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Save PDF File");
-            fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
+            fileChooser.setTitle("Enregistrer le fichier");
+            fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Fichier PDF", "*.pdf"));
 
             // Afficher la boîte de dialogue de sélection de fichier pour enregistrer le fichier PDF
             File file = fileChooser.showSaveDialog(stage);
@@ -152,9 +140,9 @@ public class Ecran3Controller implements Initializable {
             if (file != null) {
                 // Exporter les données au fichier PDF sélectionné
                 ExportSimulation.exporterSimulation(TestCalcul.infosActivation, file.getAbsolutePath());
-                System.out.println("Data exported successfully to: " + file.getAbsolutePath());
+                System.out.println("Fichier exporté avec succès : " + file.getAbsolutePath());
             } else {
-                System.out.println("No file selected.");
+                System.out.println("Aucun fichier sélectionné.");
             }
         } catch (Exception e) {
             e.printStackTrace();

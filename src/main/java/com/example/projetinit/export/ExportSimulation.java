@@ -29,7 +29,6 @@ public class ExportSimulation {
     public static void exporterSimulation(List<String> infosActivation, String exportDirectory) {
         Document document = new Document(PageSize.A4, 50, 50, 50, 50);
         try {
-            // Choix de l'emplacement d'exportation du fichier
             PdfWriter.getInstance(document , new FileOutputStream(exportDirectory));
             document.open();
             afficherTitreDocument(document);

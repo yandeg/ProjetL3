@@ -23,20 +23,12 @@ public class ExportTexte {
      */
     public static void exporter(List<String> infosActivation, String exportDirectory) {
         try {
-            // Choix de l'emplacement d'exportation du fichier texte
-            File myObj = new File(exportDirectory + "/Simulation.txt");
-            if (myObj.createNewFile()) {
-                System.out.println("File created: " + myObj.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
-
+            File myObj = new File(exportDirectory);
             FileWriter myWriter = new FileWriter(myObj);
             myWriter.write("Simulation faite le " + new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
             myWriter.write("\n\n\nDONNEES SAISIES : ");
 
             // Achats
-            // Achat.remplirAchatsFictifs(); // A suppr
             myWriter.write("\n\nCodeE | Quantité achat");
             myWriter.write("\n----------------------");
             for (Achat a : Achat.getAchats()) {
@@ -45,10 +37,14 @@ public class ExportTexte {
             // Activation
             myWriter.write("\n\nCodeC | Niveau activation");
             myWriter.write("\n-------------------------");
-            for (int i = 0; i + 1 < infosActivation.size(); i += 2) {
-                myWriter.write("\n " + infosActivation.get(i) + " | " + infosActivation.get(i + 1));
-
-                System.out.println(infosActivation.get(i) + " | " + infosActivation.get(i + 1));
+            if (infosActivation != null) {
+                for (int i = 0; i + 1 < infosActivation.size(); i += 2) {
+                    myWriter.write("\n " + infosActivation.get(i) + " | " + infosActivation.get(i + 1));
+                    System.out.println(infosActivation.get(i) + " | " + infosActivation.get(i + 1));
+                }
+            } else {
+                myWriter.write("\n Erreur : Pas d'information sur les chaines");
+                System.out.println("Erreur : Pas d'information sur les chaines");
             }
 
             // Résultats
@@ -58,10 +54,8 @@ public class ExportTexte {
             myWriter.write(Calcul.getMessageProdImpossible());
 
             myWriter.close();
-            System.out.println("Successfully wrote to the file.");
 
         } catch (IOException e) {
-            System.out.println("An error occurred.");
             e.printStackTrace();
         }
     }

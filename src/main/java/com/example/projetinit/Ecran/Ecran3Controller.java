@@ -20,6 +20,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.scene.control.ScrollPane;
+
+import javafx.geometry.Insets;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+
+
 
 import java.io.File;
 import java.io.IOException;
@@ -27,6 +34,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ScrollPane;
 
 public class Ecran3Controller implements Initializable {
     private Stage stage;
@@ -67,7 +76,6 @@ public class Ecran3Controller implements Initializable {
     }
 
 
-
     /**
      * Met à jour les données à afficher à partir des résultats des calculs.
      */
@@ -97,9 +105,6 @@ public class Ecran3Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Pour afficher les 2 indicateurs
         setDataFromTestCalcul();
-        //list des historiques
-
-
 
     }
     /**
@@ -166,7 +171,7 @@ public class Ecran3Controller implements Initializable {
     public void addToHistorique(ActionEvent event) {
         if (results != null) {
             historiques.add(new ArrayList<>(results));
-            showAlert(Alert.AlertType.INFORMATION, "Ajout à l'historique", "Résultats ajoutés à l'historique.");
+            showCustomDialog(Alert.AlertType.INFORMATION, "Ajout à l'historique", "Résultats ajoutés à l'historique.");
         }
     }
 
@@ -187,13 +192,39 @@ public class Ecran3Controller implements Initializable {
                 }
                 historiqueContent.append("\n");
             }
-            showAlert(Alert.AlertType.INFORMATION, "Historique des résultats", historiqueContent.toString());
+            showCustomDialog(Alert.AlertType.INFORMATION, "Historique des résultats", historiqueContent.toString());
         } else {
-            showAlert(Alert.AlertType.INFORMATION, "Historique des résultats", "Aucun historique disponible.");
+            showCustomDialog(Alert.AlertType.INFORMATION, "Historique des résultats", "Aucun historique disponible.");
         }
     }
 
+    /**
+     * Affiche une boîte de dialogue personnalisée avec une barre de défilement.
+     * @param type    Le type de la boîte de dialogue.
+     * @param title   Le titre de la boîte de dialogue.
+     * @param content Le contenu de la boîte de dialogue.
+     */
+    private void showCustomDialog(Alert.AlertType type, String title, String content) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
 
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(new Label(content));
+        scrollPane.setFitToWidth(true);
+        scrollPane.setPrefSize(400, 200);
+
+        alert.getDialogPane().setContent(scrollPane);
+
+        // Affiche la boîte de dialogue et attend la réponse de l'utilisateur
+        alert.showAndWait();
+    }
+
+
+
+
+
+    /*
     /**
      * Affiche une boîte de dialogue avec le type, le titre et le contenu spécifiés.
      *
@@ -201,7 +232,7 @@ public class Ecran3Controller implements Initializable {
      * @param title   Le titre de la boîte de dialogue.
      * @param content Le contenu de la boîte de dialogue.
      */
-    private void showAlert(Alert.AlertType type, String title, String content) {
+   /* private void showAlert(Alert.AlertType type, String title, String content) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setHeaderText(null);
@@ -213,6 +244,7 @@ public class Ecran3Controller implements Initializable {
 
         alert.showAndWait();
     }
+*/
 
 
 

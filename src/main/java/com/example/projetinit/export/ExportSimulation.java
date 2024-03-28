@@ -30,7 +30,7 @@ public class ExportSimulation {
         Document document = new Document(PageSize.A4, 50, 50, 50, 50);
         try {
             // Choix de l'emplacement d'exportation du fichier
-            PdfWriter.getInstance(document , new FileOutputStream(exportDirectory + "/Simulation.pdf"));
+            PdfWriter.getInstance(document , new FileOutputStream(exportDirectory));
             document.open();
             afficherTitreDocument(document);
             afficherAchats(document);

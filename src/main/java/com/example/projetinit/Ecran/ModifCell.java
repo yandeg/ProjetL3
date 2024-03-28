@@ -36,7 +36,7 @@ public class ModifCell extends TableCell<Chaines, Void> {
             }
         });
 
-        container.getChildren().addAll(addButton, counterLabel, minusButton);
+        container.getChildren().addAll(minusButton, counterLabel,addButton);
         container.setAlignment(Pos.CENTER);
         container.setSpacing(5);
 

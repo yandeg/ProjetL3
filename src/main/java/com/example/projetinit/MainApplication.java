@@ -13,10 +13,10 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-      Parent root = FXMLLoader.load(getClass().getResource("/com/example/projetinit/EcranSession.fxml"));
+      //Parent root = FXMLLoader.load(getClass().getResource("/com/example/projetinit/EcranSession.fxml"));
 
       //Chemin vers Ecran0 pour le test : a supprimer plus tard !
-      // Parent root = FXMLLoader.load(getClass().getResource("/com/example/projetinit/Ecran0.fxml"));
+      Parent root = FXMLLoader.load(getClass().getResource("/com/example/projetinit/Ecran0.fxml"));
 
         primaryStage.setTitle("Squirrel");
 

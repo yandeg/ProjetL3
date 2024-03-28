@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -120,21 +121,44 @@ public class Ecran3Controller implements Initializable {
      * Elle permet à l'utilisateur de choisir le dossier de destination pour l'exportation.
      * @param event L'événement déclenché lors du clic sur le bouton d'exportation.
      */
-    public void exportToPDF(ActionEvent event) {
+  /*  public void exportToPDF(ActionEvent event) {
         // Choix du dossier d'exportation
         DirectoryChooser directoryChooser = new DirectoryChooser();
-        directoryChooser.setTitle("Choose Export Location");
+        directoryChooser.setTitle("Choisir le Lieu de l'Export");
         File selectedDirectory = directoryChooser.showDialog(stage);
 
         if (selectedDirectory != null) {
             // Exportation en format PDF
             ExportSimulation.exporterSimulation(TestCalcul.infosActivation, selectedDirectory.getAbsolutePath());
 
-            System.out.println("Data exported successfully to: " + selectedDirectory.getAbsolutePath());
+            System.out.println("Donneés exporté avec succés : " + selectedDirectory.getAbsolutePath());
         } else {
-            System.out.println("No directory selected.");
+            System.out.println("Lieu d'export n'est pas selectionner.");
         }
     }
+*/
 
+    public void exportToPDF(ActionEvent event) {
+        try {
+            // Créer un FileChooser
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Save PDF File");
+            fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
+
+            // Afficher la boîte de dialogue de sélection de fichier pour enregistrer le fichier PDF
+            File file = fileChooser.showSaveDialog(stage);
+
+            if (file != null) {
+                // Exporter les données au fichier PDF sélectionné
+                ExportSimulation.exporterSimulation(TestCalcul.infosActivation, file.getAbsolutePath());
+                System.out.println("Data exported successfully to: " + file.getAbsolutePath());
+            } else {
+                System.out.println("No file selected.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
 

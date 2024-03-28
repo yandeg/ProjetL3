@@ -17,7 +17,6 @@ import java.nio.file.Paths;
 
 public class EcranSessionController {
 
-    //Textfield pour récupérer ce qu'écrit l'utilisateur
     @FXML
     private TextField nomDossierTextField;
     private boolean exists;
@@ -32,7 +31,6 @@ public class EcranSessionController {
             Path cheminDossier = Paths.get("src\\main\\resources\\files\\", nomDossier);
             exists = Files.exists(cheminDossier) && Files.isDirectory(cheminDossier);
         }
-
     }
 
     /**

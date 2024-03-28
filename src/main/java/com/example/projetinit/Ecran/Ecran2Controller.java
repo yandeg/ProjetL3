@@ -165,4 +165,12 @@ public class Ecran2Controller implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Renvoie l'élément sélectionné dans la TableView.
+     *
+     * @return L'élément sélectionné dans la TableView.
+     */
+    public Achat selecteditemToAchat(){
+        return tableview.getSelectionModel().getSelectedItem();
+    }
 }

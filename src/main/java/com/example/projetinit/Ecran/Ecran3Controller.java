@@ -21,13 +21,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.scene.control.ScrollPane;
-
-import javafx.geometry.Insets;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-
-
 
 import java.io.File;
 import java.io.IOException;
@@ -35,8 +28,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ScrollPane;
 
 public class Ecran3Controller implements Initializable {
     private Stage stage;

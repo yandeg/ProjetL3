@@ -48,7 +48,7 @@ public class EcranSessionController {
         // Vérifier si le TextField est initialisé
         checkExists();
         if (exists) {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("/com/example/projetinit/Ecran0.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull( EcranSessionController.class.getResource("/com/example/projetinit/Ecran0.fxml")));
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);

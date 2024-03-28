@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.util.Objects;
 
 
 public class MainApplication extends Application {
@@ -20,7 +21,7 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-      Parent root = FXMLLoader.load(getClass().getResource("/com/example/projetinit/EcranSession.fxml"));
+      Parent root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("/com/example/projetinit/EcranSession.fxml")));
 
         primaryStage.setTitle("Squirrel");
 

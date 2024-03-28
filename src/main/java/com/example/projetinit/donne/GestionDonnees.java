@@ -7,6 +7,7 @@ import com.example.projetinit.attributs.Prix;
 import com.example.projetinit.donne.Achat;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.ObservableList;
 
 import java.io.*;
 import java.util.HashMap;
@@ -16,6 +17,7 @@ import java.util.List;
 
 public class GestionDonnees {
     private static List<Element> elements = new ArrayList<>();
+
     private static List<Chaines> chaines = new ArrayList<>();
     private static List<Prix> prix = new ArrayList<>();
     Affichage afficher = new Affichage();

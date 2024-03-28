@@ -66,4 +66,7 @@ public class Chaines {
     public  int getNiveauActivationC() {
         return this.niveauActivation.get();
     }
+    public String getNiveauActivation() {
+        return String.valueOf(niveauActivation.get());
+    }
 }

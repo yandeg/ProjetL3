@@ -9,18 +9,35 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.layout.HBox;
 
+import static com.example.projetinit.donne.GestionDonnees.*;
+
 public class ModifCell extends TableCell<Chaines, Void> {
     private final HBox container = new HBox();
     private final Button addButton = new Button("+");
-    private final Label counterLabel = new Label("0");
+    private final Label counterLabel = new Label("");
     private final Button minusButton = new Button("-");
 
 
     public ModifCell() {
+
+
         addButton.setOnAction(event -> {
-            int count = Integer.parseInt(counterLabel.getText());
-            count++;
-            counterLabel.setText(String.valueOf(count));
+            //int count = Integer.parseInt(counterLabel.getText());
+
+            System.out.println(getTableRow().getItem().getCodeC());
+            for (Chaines chaine:getChaineProd()) {
+
+                if (chaine.getCodeC().equals(getTableRow().getItem().getCodeC())) {
+                    counterLabel.setText(chaine.getNiveauActivation());
+                    ajouterNiveauActivation(chaine.getCodeC());
+
+                    counterLabel.setText(chaine.getNiveauActivation());
+
+                    System.out.println(chaine.getNiveauActivation());
+                }
+            }
+
+
             //ChaineAvecNiveauActivation chaine = (ChaineAvecNiveauActivation) getTableRow().getItem();
             //chaine.setNiveauActivation(count);
 
@@ -31,6 +48,8 @@ public class ModifCell extends TableCell<Chaines, Void> {
             if (count > 0) {
                 count--;
                 counterLabel.setText(String.valueOf(count));
+                //enleverNiveauActivation("C001");
+
                 //ChaineAvecNiveauActivation chaine = (ChaineAvecNiveauActivation) getTableRow().getItem();
                 //chaine.setNiveauActivation(count);
             }

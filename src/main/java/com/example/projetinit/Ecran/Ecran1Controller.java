@@ -48,6 +48,9 @@ public class Ecran1Controller implements Initializable {
     @FXML
     private TableColumn<Chaines, String> codeC;
     @FXML
+    private TableColumn<Chaines, String> niveauActivation;
+
+    @FXML
     private Label statusLabel;
 
     //cellule du + et - du niveau de l'activation
@@ -75,9 +78,11 @@ public class Ecran1Controller implements Initializable {
         nomC.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomC()));
         entree.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getHashElementEntre()));
         sortie.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getHashElementSortie()));
+        niveauActivation.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getNiveauActivation()));
+         //niveauActivation.setCellFactory(column -> new ModifCell());
+       // enleverNiveauActivation("C001");
 
-       // niveauActivation.setCellFactory(column -> new ModifCell());
-
+       // ajouterNiveauActivation("C001");
         tableViewC.setItems(chaines);
 
     }
@@ -90,6 +95,7 @@ public class Ecran1Controller implements Initializable {
         updateStatusLabel();
     }
 
+    //ça sert à mettre la phrase au plural dans une version ancienne (by Yanis...il insiste meme si c'est pas nécessaire)
     private void updateStatusLabel() {
         statusLabel.setText("Le niveau d'activation : " + ApplicationUtils.pluralize( getNiveauActivation("C001"),"chaine ", "chaines ") + "de production");
     }

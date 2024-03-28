@@ -165,7 +165,7 @@ public class Ecran0Controller {
      */
 
     private void loadCSVData() throws IOException {
-        try (InputStream is = getClass().getResourceAsStream("/files/"+nomDossier+"/Elements.csv");
+        try (InputStream is = getClass().getClassLoader().getResourceAsStream("/files/"+nomDossier+"/Elements.csv");
              BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -202,7 +202,7 @@ public class Ecran0Controller {
      * @throws IOException Si une erreur d'entrée/sortie se produit lors de la lecture du fichier CSV.
      */
     private void loadCSVData1() throws IOException {
-        try (InputStream is = getClass().getResourceAsStream("/files/"+nomDossier+"/Prix.csv");
+        try (InputStream is = getClass().getClassLoader().getResourceAsStream("/files/"+nomDossier+"/Prix.csv");
              BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -240,7 +240,7 @@ public class Ecran0Controller {
      */
     private void loadCSVData2() throws IOException {
 
-        try (InputStream is = getClass().getResourceAsStream("/files/"+nomDossier+"/Chaines.csv");
+        try (InputStream is = getClass().getClassLoader().getResourceAsStream("/files/"+nomDossier+"/Chaines.csv");
              BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
             String line;
             while ((line = reader.readLine()) != null) {

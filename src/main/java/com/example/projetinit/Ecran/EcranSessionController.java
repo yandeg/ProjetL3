@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 public class EcranSessionController {
     static String nomDossier;
@@ -47,7 +48,7 @@ public class EcranSessionController {
         // Vérifier si le TextField est initialisé
         checkExists();
         if (exists) {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/projetinit/Ecran0.fxml"));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("/com/example/projetinit/Ecran0.fxml")));
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);

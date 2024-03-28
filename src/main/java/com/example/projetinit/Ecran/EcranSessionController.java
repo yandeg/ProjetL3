@@ -24,7 +24,7 @@ public class EcranSessionController {
     private void checkExists() {
         if (nomDossierTextField != null) {
             String nomDossier = nomDossierTextField.getText();
-            Path cheminDossier = Paths.get("C:\\Users\\YanisDegheb\\IdeaProjects\\projetInit\\src\\main\\resources\\files\\", nomDossier);
+            Path cheminDossier = Paths.get("src\\main\\resources\\files\\", nomDossier);
             exists = Files.exists(cheminDossier) && Files.isDirectory(cheminDossier);
         }
 

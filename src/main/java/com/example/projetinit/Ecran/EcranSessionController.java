@@ -31,6 +31,7 @@ public class EcranSessionController {
             Path cheminDossier = Paths.get("src\\main\\resources\\files\\", nomDossier);
             exists = Files.exists(cheminDossier) && Files.isDirectory(cheminDossier);
         }
+
     }
 
     /**
@@ -43,17 +44,22 @@ public class EcranSessionController {
      */
     @FXML
     public void switchToEcran0(ActionEvent e) throws IOException {
-        // Vérifier si le TextField est initialisé
-        checkExists();
-        if (exists) {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/projetinit/Ecran0.fxml"));
-            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } else {
-            System.out.println("Le répertoire n'existe pas ou n'est pas un répertoire valide");
-            afficherMessageErreur("Erreur", "Le répertoire n'existe pas ou n'est pas un répertoire valide.");
+        if (nomDossierTextField != null && !nomDossierTextField.getText().isEmpty()) {
+            // Vérifier si le TextField est initialisé
+            checkExists();
+            if (exists) {
+                Parent root = FXMLLoader.load(getClass().getResource("/com/example/projetinit/Ecran0.fxml"));
+                Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } else {
+                System.out.println("Le répertoire n'existe pas ou n'est pas un répertoire valide");
+                afficherMessageErreur("Erreur", "Le répertoire n'existe pas ou n'est pas un répertoire valide.");
+            }
+        }
+        else {
+            afficherMessageErreur("Erreur", "Veuillez spécifier un nom de dossier.");
         }
     }
 

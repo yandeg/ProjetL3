@@ -10,21 +10,21 @@ import javafx.scene.layout.HBox;
 import static com.example.projetinit.donne.GestionDonnees.ajouterNiveauActivation;
 import static com.example.projetinit.donne.GestionDonnees.getChaineProd;
 
-import static com.example.projetinit.donne.GestionDonnees.getNiveauActivation;
-
 public class ModifCell extends TableCell<Chaines, Void> {
     private final HBox container = new HBox();
     private final Button addButton = new Button("+");
     private final Label counterLabel = new Label("0");
     private final Button minusButton = new Button("-");
-    // Champ pour stocker la valeur du label
-    private int labelValue = 0;
 
 
+    /**
+     * Constructeur par défaut.
+     * Initialise les boutons et les actions associées.
+     */
     public ModifCell() {
 
         addButton.setOnAction(event -> {
-            int count = Integer.parseInt(counterLabel.getText());
+            //int count = Integer.parseInt(counterLabel.getText());
 
             System.out.println(getTableRow().getItem().getCodeC());
             for (Chaines chaine:getChaineProd()) {
@@ -40,11 +40,11 @@ public class ModifCell extends TableCell<Chaines, Void> {
             }
 
 
-            Chaines chaine = (Chaines) getTableRow().getItem();
-            chaine.setNiveauActivation(count);
-
+            //ChaineAvecNiveauActivation chaine = (ChaineAvecNiveauActivation) getTableRow().getItem();
+            //chaine.setNiveauActivation(count);
 
         });
+
 
         minusButton.setOnAction(event -> {
             int count = Integer.parseInt(counterLabel.getText());
@@ -53,10 +53,8 @@ public class ModifCell extends TableCell<Chaines, Void> {
                 counterLabel.setText(String.valueOf(count));
                 //enleverNiveauActivation("C001");
 
-                counterLabel.setText(String.valueOf(count));
-                Chaines chaine = (Chaines) getTableRow().getItem();
-                chaine.setNiveauActivation(count);
-
+                //ChaineAvecNiveauActivation chaine = (ChaineAvecNiveauActivation) getTableRow().getItem();
+                //chaine.setNiveauActivation(count);
             }
         });
 
@@ -66,6 +64,12 @@ public class ModifCell extends TableCell<Chaines, Void> {
 
     }
 
+    /**
+     * Met à jour le contenu de la cellule en fonction des données de la ligne.
+     *
+     * @param item  L'objet à afficher dans la cellule.
+     * @param empty Indique si la cellule est vide ou non.
+     */
     @Override
     protected void updateItem(Void item, boolean empty) {
         super.updateItem(item, empty);
@@ -75,12 +79,4 @@ public class ModifCell extends TableCell<Chaines, Void> {
             setGraphic(container);
         }
     }
-
-    public int getLabelValue() {
-        return labelValue;
-    }
-    public HBox getContainer() {
-        return container;
-    }
-
 }

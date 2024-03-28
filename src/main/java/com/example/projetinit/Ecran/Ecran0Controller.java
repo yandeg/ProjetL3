@@ -92,27 +92,30 @@ public class Ecran0Controller {
         stage.setScene(scene);
         stage.show();
     }
+    public void initializet() {
+    }
 
     public void initialize() {
-        //Attribuer l'instance actuelle à la référence statique
-        instance = this;
+            instance = this;
 
-        codeE.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodeE()));
-        nomE.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomE()));
-        quantite.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getQuantite()).asObject());
-        unite.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUnite()));
+            codeE.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodeE()));
+            nomE.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomE()));
+            quantite.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getQuantite()).asObject());
+            unite.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUnite()));
 
-        initialize1();
-        initialize2();
 
-        try {
-            loadCSVData();
-        } catch (IOException e) {
-            e.printStackTrace();
+
+            try {
+                loadCSVData();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            tableView.setItems(elements);
+            initialize1();
+            initialize2();
         }
 
-        tableView.setItems(elements);
-    }
 
     private void loadCSVData() throws IOException {
         String user="user";

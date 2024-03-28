@@ -29,6 +29,7 @@
                 <TableColumn fx:id="nomC" prefWidth="53.333343505859375" text="nomC" />
                 <TableColumn fx:id="entree" minWidth="0.0" prefWidth="85.3333740234375" text="entree" />
                 <TableColumn fx:id="sortie" prefWidth="91.33331298828125" text="sortie" />
+                <TableColumn fx:id="niveauActivation" prefWidth="104.66668701171875" text="Niveau d'activation" />
             </columns>
         </TableView>
         <Label layoutX="411.0" layoutY="14.0" text="Elements" />

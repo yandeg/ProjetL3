@@ -18,10 +18,16 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 
+import static com.example.projetinit.donne.GestionDonnees.*;
+import static com.example.projetinit.donne.GestionDonnees.getPricingData;
+
 public class EcranpopController {
 
     @FXML
     private TableColumn<Chaines, HashMap<String, Double>> sortie;
+
+    @FXML
+    private TableColumn<Chaines, String> niveauActivation;
 
     @FXML
     private TableColumn<Chaines, HashMap<String, Double>> entree;
@@ -73,81 +79,32 @@ public class EcranpopController {
         nomE.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomE()));
         quantite.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getQuantite()).asObject());
         unite.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUnite()));
-
         initialize1();
         initialize2();
-
-        try {
-            loadCSVData();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        elements = getElements();
         tableView.setItems(elements);
     }
 
-    private void loadCSVData() throws IOException {
-        try (InputStream is = getClass().getResourceAsStream("/files/Elements.csv");
-             BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(";");
-                elements.add(new Element(parts[0], parts[1], Double.parseDouble(parts[2]), parts[3]));
-            }
-        }
-    }
+
 
     public void initialize1() {
         codeE1.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodeE()));
         prixAchat.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getPrixAchat()).asObject());
         prixVente.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getPrixVente()).asObject());
         commande.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getQteCommande()).asObject());
-
-        try {
-            loadCSVData1();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        prix = getPricingData();
         tableView1.setItems(prix);
     }
 
-    private void loadCSVData1() throws IOException {
-        try (InputStream is = getClass().getResourceAsStream("/files/user/Prix.csv");
-             BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(";");
-                prix.add(new Prix(parts[0], Double.parseDouble(parts[1]), Double.parseDouble(parts[2]), Double.parseDouble(parts[3])));
-            }
-        }
-    }
 
     public void initialize2() {
         codeC.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodeC()));
         nomC.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomC()));
         entree.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getHashElementEntre()));
         sortie.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getHashElementSortie()));
-        try {
-            loadCSVData2();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        niveauActivation.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNiveauActivation()));
+        chaines = getChaineProd();
         tableView2.setItems(chaines);
-    }
-
-    private void loadCSVData2() throws IOException {
-        try (InputStream is = getClass().getResourceAsStream("/files/user/Chaines.csv");
-             BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(";");
-                chaines.add(new Chaines(parts[0], parts[1], parseHashMap(parts[2]), parseHashMap(parts[3])));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private HashMap<String, Double> parseHashMap(String input) {

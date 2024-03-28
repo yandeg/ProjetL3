@@ -88,15 +88,15 @@ public class GestionDonnees {
         }
     }
 
-    public static List<Element> getElements() {
+    public static ObservableList<Element> getElements() {
         return elements;
     }
 
-    public static List<Chaines> getChaineProd() {
+    public static ObservableList<Chaines> getChaineProd() {
         return chaines;
     }
 
-    public static List<Prix> getPricingData() {
+    public static ObservableList<Prix> getPricingData() {
         return prix;
     }
 

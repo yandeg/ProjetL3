@@ -79,51 +79,6 @@ public class Achat {
     // Méthodes utilitaires
 
     /**
-     * Remplit la liste des achats fictifs (à remplacer par la récupération des achats saisis).
-     *
-     * @return La liste des achats.
-     */
-
-
-    //FICTIF : A remplacer par la récupération des achats saisis
-    public static ObservableList<Achat> remplirAchatsFictifs() {
-
-        return achats;
-    }
-    /**
-     * Initialise la liste des achats avec une quantité d'achat de 0 pour chaque élément.
-     *
-     * @return La liste des achats initialisée.
-     */
-
-
-    //Voir si utile
-    //Crée une liste qui contient tous les éléments avec 0 comme quantité d'achats
-    public static ObservableList<Achat> initialisationAchats() {
-
-        for (Element elt : getElements()) {
-            achats.add(new Achat(elt.getCodeE(), 0.0));
-        }
-        return achats;
-    }
-    /**
-     * Vérifie si un code d'élément est présent dans la liste des achats.
-     *
-     * @param codeE Le code d'élément à vérifier.
-     * @return true si le code d'élément est présent dans la liste des achats, sinon false.
-     */
-
-    public static boolean verifierCodeA(String codeE){
-        for (Achat ha : achats) {
-            if (ha.getCodeE().equals(codeE)) {
-                return true;
-            }
-        }
-        return false;
-
-    }
-
-    /**
      * Compare deux codes d'élément.
      *
      * @param codeE Le premier code d'élément.

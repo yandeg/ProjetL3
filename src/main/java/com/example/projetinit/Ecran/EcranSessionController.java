@@ -16,7 +16,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class EcranSessionController {
-
+    static String nomDossier;
     @FXML
     private TextField nomDossierTextField;
     private boolean exists;
@@ -27,7 +27,7 @@ public class EcranSessionController {
      */
     private void checkExists() {
         if (nomDossierTextField != null) {
-            String nomDossier = nomDossierTextField.getText();
+            nomDossier = nomDossierTextField.getText();
             Path cheminDossier = Paths.get("src\\main\\resources\\files\\", nomDossier);
             exists = Files.exists(cheminDossier) && Files.isDirectory(cheminDossier);
         }

@@ -23,7 +23,6 @@ public class Main {
 
         List<Element> elements = getElements();
         List<Chaines> productionChaine = getChaineProd();
-        List<Prix> pricingData = getPricingData();
 
         // Affichage des éléments
         System.out.println("Liste des éléments :");
@@ -45,14 +44,6 @@ public class Main {
         for (Chaines productionChain : productionChaine) {
             System.out.println(productionChain.getCodeC() + ", " + productionChain.getNomC() + ", " + productionChain.getHashElementEntre()+", "+productionChain.getHashElementSortie());
         }
-
-        // Affichage des données de prix
-//        System.out.println("\nListe des données de prix :");
-//        for (Prix pricing : pricingData) {
-//            afficher.affichage(pricing.getCodeE() + ", " + pricing.getPrixAchat() + ", " + pricing.getPrixVente() + ", " + pricing.getQteCommande());
-//	}
-
-        //   afficher.affichage(""+calcul.calculeIndicateurValeur(elements, pricingData));
 
     }
 }

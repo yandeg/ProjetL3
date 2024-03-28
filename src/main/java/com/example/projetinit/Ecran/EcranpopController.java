@@ -109,21 +109,4 @@ public class EcranpopController {
         tableView2.setItems(chaines);
     }
 
-    /**
-     * Analyse la chaîne de caractères donnée pour créer une HashMap.
-     *
-     * @param input La chaîne de caractères à analyser.
-     * @return Une HashMap créée à partir de la chaîne de caractères.
-     */
-    private HashMap<String, Double> parseHashMap(String input) {
-        HashMap<String, Double> hashMap = new HashMap<>();
-        String[] pairs = input.split("/");
-        for (String pair : pairs) {
-            String[] keyValue = pair.split(",");
-            if (keyValue.length == 2) {
-                hashMap.put(keyValue[0], Double.parseDouble(keyValue[1]));
-            }
-        }
-        return hashMap;
-    }
 }

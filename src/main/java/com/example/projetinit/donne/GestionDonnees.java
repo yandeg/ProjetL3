@@ -68,34 +68,6 @@ public class GestionDonnees {
     }
 
     /**
-     * Réduit le stock d'un élément spécifié.
-     *
-     * @param codeE Le code de l'élément dont réduire le stock.
-     * @param n     La quantité à retirer du stock.
-     * @return Un message indiquant le résultat de l'opération.
-     */
-    public String reduireStock(String codeE,double n){
-        String msg="";
-        for (Element element : elements) {
-            if (element.getCodeE().equals(codeE)) {
-                element.reduireStockE(n);
-                msg = "Vous avez ajouté "+ n + " aux "+codeE;
-                return msg;
-            }
-        }
-        msg = "le code suivant n'a pas d'élément associé "+codeE;
-        return msg;
-    }
-    public static boolean verifierCodeE(String codeE){
-        for (Element element : elements) {
-            if (element.getCodeE().equals(codeE)) {
-                return true;
-            }
-        }
-        return false;
-
-    }
-    /**
      * Vérifie si un code d'élément existe dans la liste des éléments.
      *
      * @param codeC Le code de l'élément à vérifier.

@@ -90,18 +90,6 @@ public class Ecran1Controller implements Initializable {
 
     }
 
-    /**
-     * Gère l'action de suppression du niveau d'activation.
-     *
-     * @param e L'événement associé à l'action.
-     */
-    @FXML
-    protected void handleRemoveLvlAction(ActionEvent e) {
-
-        enleverNiveauActivation("C001");
-        updateStatusLabel();
-    }
-
     //ça sert à mettre la phrase au plural dans une version ancienne (by Yanis...il insiste meme si c'est pas nécessaire)
     /**
      * Met à jour le label de statut.
@@ -156,18 +144,6 @@ public class Ecran1Controller implements Initializable {
         popupStage.showAndWait();
     }
 
-    /**
-     * Gère l'action d'ajout du niveau d'activation.
-     *
-     * @param actionEvent L'événement associé à l'action.
-     */
-    @FXML
-    protected void handleAddLvlAction(ActionEvent actionEvent) {
-        ajouterNiveauActivation("C001");
-        int nouveauCompte = comptesChaine.getOrDefault(codeC, 0) + 1;
-        comptesChaine.put(String.valueOf(codeC), nouveauCompte);
-        updateStatusLabel();
-    }
 
 
 }

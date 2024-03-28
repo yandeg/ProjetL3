@@ -52,27 +52,11 @@ public class Prix {
 	}
 
 	/**
-	 * Setter pour le prix d'achat de l'élément.
-	 * @param purchasePrice Le prix d'achat de l'élément à définir.
-	 */
-	public void setPrixAchat(double purchasePrice) {
-		this.prixAchat.set(purchasePrice);
-	}
-
-	/**
 	 * Getter pour le prix de vente de l'élément.
 	 * @return Le prix de vente de l'élément.
 	 */
 	public double getPrixVente() {
 		return prixVente.get();
-	}
-
-	/**
-	 * Setter pour le prix de vente de l'élément.
-	 * @param sellingPrice Le prix de vente de l'élément à définir.
-	 */
-	public void setPrixVente(double sellingPrice) {
-		this.prixVente.set(sellingPrice);
 	}
 
 	/**
@@ -83,11 +67,5 @@ public class Prix {
 		return qteCommande.get();
 	}
 
-	/**
-	 * Setter pour la quantité commandée de l'élément.
-	 * @param orderedQuantity La quantité commandée de l'élément à définir.
-	 */
-	public void setQteCommande(int orderedQuantity) {
-		this.qteCommande.set(orderedQuantity);
-	}
+
 }

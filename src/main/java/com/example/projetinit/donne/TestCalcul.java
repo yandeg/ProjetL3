@@ -25,16 +25,10 @@ public class TestCalcul {
 	 * @return Une liste contenant les résultats des calculs effectués.
 	 */
 	public List<String> obtenirResultats() {
-		// Charger les données
 
 		List<Element> listeElements = getElements();
-
 		List<Chaines> listeChaines = getChaineProd();
-
-
 		List<Prix> listePrix = getPricingData();
-
-		List <Achat> listeAchats = getAchats();
 
 		// Effectuer les calculs
 		faireLesCalculs();

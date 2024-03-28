@@ -23,6 +23,8 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.util.HashMap;
+
+import static com.example.projetinit.Ecran.EcranSessionController.nomDossier;
 import static com.example.projetinit.donne.GestionDonnees.*;
 
 public class Ecran0Controller {
@@ -163,8 +165,7 @@ public class Ecran0Controller {
      */
 
     private void loadCSVData() throws IOException {
-        String user="user";
-        try (InputStream is = getClass().getResourceAsStream("/files/"+user+"/Elements.csv");
+        try (InputStream is = getClass().getResourceAsStream("/files/"+nomDossier+"/Elements.csv");
              BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -201,8 +202,7 @@ public class Ecran0Controller {
      * @throws IOException Si une erreur d'entrée/sortie se produit lors de la lecture du fichier CSV.
      */
     private void loadCSVData1() throws IOException {
-        String user="user";
-        try (InputStream is = getClass().getResourceAsStream("/files/"+user+"/Prix.csv");
+        try (InputStream is = getClass().getResourceAsStream("/files/"+nomDossier+"/Prix.csv");
              BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -239,8 +239,8 @@ public class Ecran0Controller {
      * @throws IOException Si une erreur d'entrée/sortie se produit lors de la lecture du fichier CSV.
      */
     private void loadCSVData2() throws IOException {
-        String user="user";
-        try (InputStream is = getClass().getResourceAsStream("/files/"+user+"/Chaines.csv");
+
+        try (InputStream is = getClass().getResourceAsStream("/files/"+nomDossier+"/Chaines.csv");
              BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
             String line;
             while ((line = reader.readLine()) != null) {

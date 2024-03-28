@@ -45,14 +45,6 @@ public class ElementBase {
 	}
 
 	/**
-	 * Définit la quantité de l'élément.
-	 * @param quantity La nouvelle quantité de l'élément.
-	 */
-	public void setQuantite(double quantity) {
-		this.quantite.set(quantity);
-	}
-
-	/**
 	 * Ajoute une quantité à la quantité actuelle de l'élément.
 	 * @param n La quantité à ajouter.
 	 */

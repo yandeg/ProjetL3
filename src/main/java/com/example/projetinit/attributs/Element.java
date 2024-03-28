@@ -33,27 +33,11 @@ public class Element extends ElementBase {
 	}
 
 	/**
-	 * Définit le nom de l'élément.
-	 * @param name Le nouveau nom de l'élément.
-	 */
-	public void setNomE(String name) {
-		this.nomE.set(name);
-	}
-
-	/**
 	 * Obtient l'unité de l'élément.
 	 * @return L'unité de l'élément.
 	 */
 	public String getUnite() {
 		return unite.get();
-	}
-
-	/**
-	 * Définit l'unité de l'élément.
-	 * @param unit La nouvelle unité de l'élément.
-	 */
-	public void setUnite(String unit) {
-		this.unite.set(unit);
 	}
 
 }

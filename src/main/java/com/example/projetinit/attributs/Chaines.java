@@ -44,10 +44,6 @@ public class Chaines {
         return codeC.get();
     }
 
-    public void setCodeC(String codeC) {
-        this.codeC.set(codeC);
-    }
-
     /**
      * Obtient le nom de la chaine.
      * @return Le nom de la chaine.
@@ -56,9 +52,6 @@ public class Chaines {
         return nomC.get();
     }
 
-    public void setNomC(String nomC) {
-        this.nomC.set(nomC);
-    }
 
     /**
      * Obtient la liste des éléments en entrée.

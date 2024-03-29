@@ -1,30 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="400.0" prefWidth="600.0" spacing="20.0" stylesheets="@../../../css/Main.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetinit.Ecran.Ecran1Controller">
+<VBox prefHeight="469.0" prefWidth="726.0" spacing="20.0" stylesheets="@../../../css/Main.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetinit.Ecran.Ecran1Controller">
     <children>
-        <TableView fx:id="tableViewC" layoutX="6.0" layoutY="109.0" prefHeight="172.0" prefWidth="439.0">
+      <Label text="Niveau D'activation : Simulation" />
+        <TableView fx:id="tableViewC" layoutX="6.0" layoutY="109.0" prefHeight="295.0" prefWidth="686.0">
             <columns>
-                <TableColumn fx:id="codeC" prefWidth="78.3333352804184" text="codeC" />
-                <TableColumn fx:id="nomC" minWidth="0.0" prefWidth="89.33335876464844" text="nomC" />
-                <TableColumn fx:id="entree" minWidth="0.0" prefWidth="97.99996948242188" text="entree" />
-                <TableColumn fx:id="sortie" prefWidth="102.33331298828125" text="sortie" />
-                <TableColumn fx:id="sortie1" prefWidth="181.666748046875" text="Niveau d'activation" />
+                <TableColumn fx:id="codeC" prefWidth="102.66666984558105" text="codeC" />
+                <TableColumn fx:id="nomC" minWidth="0.0" prefWidth="101.33332061767578" text="nomC" />
+                <TableColumn fx:id="entree" minWidth="0.0" prefWidth="102.99995422363281" text="entree" />
+                <TableColumn fx:id="sortie" prefWidth="129.99996948242188" text="sortie" />
+                <TableColumn fx:id="sortie1" prefWidth="249.00003051757812" text="Niveau d'activation" />
             </columns>
         </TableView>
-      <Pane prefHeight="51.0" prefWidth="546.0">
+            <Button mnemonicParsing="false" onAction="#switchToEcranpop" prefHeight="36.0" prefWidth="88.0" text="Voir données" />
+            <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#switchToEcran2" prefHeight="36.0" prefWidth="88.0" text="Valider">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+      <Pane prefHeight="200.0" prefWidth="200.0" />
+      <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-                  <Button layoutX="222.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchToEcranpop" prefHeight="36.0" prefWidth="88.0" text="Voir données" />
-                  <Button layoutX="446.0" layoutY="9.0" mnemonicParsing="false" onAction="#switchToEcran2" prefHeight="36.0" prefWidth="88.0" text="Valider">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchToEcran0" prefHeight="35.0" prefWidth="88.0" text="Retour" />
+                  <Button mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#switchToEcran0" prefHeight="35.0" prefWidth="88.0" text="Retour">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="SE_RESIZE" />
+               </cursor>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
          </children>
-      </Pane>
+      </HBox>
     </children>
 </VBox>

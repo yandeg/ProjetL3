@@ -4,30 +4,39 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="417.0" prefWidth="589.0" stylesheets="@../../../css/Main.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetinit.Ecran.Ecran3Controller">
+
+<VBox alignment="center" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projetinit.Ecran.Ecran3Controller" stylesheets="@../../../css/Main.css">
    <children>
-      <Label layoutX="233.0" layoutY="38.0" text="Résultats" textAlignment="CENTER">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Label>
-      <Button layoutX="29.0" layoutY="360.0" mnemonicParsing="false" onAction="#switchToEcran2" text="Ecran précédent" />
-      <Label fx:id="labelResultats" layoutX="39.0" layoutY="126.0">
-         <font>
-            <Font size="15.0" />
-         </font></Label>
-      <Label fx:id="messageProdImpossible" layoutX="39.0" layoutY="200.0" prefHeight="74.0" prefWidth="476.0">
-         <font>
-            <Font size="11.0" />
-         </font></Label>
-      <Button layoutX="494.0" layoutY="307.0" mnemonicParsing="false" onAction="#exportToPDF" prefHeight="33.0" prefWidth="40.0" text=".pdf" />
-      <Label layoutX="309.0" layoutY="336.0" prefHeight="19.0" prefWidth="181.0" text="Exporter le fichier Simulation. : " textAlignment="CENTER">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Label>
-    <Button layoutX="494.0" layoutY="354.0" minWidth="6.0" mnemonicParsing="false" onAction="#exportToText" prefHeight="33.0" prefWidth="40.0" text=".txt" />
-      <Button layoutX="441.0" layoutY="156.0" mnemonicParsing="false" onAction="#voirHistorique" text="Voir Historique" />
-      <Button layoutX="410.0" layoutY="114.0" mnemonicParsing="false" onAction="#addToHistorique" text="Ajouter à l'historique" />
+      <AnchorPane prefHeight="522.0" prefWidth="799.0" >
+         <VBox layoutX="59.0" layoutY="14.0" prefHeight="408.0" prefWidth="682.0">
+            <children>
+               <Label text="Résultats" textAlignment="CENTER">
+                  <font>
+                     <Font size="25.0" />
+                  </font>
+               </Label>
+               <Label fx:id="labelResultats" prefHeight="96.0" prefWidth="448.0">
+                  <font>
+                     <Font size="15.0" />
+                  </font>
+               </Label>
+               <Label fx:id="messageProdImpossible" prefHeight="102.0" prefWidth="559.0">
+                  <font>
+                     <Font size="11.0" />
+                  </font>
+               </Label>
+               <Button contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#voirHistorique" text="Voir Historique" />
+               <Button mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#addToHistorique" text="Ajouter à l'historique" />
+            </children>
+         </VBox>
+         <Button layoutX="14.0" layoutY="466.0" mnemonicParsing="false" onAction="#switchToEcran2" text="Ecran précédent" />
+         <Button layoutX="510.0" layoutY="421.0" mnemonicParsing="false" onAction="#exportToPDF" prefHeight="33.0" prefWidth="132.0" text=".pdf" />
+         <Button layoutX="512.0" layoutY="466.0" minWidth="6.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#exportToText" prefHeight="33.0" prefWidth="40.0" text=".txt" />
+         <Label layoutX="326.0" layoutY="455.0" prefHeight="19.0" prefWidth="181.0" text="Exporter le fichier Simulation. : " textAlignment="CENTER">
+            <font>
+               <Font size="13.0" />
+            </font>
+         </Label>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</VBox>

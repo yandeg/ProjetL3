@@ -7,8 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.layout.HBox;
 
-import static com.example.projetinit.donne.GestionDonnees.ajouterNiveauActivation;
-import static com.example.projetinit.donne.GestionDonnees.getChaineProd;
+import static com.example.projetinit.donne.GestionDonnees.*;
 
 public class ModifCell extends TableCell<Chaines, Void> {
     private final HBox container = new HBox();
@@ -39,10 +38,6 @@ public class ModifCell extends TableCell<Chaines, Void> {
                 }
             }
 
-
-            //ChaineAvecNiveauActivation chaine = (ChaineAvecNiveauActivation) getTableRow().getItem();
-            //chaine.setNiveauActivation(count);
-
         });
 
 
@@ -50,11 +45,18 @@ public class ModifCell extends TableCell<Chaines, Void> {
             int count = Integer.parseInt(counterLabel.getText());
             if (count > 0) {
                 count--;
-                counterLabel.setText(String.valueOf(count));
-                //enleverNiveauActivation("C001");
+                for (Chaines chaine:getChaineProd()) {
 
-                //ChaineAvecNiveauActivation chaine = (ChaineAvecNiveauActivation) getTableRow().getItem();
-                //chaine.setNiveauActivation(count);
+                    if (chaine.getCodeC().equals(getTableRow().getItem().getCodeC())) {
+                        counterLabel.setText(chaine.getNiveauActivation());
+                        enleverNiveauActivation(chaine.getCodeC());
+
+                        counterLabel.setText(chaine.getNiveauActivation());
+
+                        System.out.println(chaine.getNiveauActivation());
+                    }
+                }
+
             }
         });
 

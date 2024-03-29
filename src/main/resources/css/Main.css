@@ -1,51 +1,42 @@
-.root{
-    fx-font-family: "Comic Sans MS Normal";
-    -fx-background-color: #F0F4F8 ;
-    -fx-alignment: center;
-    -fx-background-radius: 100;
-    -fx-padding: 25px;
-    -fx-spacing: 10px;
+/* Appliquer le style au conteneur VBox */
+VBox{
+    -fx-background-color: rgb(252, 238, 238); /* Couleur de fond avec transparence */
+    -fx-font-family: "Gotham", Helvetica, Arial, sans-serif; /* Police de caractères */
+    -fx-font-weight: bold; /* Poids de la police */
+    -fx-font-size: 16px; /* Taille de la police */
+    -fx-spacing: 10px; /* Espacement entre les enfants */
+    -fx-padding: 20px; /* Espacement intérieur */
+    -fx-alignment: center; /* Centrer les éléments */
 }
 
-.label{
-    -fx-text-fill: #044E54;
-}
-
-#titleLabel{
-    fx-font: bold 28px "Pacifico";
-    -fx-padding: 0 0 40px 0;
-}
-
-#statusLabel{
-    fx-font-size: 14px;
-}
-
-.button{
-    fx-font-size: 16px;
-    -fx-background-color : #dc4545;
-    -fx-background-radius: 5px;
-    -fx-text-fill: #FFFFFF;
-    -fx-padding: 8px;
+.centered-element {
+    margin: auto; /* Ajuste automatiquement les marges horizontales */
+    position: relative; /* Permet d'utiliser les marges automatiques */
 }
 
 
-.button:hover{
-    -fx-background-color: #ef7744;
-    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
-    -fx-background-radius: 3px, 3px, 2px, 1px;
-    -fx-alignment: CENTER;
-    -fx-content-display: LEFT;
-    -fx-cursor: hand;
-}
-.button:pressed
-{
-    -fx-background-color : #9f6850;
+/* Appliquer le style aux éléments enfants */
+Label {
+    -fx-text-fill: #420a0a; /* Couleur du texte */
 }
 
-
-.increment-button, .decrement-button {
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
+TextField {
+    -fx-pref-height: 25.0; /* Hauteur préférée */
+    -fx-pref-width: 436.0; /* Largeur préférée */
 }
 
+Button {
+    -fx-background-color: linear-gradient(to right, rgba(252, 152, 152, 0.8), #da3d3d); /* Dégradé de couleurs */
+    -fx-background-radius: 10px 17px; /* Bordure arrondie */
+    -fx-text-fill: #1c1111; /* Couleur du texte */
+    -fx-pref-width: 200px; /* Largeur préférée */
+    -fx-pref-height: 40px; /* Hauteur préférée */
+}
 
+Button:hover {
+    -fx-background-color: linear-gradient(to right, #ef7744, rgba(218, 169, 152, 0.34)); /* Dégradé de couleurs au survol */
+}
+
+Button:pressed {
+    -fx-background-color: linear-gradient(to right, rgba(180, 115, 92, 0.34), #9f6850); /* Dégradé de couleurs au clic */
+}
